@@ -13,8 +13,7 @@ public class BasicEnemyController : MonoBehaviour {
     shooting = GetComponent<Shooting>();
   }
 
-  // Update is called once per frame
-  void Update() {
+  void FixedUpdate() {
 
   }
 }

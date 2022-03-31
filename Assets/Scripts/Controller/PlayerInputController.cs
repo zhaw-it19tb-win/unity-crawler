@@ -1,21 +1,53 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Health))]
-[RequireComponent(typeof(Movement))]
 public class PlayerInputController : MonoBehaviour {
 
-  private Health health;
-  private Movement movement;
+  [SerializeField]
+  private Rigidbody2D _rigidBody;
+
+  public float moveSpeed = 1.0f;
+  public float rotationSpeed = 280.0f;
+
+  private PlayerInput input;
+  private Animator Animator;
+
+  int isWalkingHash;
+  int isRunningHash;
 
   void Awake() {
-    health = GetComponent<Health>();
-    movement = GetComponent<Movement>();
+    input = new PlayerInput();
+    input.Player.Move.started += OnMovement;
+    input.Player.Move.performed += OnMovement;
+    input.Player.Move.canceled += OnMovement;
   }
 
-  // Update is called once per frame
-  void Update() {
-    //movement.Move(new Vector3(Random.Range(-11, 11), Random.Range(-11, 11), 0));
+  void Start() {
+    Animator = GetComponentInChildren<Animator>();
+    isWalkingHash = Animator.StringToHash("isWalking");
   }
+
+  private void OnEnable() {
+    input.Enable();
+  }
+
+  private void OnDisable() {
+    input.Disable();
+  }
+
+  private void FixedUpdate() {
+    _rigidBody.MovePosition(_rigidBody.position + currentMovement * moveSpeed * Time.deltaTime);
+    Vector3 moveDirection = Vector3.right * currentMovement.x + Vector3.up * currentMovement.y;
+    transform.rotation = Quaternion.LookRotation(moveDirection.ToIso(), Vector3.up);
+  }
+
+  private Vector2 currentMovement;
+  bool isMovePressed;
+  public void OnMovement(InputAction.CallbackContext context) {
+    currentMovement = context.ReadValue<Vector2>();
+    isMovePressed = currentMovement.x != 0 || currentMovement.y != 0;
+  }
+
 }
