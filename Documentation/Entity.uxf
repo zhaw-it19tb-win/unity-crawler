@@ -1,13 +1,15 @@
-<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>120</x><y>160</y><w>210</w><h>230</h></coordinates><panel_attributes>&lt;&lt;Entity&gt;&gt;
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>120</x><y>150</y><w>210</w><h>290</h></coordinates><panel_attributes>&lt;&lt;Entity&gt;&gt;
 --
 -id: Long
--controller: Controller
+-team: Team / enum
 -health: Double
 -sightRange: Double
 -visualMaterial: Material
 -physicMaterial: Physic Material
--followerEntitys: List&lt;Entitys&gt;
+-followers: List&lt;Entitys&gt;
+-isFollowing: Entity
 
+-controller: Controller
 --
 #GetFollowers(): List&lt;Entitys&gt;
 #GetVisibleEntitys(): List&lt;Entitys&gt;
@@ -17,7 +19,7 @@ Responsibilities
 -- Basic Entity Interface
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>400</x><y>150</y><w>110</w><h>60</h></coordinates><panel_attributes>/Controller/
 --
--isTracking: Entity
+
 
 </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>540</x><y>130</y><w>130</w><h>80</h></coordinates><panel_attributes>Player Controller
 --
