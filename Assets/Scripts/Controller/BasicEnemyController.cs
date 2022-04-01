@@ -9,8 +9,8 @@ public class BasicEnemyController : MonoBehaviour {
   private Shooting shooting;
 
   void Awake() {
-    health = GetComponent<Health>();
-    shooting = GetComponent<Shooting>();
+        health = GetComponent<Health>();
+        shooting = GetComponent<Shooting>();
   }
 
   void FixedUpdate() {
