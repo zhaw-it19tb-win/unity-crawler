@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class ArcherMovement : MonoBehaviour
+public class AIMovement : MonoBehaviour
 {
     private GameObject target;
     private NavMeshAgent agent;
