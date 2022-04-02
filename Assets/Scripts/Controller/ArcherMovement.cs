@@ -12,7 +12,7 @@ public class ArcherMovement : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        target = GameObject.Find("Player");
+        target = GameObject.FindWithTag("PlayerChild");
         agent.updateRotation = false;
         agent.updateUpAxis = false;
     }
