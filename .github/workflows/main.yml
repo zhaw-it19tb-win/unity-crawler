@@ -28,6 +28,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
           LC_ALL: "de-CH.UTF-8"
+        with:
+          projectBaseDir: Assets/
 
       - name: Sonarqube Quality Gate
         uses: sonarsource/sonarqube-quality-gate-action@master
