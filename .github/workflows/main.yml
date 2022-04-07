@@ -27,6 +27,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          LC_ALL: "de-CH.UTF-8"
 
       - name: Sonarqube Quality Gate
         uses: sonarsource/sonarqube-quality-gate-action@master
