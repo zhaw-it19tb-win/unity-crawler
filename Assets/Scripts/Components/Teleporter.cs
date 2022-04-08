@@ -5,11 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class Teleporter : MonoBehaviour
 {
+    public string positionTag;
+
     void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.Space))
+        if (collider.gameObject.tag == "Player")
         {
-            LoadNewScene("HorizontalPath");
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                LoadNewScene("HorizontalPath");
+            }
         }
     }
 
@@ -17,6 +22,5 @@ public class Teleporter : MonoBehaviour
     {
         var activeScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scenePath, LoadSceneMode.Single);
-        //SceneManager.UnloadSceneAsync(activeScene);
     }
 }
