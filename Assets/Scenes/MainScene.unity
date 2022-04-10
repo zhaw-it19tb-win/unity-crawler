@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 187675216}
   m_Layer: 0
   m_Name: Sprite_animation_witch
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,9 +188,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 187675215}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 169c2990a80b7f7478f724f33aa09b84, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d59cf2dd75d8b44cb261f1af2e2a6b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rigidBody: {fileID: 187675219}
+  moveSpeed: 1
+  rotationSpeed: 280
 --- !u!114 &187675217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,8 +253,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187675215}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.09, y: -2.8, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.0899997, y: -2.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1727744421}
@@ -8430,11 +8433,11 @@ GameObject:
   - component: {fileID: 1059065922}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1059065919
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9752,6 +9755,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0487ee31905b4d043bd9f0a9c57cc3a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  staticDirections:
+  - Static_N
+  - Static_NW
+  - Static_W
+  - Static_SW
+  - Static_S
+  - Static_SE
+  - Static_E
+  - Static_NE
+  runDirections:
+  - Run_N
+  - Run_NW
+  - Run_W
+  - Run_SW
+  - Run_S
+  - Run_SE
+  - Run_E
+  - Run_NE
 --- !u!212 &1727744424
 SpriteRenderer:
   m_ObjectHideFlags: 0
