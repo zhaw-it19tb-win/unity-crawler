@@ -1,21 +1,19 @@
-name: Test and Build
+name: Build and Test
 
 on:
   - push
 
 jobs:
-  build:
-    name: Build my project ✨
+  test:
+    name: Unit Tests and Quality Scan
     runs-on: ubuntu-latest
     steps:
-      # Checkout
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
           lfs: true
 
-      # Cache
       - uses: actions/cache@v2
         with:
           path: Library
@@ -36,7 +34,6 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      # Test
       - name: Run tests
         uses: game-ci/unity-test-runner@v2
         env:
@@ -44,7 +41,24 @@ jobs:
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
 
-      # Build
+  build:
+    name: Build Artifact
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-
       - name: Build project
         uses: game-ci/unity-builder@v2
         env:
@@ -56,7 +70,6 @@ jobs:
           allowDirtyBuild: true
           unityVersion: 2020.3.27f1
 
-      # Output
       - uses: actions/upload-artifact@v2
         with:
           name: Build
