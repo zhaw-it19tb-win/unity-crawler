@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class OnSceneLoad : MonoBehaviour
 {
+    GameObject[] playerObjs;
+    GameObject[] teleporterObjs;
     void Start()
     {
-        GameObject[] playerObjs = GameObject.FindGameObjectsWithTag("Player");
-        GameObject[] teleporterObjs = GameObject.FindGameObjectsWithTag("Teleporter");
+        playerObjs = GameObject.FindGameObjectsWithTag("Player");
+        teleporterObjs = GameObject.FindGameObjectsWithTag("Teleporter");
 
         if (playerObjs.Length == 1)
         {
-             playerObjs[0].transform.position = teleporterObjs[0].transform.position;
+            playerObjs[0].transform.localPosition = teleporterObjs[0].transform.localPosition;
         }
         
+    }
+
+    private void FixedUpdate()
+    {
+
     }
 }
