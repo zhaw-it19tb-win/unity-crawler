@@ -16,7 +16,7 @@ public class Health : MonoBehaviour {
 
   public event Action OnDied;
 
-  private int health = 0;
+  public int health { get; private set; } = 0;
 
   private void Awake() {
     health = StartHealth;
