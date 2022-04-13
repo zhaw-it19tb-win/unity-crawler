@@ -20,6 +20,9 @@ public class AIMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.SetDestination(target.transform.position);
+        if (target != null)
+        {
+            agent.SetDestination(target.transform.position);
+        }
     }
 }
