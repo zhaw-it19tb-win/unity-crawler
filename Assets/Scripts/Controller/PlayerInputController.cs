@@ -37,6 +37,12 @@ public class PlayerInputController : MonoBehaviour {
     if (isMovePressed) {
       _rigidBody.MovePosition(_rigidBody.position + currentMovement * moveSpeed * Time.deltaTime);
     }
+
+        float moveH = Input.GetAxis("Horizontal") * moveSpeed;
+        float moveV = Input.GetAxis("Vertical") * moveSpeed; 
+        Vector2 direction = new Vector2(moveH, moveV);
+        FindObjectOfType<PlayerAnimation>().SetDirection(direction);
+
   }
 
   private Vector2 currentMovement;
