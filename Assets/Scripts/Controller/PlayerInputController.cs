@@ -37,8 +37,14 @@ public class PlayerInputController : MonoBehaviour {
     if (isMovePressed) {
       _rigidBody.MovePosition(_rigidBody.position + currentMovement * moveSpeed * Time.deltaTime);
       Vector3 moveDirection = Vector3.right * currentMovement.x + Vector3.up * currentMovement.y;
-      transform.rotation = Quaternion.LookRotation(moveDirection.ToIso(), Vector3.up);
+      //transform.rotation = Quaternion.LookRotation(moveDirection.ToIso(), Vector3.up);
     }
+
+        float moveH = Input.GetAxis("Horizontal") * moveSpeed;
+        float moveV = Input.GetAxis("Vertical") * moveSpeed; 
+        Vector2 direction = new Vector2(moveH, moveV);
+        FindObjectOfType<PlayerAnimation>().SetDirection(direction);
+
   }
 
   private Vector2 currentMovement;
@@ -48,7 +54,7 @@ public class PlayerInputController : MonoBehaviour {
     isMovePressed = currentMovement.x != 0 || currentMovement.y != 0;
 
     float currentSpeed = isMovePressed ? moveSpeed : 0.0f;
-    animator.SetFloat("Speed", currentSpeed);
+    //animator.SetFloat("Speed", currentSpeed);
   }
 
 }
