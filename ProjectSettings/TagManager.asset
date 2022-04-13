@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerChild
   - Teleporter
+  - Healthbar
   layers:
   - Default
   - TransparentFX

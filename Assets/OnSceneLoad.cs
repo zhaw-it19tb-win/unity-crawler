@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class OnSceneLoad : MonoBehaviour
@@ -12,14 +13,9 @@ public class OnSceneLoad : MonoBehaviour
         teleporterObjs = GameObject.FindGameObjectsWithTag("Teleporter");
 
         if (playerObjs.Length == 1)
-        {
-            playerObjs[0].transform.localPosition = teleporterObjs[0].transform.localPosition;
+         {
+            playerObjs[0].transform.localPosition = new Vector3(1, 0, 0); // Bug : teleporterObjs[0].transform.localPosition; --> Position not correct
         }
         
-    }
-
-    private void FixedUpdate()
-    {
-
     }
 }

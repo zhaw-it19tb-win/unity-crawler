@@ -6,9 +6,10 @@ public class DontDestroy : MonoBehaviour
 {
     void Awake()
     {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] playObjs = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] healthObjs = GameObject.FindGameObjectsWithTag("Healthbar");
 
-        if (objs.Length > 1)
+        if (playObjs.Length > 1 || healthObjs.Length > 1)
         {
             Destroy(this.gameObject);
         }
