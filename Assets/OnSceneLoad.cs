@@ -14,7 +14,7 @@ public class OnSceneLoad : MonoBehaviour
 
         if (playerObjs.Length == 1)
          {
-            playerObjs[0].transform.localPosition = new Vector3(1, 0, 0); // Bug : teleporterObjs[0].transform.localPosition; --> Position not correct
+            playerObjs[0].transform.localPosition = teleporterObjs[0].transform.localPosition; 
         }
         
     }
