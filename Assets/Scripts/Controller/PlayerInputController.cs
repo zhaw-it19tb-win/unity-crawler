@@ -37,6 +37,7 @@ public class PlayerInputController : MonoBehaviour {
     if (isMovePressed) {
       _rigidBody.MovePosition(_rigidBody.position + currentMovement * moveSpeed * Time.deltaTime);
     }
+    FindObjectOfType<PlayerAnimation>().SetDirection(currentMovement);
   }
 
   private Vector2 currentMovement;

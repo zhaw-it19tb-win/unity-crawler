@@ -15,6 +15,14 @@ public class PlayerAnimation : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        float result1 = Vector2.SignedAngle(Vector2.up, Vector2.right);
+        Debug.Log("R1 " + result1);
+
+        float result2 = Vector2.SignedAngle(Vector2.up, Vector2.left);
+        Debug.Log("R2 " + result2);
+
+        float result3 = Vector2.SignedAngle(Vector2.up, Vector2.down);
+        Debug.Log("R3 " + result3);
     }
 
     public void SetDirection(Vector2 _direction) {
