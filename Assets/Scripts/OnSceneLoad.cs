@@ -1,21 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class OnSceneLoad : MonoBehaviour
 {
     GameObject[] playerObjs;
     GameObject[] teleporterObjs;
+    string targetTeleporterId;
+
     void Start()
     {
         playerObjs = GameObject.FindGameObjectsWithTag("Player");
         teleporterObjs = GameObject.FindGameObjectsWithTag("Teleporter");
+        targetTeleporterId = GameUtil.targetTeleporterId;
 
-        if (playerObjs.Length == 1)
-         {
-            playerObjs[0].transform.localPosition = teleporterObjs[0].transform.localPosition; 
+        if (targetTeleporterId != null) {
+            for (int i = 0; i < teleporterObjs.Length; i++) {
+                Teleporter t = teleporterObjs[i].GetComponent<Teleporter>();
+                if (t.teleporterId == targetTeleporterId) {
+                    playerObjs[0].transform.localPosition = t.transform.position;
+                    break;
+                }
+            }
         }
-        
     }
 }
