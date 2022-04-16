@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VerticalPath.unity
     guid: 6f5c5e8d029f7c242bda7ecbb90e5403
+  - enabled: 1
+    path: Assets/Scenes/DungeonLevel_1.unity
+    guid: 59c24c4aa25233b41ae25c9055c22598
   m_configObjects: {}
