@@ -11,6 +11,9 @@ public class Shooting : MonoBehaviour {
 
   // Update is called once per frame
   void Start() {
+    GameObject[] playerObjs = GameObject.FindGameObjectsWithTag("Player");
+    target = playerObjs[0].GetComponent<Transform>();
+
     InvokeRepeating("Shoot", 0, 1);
   }
 
