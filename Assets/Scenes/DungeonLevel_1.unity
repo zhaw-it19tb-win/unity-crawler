@@ -32211,7 +32211,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1767992744525053217, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
       propertyPath: targetScene
-      value: DungeonLevel_2_0
+      value: DungeonLevel_2
       objectReference: {fileID: 0}
     - target: {fileID: 1767992744525053217, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
       propertyPath: teleporterId
@@ -32219,7 +32219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1767992744525053217, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
       propertyPath: targetTeleporterId
-      value: DungeonLevel_2
+      value: DungeonLevel_2_0
       objectReference: {fileID: 0}
     - target: {fileID: 1767992744525053221, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
       propertyPath: m_Name

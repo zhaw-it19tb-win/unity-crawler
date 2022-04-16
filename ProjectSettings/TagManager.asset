@@ -7,6 +7,8 @@ TagManager:
   - PlayerChild
   - Teleporter
   - Healthbar
+  - RoomSpawnPoint
+  - Rooms
   layers:
   - Default
   - TransparentFX
