@@ -18,6 +18,8 @@ public class Shooting : MonoBehaviour {
     GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
     Vector2 direction = (target.transform.position - firePoint.transform.position).normalized;
+    //SoundEffect
+    FindObjectOfType<AudioManager>().Play("shot");
     rb.AddForce(direction * bulletForce, ForceMode2D.Impulse);
   }
 }

@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7149875009980734107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7149875009980734105}
+  - component: {fileID: 7149875009980734104}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7149875009980734105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7149875009980734107}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7149875009980734104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7149875009980734107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9c3509c56bbf4a8ca613620467b3464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - loop: 0
+    name: shot
+    clip: {fileID: 8300000, guid: f2a36ada29a484eb586143e9ef930b66, type: 3}
+    source: {fileID: 0}
+    volume: 1
+    pitch: 1
+  - loop: 0
+    name: dead
+    clip: {fileID: 8300000, guid: 838513ebdca3640d1a61f0c30fed7b39, type: 3}
+    source: {fileID: 0}
+    volume: 1
+    pitch: 1
+  - loop: 0
+    name: boss
+    clip: {fileID: 8300000, guid: b4bae683a05d9478ab2604d6a1988f1b, type: 3}
+    source: {fileID: 0}
+    volume: 1
+    pitch: 1
+  - loop: 0
+    name: theme
+    clip: {fileID: 8300000, guid: f16b60b0020f14305af195b72bfb06e0, type: 3}
+    source: {fileID: 0}
+    volume: 1
+    pitch: 1
+  - loop: 0
+    name: menu
+    clip: {fileID: 8300000, guid: 8a80ebe2a775147feb30692ee5cfcdaf, type: 3}
+    source: {fileID: 0}
+    volume: 1
+    pitch: 1

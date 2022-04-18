@@ -22,5 +22,7 @@ public class Teleporter : MonoBehaviour
     {
         var activeScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scenePath, LoadSceneMode.Single);
+        FindObjectOfType<AudioManager>().Stop("theme");
+        FindObjectOfType<AudioManager>().Play("boss");
     }
 }
