@@ -9641,7 +9641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1169616493}
-  target: {fileID: 0}
+  target: {fileID: 187675220}
   bulletPrefab: {fileID: 1158522074396365739, guid: 6bb7ed4bf64f6b04482b046a2d42e8b7, type: 3}
   bulletForce: 1
 --- !u!114 &2116255968
