@@ -276,6 +276,7 @@ MonoBehaviour:
   layerCollision: {fileID: 1563324195}
   floorTiles:
   - {fileID: 11400000, guid: 88c8916122eb8fd499a15ce99886d844, type: 2}
+  - {fileID: 11400000, guid: 23bae067173e12a4dbe0fa39b044d19a, type: 2}
   wallTiles:
   - {fileID: 11400000, guid: 07c36a6128695a74a932dac85ece0db6, type: 2}
   spawnTiles:
