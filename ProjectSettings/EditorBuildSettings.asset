@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DungeonLevel_2.unity
     guid: d9fd8999b569d984e9a5e0b6f77af14c
+  - enabled: 1
+    path: Assets/Scenes/ProcDungeon_1.unity
+    guid: de64a585fe95e1c4f98c95f70fb06a27
   m_configObjects: {}
