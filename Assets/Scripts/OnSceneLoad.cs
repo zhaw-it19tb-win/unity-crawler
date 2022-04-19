@@ -1,16 +1,18 @@
+using System;
 using UnityEngine;
 
 public class OnSceneLoad : MonoBehaviour
 {
-    GameObject[] playerObjs;
-    GameObject[] teleporterObjs;
-    string targetTeleporterId;
-
     void Start()
     {
-        playerObjs = GameObject.FindGameObjectsWithTag("Player");
-        teleporterObjs = GameObject.FindGameObjectsWithTag("Teleporter");
-        targetTeleporterId = GameUtil.targetTeleporterId;
+        MovePlayerToTargetTeleporter();
+    }
+
+    private void MovePlayerToTargetTeleporter()
+    {
+        GameObject[] playerObjs = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] teleporterObjs = GameObject.FindGameObjectsWithTag("Teleporter");
+        string targetTeleporterId = GameUtil.targetTeleporterId;
 
         if (targetTeleporterId != null) {
             for (int i = 0; i < teleporterObjs.Length; i++) {
