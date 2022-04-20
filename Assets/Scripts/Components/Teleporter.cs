@@ -42,7 +42,7 @@ public class Teleporter : MonoBehaviour
         if (collider.gameObject.tag == "Player" && teleportPressed)
         {
             int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            SceneTeleportersRelation relation = GameUtil.SceneTeleporterRelations
+            SceneTeleportersRelationModel relation = GameUtil.SceneTeleporterRelations
                 .Single(r => r.SceneIndex == activeSceneIndex);
             int sceneIndex = relation.Teleporters.Single(t => t.Location == Location).TargetSceneIndex.Value;
 
