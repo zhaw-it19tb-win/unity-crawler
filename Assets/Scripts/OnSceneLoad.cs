@@ -4,18 +4,17 @@ public class OnSceneLoad : MonoBehaviour
 {
     GameObject[] playerObjs;
     GameObject[] teleporterObjs;
-    string targetTeleporterId;
 
     void Start()
     {
         playerObjs = GameObject.FindGameObjectsWithTag("Player");
         teleporterObjs = GameObject.FindGameObjectsWithTag("Teleporter");
-        targetTeleporterId = GameUtil.targetTeleporterId;
+        CardinalDirection targetTeleporterLocation = GameUtil.TargetTeleporterLocation;
 
-        if (targetTeleporterId != null) {
+        if (targetTeleporterLocation != null) { //TODO OSW CHECK LOGIC
             for (int i = 0; i < teleporterObjs.Length; i++) {
                 Teleporter t = teleporterObjs[i].GetComponent<Teleporter>();
-                if (t.teleporterId == targetTeleporterId) {
+                if (t.Location == targetTeleporterLocation) {
                     playerObjs[0].transform.localPosition = t.transform.position;
                     break;
                 }

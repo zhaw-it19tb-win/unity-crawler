@@ -131,6 +131,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1502824425}
     m_Modifications:
     - target: {fileID: 1767992744525053217, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
+      propertyPath: Location
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767992744525053217, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
       propertyPath: targetScene
       value: HorizontalPath
       objectReference: {fileID: 0}

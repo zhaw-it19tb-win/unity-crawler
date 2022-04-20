@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 public class Teleporter : MonoBehaviour
 {    
     public string teleporterId;
-    public string targetScene;
     public string targetTeleporterId;
+    public CardinalDirection Location;
 
     private PlayerInput input;
     private bool teleportPressed;
@@ -39,13 +40,21 @@ public class Teleporter : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player" && teleportPressed)
         {
-            GameUtil.targetTeleporterId = targetTeleporterId;
-            LoadNewScene(targetScene);
+            int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            SceneTeleportersRelation relation = GameUtil.SceneTeleporterRelations
+                .Single(r => r.SceneIndex == activeSceneIndex);
+            int sceneIndex = relation.Teleporters.Single(t => t.Location == Location).TargetSceneIndex.Value;
+
+            GameUtil.TargetTeleporterLocation = GameUtil.SceneTeleporterRelations.Single(r => r.SceneIndex == sceneIndex)
+                .Teleporters.FirstOrDefault(t => t.TargetSceneIndex == activeSceneIndex).Location;// TODO Use Target here correctly
+
+            LoadNewScene(sceneIndex);
         }
     }
 
-    private void LoadNewScene(string scenePath)
+    private void LoadNewScene(int sceneIndex)
     {
-        SceneManager.LoadScene(scenePath, LoadSceneMode.Single);
+
+        SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
     }
 }
