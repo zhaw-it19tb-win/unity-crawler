@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class OnSceneLoad : MonoBehaviour
 {
-    GameObject[] playerObjs;
-    GameObject[] teleporterObjs;
-
     void Start()
     {
-        playerObjs = GameObject.FindGameObjectsWithTag("Player");
-        teleporterObjs = GameObject.FindGameObjectsWithTag("Teleporter");
+        MovePlayerToTargetTeleporter();
+    }
+
+    private void MovePlayerToTargetTeleporter()
+    {
+        GameObject[] playerObjs = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] teleporterObjs = GameObject.FindGameObjectsWithTag("Teleporter");
         CardinalDirection targetTeleporterLocation = GameUtil.TargetTeleporterLocation;
 
         if (targetTeleporterLocation != null) { //TODO OSW CHECK LOGIC

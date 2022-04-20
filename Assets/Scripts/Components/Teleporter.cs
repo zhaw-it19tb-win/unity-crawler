@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Linq;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class Teleporter : MonoBehaviour
 {    
     public string teleporterId;

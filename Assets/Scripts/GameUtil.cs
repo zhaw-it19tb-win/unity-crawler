@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -91,15 +92,26 @@ public class GameUtil : MonoBehaviour
             GU = this;
 
         DontDestroyOnLoad(this);
+
+        SceneManager.sceneLoaded += DoWhenSceneLoads;
+
         GenerateMapStructure();
+    }
+
+    private void DoWhenSceneLoads(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("new scene: ");
+        Debug.Log(scene);
+        Debug.Log("loading mode: ");
+        Debug.Log(mode);
+
     }
 
     // TODO Refactor.... hard to read and performance? --> unit tests?
     private void GenerateMapStructure()
     {
-        var sceneCount = UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings;
+        var sceneCount = SceneManager.sceneCountInBuildSettings;
 
-        //teleporters are always paired... if there are odd count, one will be faxe teleporter
         while (SceneTeleporterRelations.Count(r => r.Teleporters.Any(t => !t.TargetSceneIndex.HasValue)) >= 2)
         {
             var originScene = SceneTeleporterRelations.FirstOrDefault(r => r.Teleporters.Any(t => !t.TargetSceneIndex.HasValue));
