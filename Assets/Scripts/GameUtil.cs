@@ -11,17 +11,18 @@ public class GameUtil : MonoBehaviour
 
     void Awake()
     {
-        if (GU != null)
-            GameObject.Destroy(GU);
-        else
-            GU = this;
+        if (GU == null)
+        {
+            GU = this; 
+            
+            DontDestroyOnLoad(this);
 
-        DontDestroyOnLoad(this);
+            SceneManager.sceneLoaded += DoWhenSceneLoads;
 
-        SceneManager.sceneLoaded += DoWhenSceneLoads;
-
-        SceneTeleporterRelations = LevelStructureController.GetLevelOneSceneTeleporterRelations();
-        MapStructureGenerator.GenerateMapStructure(SceneTeleporterRelations);
+            SceneTeleporterRelations = LevelStructureController.GetLevelOneSceneTeleporterRelations();
+            MapStructureGenerator.GenerateMapStructure(SceneTeleporterRelations);
+        }
+        
     }
 
     private void DoWhenSceneLoads(Scene scene, LoadSceneMode mode)
