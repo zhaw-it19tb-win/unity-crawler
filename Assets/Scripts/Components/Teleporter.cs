@@ -10,7 +10,6 @@ public class Teleporter : MonoBehaviour
     public string teleporterId;
     public string targetTeleporterId;
     public CardinalDirection Location;
-    public bool IsRandomDungeonTeleporter;
 
     private PlayerInput input;
     private bool teleportPressed;
