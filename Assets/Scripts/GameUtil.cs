@@ -107,7 +107,6 @@ public class GameUtil : MonoBehaviour
 
     }
 
-    // TODO Refactor.... hard to read and performance? --> unit tests?
     private void GenerateMapStructure()
     {
         var sceneCount = SceneManager.sceneCountInBuildSettings;
@@ -116,14 +115,13 @@ public class GameUtil : MonoBehaviour
         {
             var originScene = SceneTeleporterRelations.FirstOrDefault(r => r.Teleporters.Any(t => !t.TargetSceneIndex.HasValue));
 
-            // TODO OSW Better solution for getting the an empty teleporter on another scene
             int targetSceneIndex;
             do
             {
                 targetSceneIndex = Random.Range(1, sceneCount);
             } while (
-                targetSceneIndex == originScene.SceneIndex && 
-                SceneTeleporterRelations.Where(r => r.SceneIndex == targetSceneIndex).Any(r => r.Teleporters.Any(t => !t.TargetSceneIndex.HasValue))
+                targetSceneIndex == originScene.SceneIndex ||
+                !SceneTeleporterRelations.Any(r => r.SceneIndex == targetSceneIndex && r.Teleporters.Any(t => !t.TargetSceneIndex.HasValue))
             );
 
             originScene.Teleporters.FirstOrDefault(t => !t.TargetSceneIndex.HasValue).TargetSceneIndex = targetSceneIndex;
