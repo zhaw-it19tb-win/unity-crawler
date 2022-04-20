@@ -8,18 +8,35 @@ public static class LevelStructureController
         {
             new SceneTeleportersRelationModel
             {
-                SceneIndex = 0, // MainScene
+                SceneIndex = 0,
                 Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel
                     {
                         Location = CardinalDirection.East
+                    },
+                    new TeleporterModel
+                    {
+                        Location = CardinalDirection.West,
+                        TargetSceneIndex = 5
                     }
                 }
             },
             new SceneTeleportersRelationModel
             {
-                SceneIndex = 1, // HorizontalPath
+                SceneIndex = 5,
+                Teleporters = new List<TeleporterModel>
+                {
+                    new TeleporterModel
+                    {
+                        Location = CardinalDirection.North,
+                        TargetSceneIndex = 0
+                    }
+                }
+            },
+            new SceneTeleportersRelationModel
+            {
+                SceneIndex = 1,
                 Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel
@@ -34,7 +51,7 @@ public static class LevelStructureController
             },
             new SceneTeleportersRelationModel
             {
-                SceneIndex = 2, // VerticalPath
+                SceneIndex = 2,
                 Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel
@@ -49,7 +66,7 @@ public static class LevelStructureController
             },
             new SceneTeleportersRelationModel
             {
-                SceneIndex = 3, // DungeonLevel1
+                SceneIndex = 3,
                 Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel
@@ -64,16 +81,16 @@ public static class LevelStructureController
             },
             new SceneTeleportersRelationModel
             {
-                SceneIndex = 4, // DungeonLevel2
+                SceneIndex = 4, 
                 Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel
                     {
-                        Location = CardinalDirection.North // Start
+                        Location = CardinalDirection.North 
                     },
                     new TeleporterModel
                     {
-                        Location = CardinalDirection.South // End
+                        Location = CardinalDirection.South
                     }
                 }
             }
@@ -86,18 +103,35 @@ public static class LevelStructureController
         {
             new SceneTeleportersRelationModel
             {
-                SceneIndex = 0, // MainScene
+                SceneIndex = 0,
                 Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel
                     {
                         Location = CardinalDirection.East
+                    },
+                    new TeleporterModel
+                    {
+                        Location = CardinalDirection.West,
+                        TargetSceneIndex = 5
                     }
                 }
             },
             new SceneTeleportersRelationModel
             {
-                SceneIndex = 3, // DungeonLevel1
+                SceneIndex = 5,
+                Teleporters = new List<TeleporterModel>
+                {
+                    new TeleporterModel
+                    {
+                        Location = CardinalDirection.North,
+                        TargetSceneIndex = 0
+                    }
+                }
+            },
+            new SceneTeleportersRelationModel
+            {
+                SceneIndex = 3, 
                 Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel

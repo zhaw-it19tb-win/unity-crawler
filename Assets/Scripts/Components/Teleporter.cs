@@ -10,6 +10,7 @@ public class Teleporter : MonoBehaviour
     public string teleporterId;
     public string targetTeleporterId;
     public CardinalDirection Location;
+    public bool IsRandomDungeonTeleporter;
 
     private PlayerInput input;
     private bool teleportPressed;
@@ -48,15 +49,8 @@ public class Teleporter : MonoBehaviour
             int sceneIndex = relation.Teleporters.Single(t => t.Location == Location).TargetSceneIndex.Value;
 
             GameUtil.TargetTeleporterLocation = GameUtil.SceneTeleporterRelations.Single(r => r.SceneIndex == sceneIndex)
-                .Teleporters.FirstOrDefault(t => t.TargetSceneIndex == activeSceneIndex).Location;// TODO Use Target here correctly
-
-            LoadNewScene(sceneIndex);
+                .Teleporters.FirstOrDefault(t => t.TargetSceneIndex == activeSceneIndex).Location;
+            SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
         }
-    }
-
-    private void LoadNewScene(int sceneIndex)
-    {
-
-        SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
     }
 }
