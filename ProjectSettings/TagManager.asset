@@ -9,6 +9,8 @@ TagManager:
   - Healthbar
   - RoomSpawnPoint
   - Rooms
+  - CollisionLayer
+  - MapTiles
   layers:
   - Default
   - TransparentFX

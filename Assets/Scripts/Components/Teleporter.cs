@@ -5,7 +5,8 @@ using System.Linq;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Teleporter : MonoBehaviour
-{    
+{
+    public string targetScene;
     public string teleporterId;
     public string targetTeleporterId;
     public CardinalDirection Location;
