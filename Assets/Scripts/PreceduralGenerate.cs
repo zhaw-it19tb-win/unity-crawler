@@ -4,13 +4,10 @@ using UnityEngine.Tilemaps;
 
 public class PreceduralGenerate : MonoBehaviour
 {
-    [SerializeReference]
     private Tilemap layer0;
 
-    [SerializeReference]
     private Tilemap layer1;
 
-    [SerializeReference]
     private Tilemap layerCollision;
 
     [SerializeReference]
@@ -26,16 +23,21 @@ public class PreceduralGenerate : MonoBehaviour
     private Tile[] collisionTiles;  
 
     [SerializeReference]
+    private GameObject teleporterPrefab;
+
+    [SerializeField]
     public int startX = -50;
-    [SerializeReference]
+    [SerializeField]
     public int endX = 50;
-    [SerializeReference]
+    [SerializeField]
     public int startY = -50;
-    [SerializeReference]
+    [SerializeField]
     public int endY = 50;
 
-    [SerializeReference]
-    private GameObject teleporterPrefab;
+    [SerializeField]
+    public int spawnX = 5;
+    [SerializeField]
+    public int spawnY = 5;
 
     void Awake() {       
     }
@@ -65,8 +67,6 @@ public class PreceduralGenerate : MonoBehaviour
             }
         }
 
-        int spawnX = 5;
-        int spawnY = 5;
         // Place spawn Teleporter Collider
         Vector3 centreOfTelporter = MapUtil.getCentreOfTile(spawnX, spawnY);
         GameObject spawnObj = Instantiate(teleporterPrefab, centreOfTelporter + new Vector3(0,0,-1), Quaternion.identity );
