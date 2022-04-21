@@ -10,7 +10,7 @@ public class ProceduralGenerate : MonoBehaviour
 
     public Tilemap layer1;
 
-    public Tilemap layerCollision;
+    //public Tilemap layerCollision;
 
     [SerializeReference]
     public GameObject teleporterPrefab;
@@ -72,7 +72,7 @@ public class ProceduralGenerate : MonoBehaviour
         // Get references to tilemap layers
         layer0 = GetComponentsInChildren<Tilemap>()[0];
         layer1 = GetComponentsInChildren<Tilemap>()[1];
-        layerCollision = GameObject.FindGameObjectWithTag("CollisionLayer").GetComponent<Tilemap>();
+        //layerCollision = GameObject.FindGameObjectWithTag("CollisionLayer").GetComponent<Tilemap>();
 
 
         foreach (DungeonTile t in mapData.layer0List) {
@@ -81,9 +81,9 @@ public class ProceduralGenerate : MonoBehaviour
         foreach (DungeonTile t in mapData.layer1List) {
             layer1.SetTile(new Vector3Int(t.x, t.y, t.z), tilebases[t.cat][t.idx]);
         }
-        foreach (DungeonTile t in mapData.layerCollisionList) {
-            layerCollision.SetTile(new Vector3Int(t.x, t.y, t.z), tilebases[t.cat][t.idx]);
-        }
+        //foreach (DungeonTile t in mapData.layerCollisionList) {
+        //    layerCollision.SetTile(new Vector3Int(t.x, t.y, t.z), tilebases[t.cat][t.idx]);
+        //}
 
         // Place spawn Teleporter Collider
         Vector3 centreOfTelporter = MapUtil.getCentreOfTile(spawnX, spawnY);
@@ -99,7 +99,8 @@ public class ProceduralGenerate : MonoBehaviour
     {
         // Refresh composite collision collider
         yield return new WaitForEndOfFrame(); // need this!
-        layerCollision.GetComponent<CompositeCollider2D>().GenerateGeometry();
+        //layerCollision.GetComponent<CompositeCollider2D>().GenerateGeometry();
+        layer1.GetComponent<CompositeCollider2D>().GenerateGeometry();
         yield return new WaitForEndOfFrame();
     }
 
@@ -117,7 +118,7 @@ public class ProceduralGenerate : MonoBehaviour
 
         result.layer0List = new List<DungeonTile>();
         result.layer1List = new List<DungeonTile>();
-        result.layerCollisionList = new List<DungeonTile>();
+        //result.layerCollisionList = new List<DungeonTile>();
 
         result.teleporterPrefab = teleporterPrefab;
         
@@ -135,7 +136,8 @@ public class ProceduralGenerate : MonoBehaviour
                     // Set wall tiles if at edge:
                     result.layer0List.Add( new DungeonTile( i, j, 0, 1, UnityEngine.Random.Range(0, tiles.wallTiles.Length) ) );
                     result.layer1List.Add( new DungeonTile( i, j, 2, 1, UnityEngine.Random.Range(0, tiles.wallTiles.Length) ) );
-                    result.layerCollisionList.Add( new DungeonTile( i, j, 0, 3, 0 ) );
+                    // using collision layer not needed, since composite collider is on layer1 for dungeons
+                    // result.layerCollisionList.Add( new DungeonTile( i, j, 0, 3, 0 ) );
                 } else if ( i == spawnX && j == spawnY ) {
                     // Set spawn tile if at spawn
                     result.layer0List.Add( new DungeonTile( i, j, 0, 2, 0) );
@@ -143,10 +145,11 @@ public class ProceduralGenerate : MonoBehaviour
                     // Set floor tile for all other tiles:
                     result.layer0List.Add( new DungeonTile( i, j, 0, 0, UnityEngine.Random.Range(0, tiles.floorTiles.Length) ) );
                     // additionally add 2ndlevel of collision
-                    if (i == startX+1 || j == startY+1)  {
-                        // Set 2nd collider level tiles
-                        result.layerCollisionList.Add( new DungeonTile( i, j, 0, 3, 0) ); 
-                    }
+                    // ...actually not needed for dungeons since collider is on layer1 
+                    //if (i == startX+1 || j == startY+1)  {
+                    //    // Set 2nd collider level tiles
+                    //    result.layerCollisionList.Add( new DungeonTile( i, j, 0, 3, 0) ); 
+                    //}
                 }
             }
         }
@@ -155,7 +158,6 @@ public class ProceduralGenerate : MonoBehaviour
     }
 
     public void SetDungeonData(MapData data) {
-        // load data
         this.teleporterPrefab = data.teleporterPrefab;
         this.startX = data.startX;
         this.endX = data.endX;
@@ -189,7 +191,7 @@ public class MapData {
 
     public List<DungeonTile> layer0List;
     public List<DungeonTile> layer1List;
-    public List<DungeonTile> layerCollisionList;
+    //public List<DungeonTile> layerCollisionList;
     public GameObject teleporterPrefab;
     public int startX;
     public int endX;
