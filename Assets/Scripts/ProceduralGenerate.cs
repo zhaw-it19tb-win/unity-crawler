@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class PreceduralGenerate : MonoBehaviour
+public class ProceduralGenerate : MonoBehaviour
 {
     public Tilemap layer0;
 
