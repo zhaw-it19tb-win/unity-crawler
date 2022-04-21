@@ -2,38 +2,23 @@ using System.Collections.Generic;
 
 public static class LevelStructureController
 {
-    public static List<SceneTeleportersRelationModel> GetLevelOneSceneTeleporterRelations()
+    public static LevelModel GetGrassLevelModel()
+    {
+        var grassSceneTeleporterRelations = LevelStructureController.GetGrassLevelSceneTeleporterRelations();
+        MapStructureGenerator.GenerateMapStructure(grassSceneTeleporterRelations);
+
+        return new LevelModel
+        {
+            Name = "Grass",
+            SceneTeleporterRelations = grassSceneTeleporterRelations,
+            StartLocation = CardinalDirection.East
+        };
+    }
+
+    private static List<SceneTeleportersRelationModel> GetGrassLevelSceneTeleporterRelations()
     {
         return new List<SceneTeleportersRelationModel>
         {
-            new SceneTeleportersRelationModel
-            {
-                SceneName = "MainScene",
-                Teleporters = new List<TeleporterModel>
-                {
-                    new TeleporterModel
-                    {
-                        Location = CardinalDirection.East
-                    },
-                    new TeleporterModel
-                    {
-                        Location = CardinalDirection.West,
-                        TargetSceneName = "ProcDungeon_1"
-                    }
-                }
-            },
-            new SceneTeleportersRelationModel
-            {
-                SceneName = "ProcDungeon_1",
-                Teleporters = new List<TeleporterModel>
-                {
-                    new TeleporterModel
-                    {
-                        Location = CardinalDirection.North,
-                        TargetSceneName = "MainScene"
-                    }
-                }
-            },
             new SceneTeleportersRelationModel
             {
                 SceneName = "HorizontalPath",
@@ -41,7 +26,9 @@ public static class LevelStructureController
                 {
                     new TeleporterModel
                     {
-                        Location = CardinalDirection.West
+                        Location = CardinalDirection.West,
+                        IsEntrance = true,
+                        TargetSceneName = "MainScene"
                     },
                     new TeleporterModel
                     {
@@ -97,7 +84,7 @@ public static class LevelStructureController
         };
     }
 
-    public static List<SceneTeleportersRelationModel> GetLevelIntroSceneTeleporterRelations()
+    private static List<SceneTeleportersRelationModel> GetLevelIntroSceneTeleporterRelations()
     {
         return new List<SceneTeleportersRelationModel>
         {
