@@ -3,19 +3,48 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+using System.Runtime.Serialization;
+using System.Reflection;
+
+public class Slider : UnityEngine.UI.Slider
+{
+}
 
 public class HealthTest
 {
-    // A Test behaves as an ordinary method
-    [Test]
-    public void TestTakesDamage()
-    {
-        GameObject obj = new GameObject("Test");
-        Slider healthBar = new Slider();
-        obj.AddComponent<Health>();
-        Health healthComponent = obj.GetComponent(typeof(Health)) as Health;
-        healthComponent.HealthBar = healthBar;
-        healthComponent.TakeDamage(1);
-        Assert.AreEqual(99, healthComponent.health);
-    }
+  [Test]
+  public void TestTakesDamage()
+  {
+    GameObject gameObject = new GameObject("Test");
+    gameObject.AddComponent<Health>();
+    Health healthComponent = gameObject.GetComponent<Health>() as Health;
+
+    GameObject sliderObject = new GameObject("Slider");
+    sliderObject.AddComponent<Slider>();
+    healthComponent.HealthBar = sliderObject.GetComponent<Slider>();
+
+    healthComponent.TakeDamage(1);
+    Assert.AreEqual(99, healthComponent.health);
+
+    healthComponent.TakeDamage(2);
+    Assert.AreEqual(97, healthComponent.health);
+  }
+
+  [Test]
+  public void TestDie()
+  {
+		bool hasDied = false;
+
+		GameObject gameObject = new GameObject("Test");
+    gameObject.AddComponent<Health>();
+    Health healthComponent = gameObject.GetComponent<Health>() as Health;
+		healthComponent.OnDied += () => hasDied = true;
+
+    GameObject sliderObject = new GameObject("Slider");
+    sliderObject.AddComponent<Slider>();
+    healthComponent.HealthBar = sliderObject.GetComponent<Slider>();
+
+    healthComponent.TakeDamage(5000);
+		Assert.AreEqual(true, hasDied);
+  }
 }
