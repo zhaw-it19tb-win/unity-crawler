@@ -12,7 +12,7 @@ public class Health : MonoBehaviour {
   protected int StartHealth = 100;
 
   [SerializeField]
-  protected Slider HealthBar = null;
+  public Slider HealthBar = null;
 
   public event Action OnDied;
 

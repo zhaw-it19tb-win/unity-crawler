@@ -10,8 +10,12 @@ public class HealthTest
     [Test]
     public void TestTakesDamage()
     {
-        Health healthBehaviour = new Health();
-        healthBehaviour.TakeDamage(1);
-        Assert.AreEqual(99, healthBehaviour.health);
+        GameObject obj = new GameObject("Test");
+        Slider healthBar = new Slider();
+        obj.AddComponent<Health>();
+        Health healthComponent = obj.GetComponent(typeof(Health)) as Health;
+        healthComponent.HealthBar = healthBar;
+        healthComponent.TakeDamage(1);
+        Assert.AreEqual(99, healthComponent.health);
     }
 }
