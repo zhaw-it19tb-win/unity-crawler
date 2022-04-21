@@ -271,6 +271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00f2458f6468714693684f4e1f2bae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layer0: {fileID: 448652019}
+  layer1: {fileID: 758863341}
+  layerCollision: {fileID: 1563324195}
   teleporterPrefab: {fileID: 1767992744525053221, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
   startX: -10
   endX: 10
@@ -278,6 +281,12 @@ MonoBehaviour:
   endY: 10
   spawnX: 5
   spawnY: 5
+  mapData:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: , ns: , asm: }
 --- !u!4 &706350784
 Transform:
   m_ObjectHideFlags: 0
@@ -587,6 +596,11 @@ PrefabInstance:
 --- !u!4 &1563324194 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 185691303537375196, guid: a901f982940f68244a50cd55380dd94e, type: 3}
+  m_PrefabInstance: {fileID: 1563324193}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1839735485 &1563324195 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 185691303537375191, guid: a901f982940f68244a50cd55380dd94e, type: 3}
   m_PrefabInstance: {fileID: 1563324193}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1733058151
