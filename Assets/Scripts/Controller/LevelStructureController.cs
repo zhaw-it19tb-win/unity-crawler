@@ -8,7 +8,7 @@ public static class LevelStructureController
         {
             new SceneTeleportersRelationModel
             {
-                SceneIndex = 0,
+                SceneName = "MainScene",
                 Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel
@@ -18,25 +18,25 @@ public static class LevelStructureController
                     new TeleporterModel
                     {
                         Location = CardinalDirection.West,
-                        TargetSceneIndex = 5
+                        TargetSceneName = "ProcDungeon_1"
                     }
                 }
             },
             new SceneTeleportersRelationModel
             {
-                SceneIndex = 5,
+                SceneName = "ProcDungeon_1",
                 Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel
                     {
                         Location = CardinalDirection.North,
-                        TargetSceneIndex = 0
+                        TargetSceneName = "MainScene"
                     }
                 }
             },
             new SceneTeleportersRelationModel
             {
-                SceneIndex = 1,
+                SceneName = "HorizontalPath",
                 Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel
@@ -51,7 +51,7 @@ public static class LevelStructureController
             },
             new SceneTeleportersRelationModel
             {
-                SceneIndex = 2,
+                SceneName = "VerticalPath",
                 Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel
@@ -66,7 +66,7 @@ public static class LevelStructureController
             },
             new SceneTeleportersRelationModel
             {
-                SceneIndex = 3,
+                SceneName = "DungeonLevel_1",
                 Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel
@@ -81,7 +81,7 @@ public static class LevelStructureController
             },
             new SceneTeleportersRelationModel
             {
-                SceneIndex = 4, 
+                SceneName = "DungeonLevel_2", 
                 Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel
@@ -103,7 +103,7 @@ public static class LevelStructureController
         {
             new SceneTeleportersRelationModel
             {
-                SceneIndex = 0,
+                SceneName = "MainScene",
                 Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel
@@ -113,25 +113,25 @@ public static class LevelStructureController
                     new TeleporterModel
                     {
                         Location = CardinalDirection.West,
-                        TargetSceneIndex = 5
+                        TargetSceneName = "ProcDungeon_1"
                     }
                 }
             },
             new SceneTeleportersRelationModel
             {
-                SceneIndex = 5,
+                SceneName = "ProcDungeon_1",
                 Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel
                     {
                         Location = CardinalDirection.North,
-                        TargetSceneIndex = 0
+                        TargetSceneName = "MainScene"
                     }
                 }
             },
             new SceneTeleportersRelationModel
             {
-                SceneIndex = 3, 
+                SceneName = "DungeonLevel_1", 
                 Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel

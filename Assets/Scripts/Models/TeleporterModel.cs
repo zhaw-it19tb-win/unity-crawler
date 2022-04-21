@@ -1,5 +1,5 @@
 public class TeleporterModel
 {
-    public int? TargetSceneIndex { get; set; }
+    public string TargetSceneName { get; set; }
     public CardinalDirection Location { get; set; }
 }

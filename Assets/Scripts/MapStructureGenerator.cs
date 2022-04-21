@@ -7,24 +7,24 @@ public static class MapStructureGenerator
 {
     public static void GenerateMapStructure(List<SceneTeleportersRelationModel> sceneTeleportersRelations)
     {
-        var sceneCount = SceneManager.sceneCountInBuildSettings;
+        var sceneNames = sceneTeleportersRelations.Select(r => r.SceneName).ToArray();
 
-        while (sceneTeleportersRelations.Count(r => r.Teleporters.Any(t => !t.TargetSceneIndex.HasValue)) >= 2)
+        while (sceneTeleportersRelations.Count(r => r.Teleporters.Any(t => string.IsNullOrEmpty(t.TargetSceneName))) >= 2)
         {
-            var originScene = sceneTeleportersRelations.FirstOrDefault(r => r.Teleporters.Any(t => !t.TargetSceneIndex.HasValue));
+            var originScene = sceneTeleportersRelations.FirstOrDefault(r => r.Teleporters.Any(t => string.IsNullOrEmpty(t.TargetSceneName)));
 
             int targetSceneIndex;
             do
             {
-                targetSceneIndex = Random.Range(1, sceneCount);
+                targetSceneIndex = Random.Range(1, sceneNames.Count());
             } while (
-                targetSceneIndex == originScene.SceneIndex ||
-                !sceneTeleportersRelations.Any(r => r.SceneIndex == targetSceneIndex && r.Teleporters.Any(t => !t.TargetSceneIndex.HasValue))
+                sceneNames[targetSceneIndex] == originScene.SceneName ||
+                !sceneTeleportersRelations.Any(r => r.SceneName == sceneNames[targetSceneIndex] && r.Teleporters.Any(t => string.IsNullOrEmpty(t.TargetSceneName)))
             );
 
-            originScene.Teleporters.FirstOrDefault(t => !t.TargetSceneIndex.HasValue).TargetSceneIndex = targetSceneIndex;
-            sceneTeleportersRelations.FirstOrDefault(r => r.SceneIndex == targetSceneIndex)
-                .Teleporters.FirstOrDefault(t => !t.TargetSceneIndex.HasValue).TargetSceneIndex = originScene.SceneIndex;
+            originScene.Teleporters.FirstOrDefault(t => string.IsNullOrEmpty(t.TargetSceneName)).TargetSceneName = sceneNames[targetSceneIndex];
+            sceneTeleportersRelations.FirstOrDefault(r => r.SceneName == sceneNames[targetSceneIndex])
+                .Teleporters.FirstOrDefault(t => string.IsNullOrEmpty(t.TargetSceneName)).TargetSceneName = originScene.SceneName;
         }
     }
 }

@@ -42,14 +42,16 @@ public class Teleporter : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player" && teleportPressed)
         {
-            int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            SceneTeleportersRelationModel relation = GameUtil.SceneTeleporterRelations
-                .Single(r => r.SceneIndex == activeSceneIndex);
-            int sceneIndex = relation.Teleporters.Single(t => t.Location == Location).TargetSceneIndex.Value;
+            var sceneNames = GameUtil.SceneTeleporterRelations.Select(r => r.SceneName).ToArray();
+            string activeSceneName = SceneManager.GetActiveScene().name;
 
-            GameUtil.TargetTeleporterLocation = GameUtil.SceneTeleporterRelations.Single(r => r.SceneIndex == sceneIndex)
-                .Teleporters.FirstOrDefault(t => t.TargetSceneIndex == activeSceneIndex).Location;
-            SceneManager.LoadScene(sceneIndex, LoadSceneMode.Single);
+            SceneTeleportersRelationModel relation = GameUtil.SceneTeleporterRelations
+                .Single(r => r.SceneName == activeSceneName);
+            string sceneName = relation.Teleporters.Single(t => t.Location == Location).TargetSceneName;
+
+            GameUtil.TargetTeleporterLocation = GameUtil.SceneTeleporterRelations.Single(r => r.SceneName == sceneName)
+                .Teleporters.FirstOrDefault(t => t.TargetSceneName == activeSceneName).Location;
+            SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         }
     }
 }

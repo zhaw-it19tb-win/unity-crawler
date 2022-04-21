@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     /// </summary>
     public void Play()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MainScene");
     }
 
     /// <summary>
