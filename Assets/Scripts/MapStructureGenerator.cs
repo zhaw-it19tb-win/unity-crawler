@@ -9,12 +9,6 @@ public static class MapStructureGenerator
     {
         var sceneCount = SceneManager.sceneCountInBuildSettings;
 
-        var first = sceneTeleportersRelations.FirstOrDefault();
-
-        Debug.Log(first.Teleporters);
-
-        Debug.Log(sceneTeleportersRelations.Count(r => r.Teleporters.Any(t => !t.TargetSceneIndex.HasValue)));
-
         while (sceneTeleportersRelations.Count(r => r.Teleporters.Any(t => !t.TargetSceneIndex.HasValue)) >= 2)
         {
             var originScene = sceneTeleportersRelations.FirstOrDefault(r => r.Teleporters.Any(t => !t.TargetSceneIndex.HasValue));
