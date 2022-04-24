@@ -51,10 +51,9 @@ public class Teleporter : MonoBehaviour
                 levelModel.IsActive = true;
 
                 var entranceLevel = levelModel.SceneTeleporterRelations.Single(r => r.Teleporters.Any(t => t.IsEntrance));
+                var entranceTeleporter = entranceLevel.Teleporters.Single(t => t.IsEntrance);
 
-                GameUtil.TargetTeleporterLocation = entranceLevel.Teleporters.Single(t => t.IsEntrance).Location;
-
-                SceneManager.LoadScene(entranceLevel.SceneName, LoadSceneMode.Single);
+                TeleportPlayer(entranceLevel.SceneName, entranceTeleporter.Location);
             }
             else
             {
@@ -68,18 +67,24 @@ public class Teleporter : MonoBehaviour
 
                 if (!teleporter.IsEntrance && !teleporter.IsExit)
                 {
-                    GameUtil.TargetTeleporterLocation = levelModel.SceneTeleporterRelations.Single(r => r.SceneName == teleporter.TargetSceneName)
-                        .Teleporters.FirstOrDefault(t => t.TargetSceneName == activeSceneName).Location;
+                    var targetTeleporter = levelModel.SceneTeleporterRelations.Single(r => r.SceneName == teleporter.TargetSceneName)
+                        .Teleporters.FirstOrDefault(t => t.TargetSceneName == activeSceneName);
 
-                    SceneManager.LoadScene(teleporter.TargetSceneName, LoadSceneMode.Single);
+                    TeleportPlayer(teleporter.TargetSceneName, targetTeleporter.Location);
                 } 
                 else if (teleporter.IsEntrance || (teleporter.IsExit && levelModel.IsBossDefeated))
                 {
-                    GameUtil.TargetTeleporterLocation = levelModel.StartLocation;
-
-                    SceneManager.LoadScene(teleporter.TargetSceneName, LoadSceneMode.Single);
+                    TeleportPlayer(teleporter.TargetSceneName, levelModel.StartLocation);
                 }
             }
         }
+    }
+
+    private void TeleportPlayer(string sceneName, CardinalDirection targetTeleporterLocation)
+    {
+        GameUtil.TargetTeleporterLocation = targetTeleporterLocation;
+        GameUtil.IsPlayerTeleported = true;
+
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
 }
