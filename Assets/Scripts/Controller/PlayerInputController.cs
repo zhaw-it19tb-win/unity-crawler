@@ -10,7 +10,7 @@ public class PlayerInputController : MonoBehaviour {
   public float rotationSpeed = 280.0f;
 
   private PlayerInput input;
-  private Animator animator;
+
 
   void Awake() {
     input = new PlayerInput();
@@ -20,7 +20,7 @@ public class PlayerInputController : MonoBehaviour {
   }
 
   void Start() {
-    animator = GetComponentInChildren<Animator>();
+    
   }
 
   private void OnEnable() {
@@ -34,9 +34,9 @@ public class PlayerInputController : MonoBehaviour {
   private void FixedUpdate() {
     if (isMovePressed) {
       _rigidBody.MovePosition(_rigidBody.position + currentMovement * moveSpeed * Time.deltaTime);
-      Vector3 moveDirection = Vector3.right * currentMovement.x + Vector3.up * currentMovement.y;
-      transform.rotation = Quaternion.LookRotation(moveDirection.ToIso(), Vector3.up);
     }
+    FindObjectOfType<PlayerAnimation>().SetDirection(currentMovement);
+
   }
 
   private Vector2 currentMovement;
@@ -46,7 +46,6 @@ public class PlayerInputController : MonoBehaviour {
     isMovePressed = currentMovement.x != 0 || currentMovement.y != 0;
 
     float currentSpeed = isMovePressed ? moveSpeed : 0.0f;
-    animator.SetFloat("Speed", currentSpeed);
   }
 
 }
