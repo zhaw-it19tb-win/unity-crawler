@@ -22,7 +22,31 @@ public class GameUtil : MonoBehaviour
 
             InitializeLevelModels();
         }
-        
+
+        RegenerateLevelModels();        
+    }
+
+    private void RegenerateLevelModels()
+    {
+        if (LevelModels.Any(m => m.IsBossDefeated)) 
+        {
+            var finishedLevelName = LevelModels.Single(m => m.IsBossDefeated).Name;
+
+            LevelModels.RemoveAll(l => l.IsBossDefeated);
+
+            switch (finishedLevelName)
+            {
+                case "Grass":
+                    LevelModels.Add(LevelStructureController.GetGrassLevelModel());
+                    break;
+                case "Underwater":
+                    LevelModels.Add(LevelStructureController.GetUnderwaterLevelMode());
+                    break;
+                default:
+                    LevelModels.Add(LevelStructureController.GetRandomDungeonLevelModel());
+                    break;
+            }
+        }
     }
 
     private void InitializeLevelModels()

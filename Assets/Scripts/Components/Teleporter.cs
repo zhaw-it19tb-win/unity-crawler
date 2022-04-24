@@ -66,17 +66,19 @@ public class Teleporter : MonoBehaviour
                     .Single(r => r.SceneName == activeSceneName);
                 var teleporter = relation.Teleporters.Single(t => t.Location == Location);
 
-                if (teleporter.IsEntrance || teleporter.IsExit)
-                {
-                    GameUtil.TargetTeleporterLocation = levelModel.StartLocation;
-                } 
-                else
+                if (!teleporter.IsEntrance && !teleporter.IsExit)
                 {
                     GameUtil.TargetTeleporterLocation = levelModel.SceneTeleporterRelations.Single(r => r.SceneName == teleporter.TargetSceneName)
                         .Teleporters.FirstOrDefault(t => t.TargetSceneName == activeSceneName).Location;
-                }
 
-                SceneManager.LoadScene(teleporter.TargetSceneName, LoadSceneMode.Single);
+                    SceneManager.LoadScene(teleporter.TargetSceneName, LoadSceneMode.Single);
+                } 
+                else if (teleporter.IsEntrance || (teleporter.IsExit && levelModel.IsBossDefeated))
+                {
+                    GameUtil.TargetTeleporterLocation = levelModel.StartLocation;
+
+                    SceneManager.LoadScene(teleporter.TargetSceneName, LoadSceneMode.Single);
+                }
             }
         }
     }
