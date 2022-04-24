@@ -28,7 +28,9 @@ public class GameUtil : MonoBehaviour
     private void InitializeLevelModels()
     {
         LevelModels = new List<LevelModel>();
+        LevelModels.Add(LevelStructureController.GetRandomDungeonLevelModel());
         LevelModels.Add(LevelStructureController.GetGrassLevelModel());
+        LevelModels.Add(LevelStructureController.GetUnderwaterLevelMode());
     }
 
     private void DoWhenSceneLoads(Scene scene, LoadSceneMode mode)

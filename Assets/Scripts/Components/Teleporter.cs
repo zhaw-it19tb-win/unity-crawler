@@ -66,10 +66,11 @@ public class Teleporter : MonoBehaviour
                     .Single(r => r.SceneName == activeSceneName);
                 var teleporter = relation.Teleporters.Single(t => t.Location == Location);
 
-                if (teleporter.IsEntrance)
+                if (teleporter.IsEntrance || teleporter.IsExit)
                 {
                     GameUtil.TargetTeleporterLocation = levelModel.StartLocation;
-                } else
+                } 
+                else
                 {
                     GameUtil.TargetTeleporterLocation = levelModel.SceneTeleporterRelations.Single(r => r.SceneName == teleporter.TargetSceneName)
                         .Teleporters.FirstOrDefault(t => t.TargetSceneName == activeSceneName).Location;
