@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerChild
+  - Teleporter
+  - Healthbar
+  - RoomSpawnPoint
+  - Rooms
+  - CollisionLayer
+  - MapTiles
   layers:
   - Default
   - TransparentFX
