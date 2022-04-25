@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArcherAnimation : MonoBehaviour
 {
-    public string[] staticDirections = { "Static_N", "Static_NW", "Static_W", "Static_SW", "Static_S", "Static_SE", "Static_E", "Static_NE" };
+    public string[] staticDirections = { "Idle_N", "Idle_NW", "Idle_W", "Idle_SW", "Idle_S", "Idle_SE", "Idle_E", "Idle_NE" };
     public string[] runDirections = { "Run_N", "Run_NW", "Run_W", "Run_SW", "Run_S", "Run_SE", "Run_E", "Run_NE" }; 
 
     private Animator anim;
@@ -16,13 +16,9 @@ public class ArcherAnimation : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         float result1 = Vector2.SignedAngle(Vector2.up, Vector2.right);
-        Debug.Log("R1 " + result1);
-
-        float result2 = Vector2.SignedAngle(Vector2.up, Vector2.left);
-        Debug.Log("R2 " + result2);
-
+        float result2 = Vector2.SignedAngle(Vector2.up, Vector2.left); 
         float result3 = Vector2.SignedAngle(Vector2.up, Vector2.down);
-        Debug.Log("R3 " + result3);
+   
     }
 
     public void SetDirection(Vector2 _direction) {
@@ -33,8 +29,10 @@ public class ArcherAnimation : MonoBehaviour
         }
         else {
             directionArray = runDirections;
-            lastDirection = DirectionToIndex(_direction); //MARKER Get the index of the slice from the direction vector
         }
+
+        lastDirection = DirectionToIndex(_direction); //MARKER Get the index of the slice from the direction vector
+        Debug.Log("Direction Index = " + lastDirection);
 
         anim.Play(directionArray[lastDirection]);
     }

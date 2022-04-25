@@ -11,7 +11,7 @@ public class AIMovement : MonoBehaviour
     private NavMeshAgent agent;
 
     public float moveSpeed = 1.0f;
-    private Vector2 currentMovement;
+    private Vector2 currentDirection;
     private bool isMovePressed;
 
     // Start is called before the first frame update
@@ -30,7 +30,11 @@ public class AIMovement : MonoBehaviour
         {
             agent.SetDestination(target.transform.position);
         }
-        FindObjectOfType<ArcherAnimation>().SetDirection(currentMovement);
+
+        currentDirection = new Vector2(agent.velocity.x, agent.velocity.y);
+        //Debug.Log("agent x and y " + agent.desiredVelocity.x + "  "+ agent.desiredVelocity.y);
+        //Debug.Log("CurrentDirection = " + currentDirection);
+        FindObjectOfType<ArcherAnimation>().SetDirection(currentDirection);
     }
     /*
     public void OnMovement(InputAction.CallbackContext context)

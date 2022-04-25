@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.25
-    agentHeight: 2
+    agentRadius: 0.1
+    agentHeight: 0.5
     agentSlope: 45
     agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.083333336
+    cellSize: 0.033333335
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -688,7 +688,7 @@ GameObject:
   - component: {fileID: 624292297}
   - component: {fileID: 624292302}
   - component: {fileID: 624292303}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: layer_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11801,7 +11801,7 @@ GameObject:
   - component: {fileID: 1194633886}
   - component: {fileID: 1194633892}
   - component: {fileID: 1194633891}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17848,7 +17848,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 64
   m_UseGeometry: 1
   m_OverrideByGrid: 0
   m_UseMeshPrefab: {fileID: 0}
@@ -17860,7 +17860,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.083333336
+  m_VoxelSize: 0.033333335
   m_BuildHeightMesh: 0
   m_HideEditorLogs: 0
   m_NavMeshData: {fileID: 23800000, guid: a09838083caae404f831339dcad70a8b, type: 2}
@@ -17871,7 +17871,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1290874952}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -18215,7 +18215,7 @@ GameObject:
   - component: {fileID: 1856406114}
   - component: {fileID: 1856406113}
   m_Layer: 3
-  m_Name: Archer (1)
+  m_Name: Archer_new
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18306,13 +18306,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1856406112}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0790117, y: 0.011705339}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -18323,7 +18323,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.28011417, y: 0.6020144}
   m_EdgeRadius: 0
 --- !u!4 &1856406119
 Transform:
