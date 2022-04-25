@@ -5,7 +5,7 @@ using UnityEngine;
 public class ArcherAnimation : MonoBehaviour
 {
     public string[] staticDirections = { "Idle_N", "Idle_NW", "Idle_W", "Idle_SW", "Idle_S", "Idle_SE", "Idle_E", "Idle_NE" };
-    public string[] runDirections = { "Run_N", "Run_NW", "Run_W", "Run_SW", "Run_S", "Run_SE", "Run_E", "Run_NE" }; 
+    public string[] runDirections = { "Idle_N", "Idle_NW", "Idle_W", "Idle_SW", "Idle_S", "Idle_SE", "Idle_E", "Idle_NE" }; 
 
     private Animator anim;
 
@@ -29,10 +29,9 @@ public class ArcherAnimation : MonoBehaviour
         }
         else {
             directionArray = runDirections;
+            lastDirection = DirectionToIndex(_direction); //MARKER Get the index of the slice from the direction vector
         }
 
-        lastDirection = DirectionToIndex(_direction); //MARKER Get the index of the slice from the direction vector
-        Debug.Log("Direction Index = " + lastDirection);
 
         anim.Play(directionArray[lastDirection]);
     }
@@ -52,6 +51,7 @@ public class ArcherAnimation : MonoBehaviour
         }
 
         float stepCount = angle / step;
-        return Mathf.FloorToInt(stepCount);
+        int flooredInt = Mathf.FloorToInt(stepCount);
+        return flooredInt; 
     }
 }

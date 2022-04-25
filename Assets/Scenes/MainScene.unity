@@ -18131,14 +18131,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   staticDirections:
-  - Static_N
-  - Static_NW
-  - Static_W
-  - Static_SW
-  - Static_S
-  - Static_SE
-  - Static_E
-  - Static_NE
+  - Idle_N
+  - Idle_NW
+  - Idle_W
+  - Idle_SW
+  - Idle_S
+  - Idle_SE
+  - Idle_E
+  - Idle_NE
   runDirections:
   - Run_N
   - Run_NW
