@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8b11ef251afe24fb5ae7ca7ce4fce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleporterId: Teleporter_0
   targetScene: Scene
+  teleporterId: Teleporter_0
   targetTeleporterId: Scene_0
+  Location: 0
 --- !u!61 &1767992744525053223
 BoxCollider2D:
   m_ObjectHideFlags: 0
