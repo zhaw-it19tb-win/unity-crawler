@@ -8696,7 +8696,7 @@ GameObject:
   - component: {fileID: 5207618693935633043}
   - component: {fileID: 5207618693935633044}
   m_Layer: 0
-  m_Name: SeaCoast
+  m_Name: UnderwaterEntry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
