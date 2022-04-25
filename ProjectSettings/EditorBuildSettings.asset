@@ -26,4 +26,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ProcDungeon_1.unity
     guid: de64a585fe95e1c4f98c95f70fb06a27
+  - enabled: 1
+    path: Assets/Scenes/SeaCoast.unity
+    guid: 2099dce856b74fe44bb30ef0ad543124
+  - enabled: 1
+    path: Assets/Scenes/Underwater.unity
+    guid: 9e1f5171ed8c2a04f9e2c97f0a4d9701
+  - enabled: 1
+    path: Assets/Scenes/UnderwaterBoss.unity
+    guid: 372871d3a1511fd44ac9c3ef41ee671a
   m_configObjects: {}
