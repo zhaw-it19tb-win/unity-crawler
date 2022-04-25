@@ -11095,7 +11095,7 @@ GameObject:
   - component: {fileID: 1959936614}
   - component: {fileID: 1959936613}
   m_Layer: 0
-  m_Name: DungeonLevel_1
+  m_Name: FireLevel_Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
