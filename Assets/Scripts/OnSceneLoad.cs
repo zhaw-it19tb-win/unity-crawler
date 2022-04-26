@@ -4,7 +4,11 @@ public class OnSceneLoad : MonoBehaviour
 {
     void Start()
     {
-        MovePlayerToTargetTeleporter();
+        if(GameUtil.IsPlayerTeleported)
+        {
+            MovePlayerToTargetTeleporter();
+            GameUtil.IsPlayerTeleported = false;
+        }        
     }
 
     private void MovePlayerToTargetTeleporter()
@@ -13,13 +17,11 @@ public class OnSceneLoad : MonoBehaviour
         GameObject[] teleporterObjs = GameObject.FindGameObjectsWithTag("Teleporter");
         CardinalDirection targetTeleporterLocation = GameUtil.TargetTeleporterLocation;
 
-        if (targetTeleporterLocation != null) { //TODO OSW CHECK LOGIC, use some unset enum entry?
-            for (int i = 0; i < teleporterObjs.Length; i++) {
-                Teleporter t = teleporterObjs[i].GetComponent<Teleporter>();
-                if (t.Location == targetTeleporterLocation) {
-                    playerObjs[0].transform.localPosition = t.transform.position;
-                    break;
-                }
+        for (int i = 0; i < teleporterObjs.Length; i++) {
+            Teleporter t = teleporterObjs[i].GetComponent<Teleporter>();
+            if (t.Location == targetTeleporterLocation) {
+                playerObjs[0].transform.localPosition = t.transform.position;
+                break;
             }
         }
     }
