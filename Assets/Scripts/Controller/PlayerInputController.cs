@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(WitchShooting))]
+[RequireComponent(typeof(RoundAttack))]
 public class PlayerInputController : MonoBehaviour {
 
   [SerializeField]
@@ -10,9 +12,11 @@ public class PlayerInputController : MonoBehaviour {
   public float rotationSpeed = 280.0f;
 
   private PlayerInput input;
+  private WitchShooting witchShooting;
+  private RoundAttack roundAttack;
 
 
-  void Awake() {
+    void Awake() {
     input = new PlayerInput();
     input.Player.Move.started += OnMovement;
     input.Player.Move.performed += OnMovement;
@@ -20,10 +24,11 @@ public class PlayerInputController : MonoBehaviour {
   }
 
   void Start() {
-    
-  }
+        witchShooting = GetComponent<WitchShooting>();
+        roundAttack = GetComponent<RoundAttack>();
+    }
 
-  private void OnEnable() {
+    private void OnEnable() {
     input.Enable();
   }
 

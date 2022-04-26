@@ -4,7 +4,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
   private Health health;
 
-  void Start() {
+
+    void Start() {
     health = GetComponent<Health>();
     health.OnDied += OnDied;
   }
