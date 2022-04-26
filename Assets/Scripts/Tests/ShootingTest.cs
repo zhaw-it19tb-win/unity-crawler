@@ -51,7 +51,7 @@ namespace Tests
                 }
             );
             player.transform.position.Set(12, 14, 0);
-            
+
             var enemy = Object.Instantiate(
                 new GameObject("enemy")
             );
@@ -60,7 +60,7 @@ namespace Tests
             enemy.AddComponent<Shooting>();
             enemy.GetComponent<Shooting>().firePoint = enemy.transform;
             addTag("Bullet");
-            
+
             var bulletPrefab = Object.Instantiate(
                 new GameObject("bullet")
                 {
@@ -70,18 +70,18 @@ namespace Tests
                     tag = "Bullet"
                 }
             );
-            
+
             bulletPrefab.AddComponent<Rigidbody2D>();
             enemy.GetComponent<Shooting>().bulletPrefab = bulletPrefab;
-    
+
             yield return new WaitForEndOfFrame();
-            
+
             var transform1 = bulletPrefab.transform.position;
             yield return new WaitForSeconds(.25f);
             var transform2 = bulletPrefab.transform.position;
-            
+
             // Test if bullet moved
-            Assert.AreEqual(0.5, (transform1 - transform2).magnitude, .2f);
+            Assert.AreEqual(0.2, (transform1 - transform2).magnitude, .4f);
         }
     }
 }
