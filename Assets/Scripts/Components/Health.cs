@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +9,7 @@ public class Health : MonoBehaviour {
   protected int StartHealth = 100;
 
   [SerializeField]
-  public Slider HealthBar = null;
+  public Slider HealthBar;
 
   public event Action OnDied;
 
@@ -35,10 +32,8 @@ public class Health : MonoBehaviour {
     }
   }
 
-  private void Die() {
-    if (OnDied != null) {
-      OnDied();
-    }
+  private void Die()
+  {
+    OnDied?.Invoke();
   }
-
 }
