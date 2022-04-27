@@ -7,6 +7,10 @@ TagManager:
   - PlayerChild
   - Teleporter
   - Healthbar
+  - RoomSpawnPoint
+  - Rooms
+  - CollisionLayer
+  - MapTiles
   layers:
   - Default
   - TransparentFX
@@ -43,4 +47,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 427761703
     locked: 0
