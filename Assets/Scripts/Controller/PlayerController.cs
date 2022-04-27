@@ -6,7 +6,13 @@ public class PlayerController : MonoBehaviour {
 
 
   void Start() {
+        Debug.Log("Start is called");
     health.OnDied += OnDied;
+  }
+
+  void Awake() {
+        Debug.Log("Awake is called");
+    health = GetComponent<Health>();
   }
 
   private void OnDied() {

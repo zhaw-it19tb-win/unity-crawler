@@ -19,7 +19,7 @@ public class RoundAttack : MonoBehaviour
         Collider2D[] colliders = Physics2D.OverlapCircleAll(player.transform.position, 1.0f);
         if (Input.GetKeyDown("space"))
         {
-            foreach(Collider2D collider in colliders)
+            foreach (Collider2D collider in colliders)
             {
                 collider.gameObject.GetComponent<Health>()?.TakeDamage(10);
             }

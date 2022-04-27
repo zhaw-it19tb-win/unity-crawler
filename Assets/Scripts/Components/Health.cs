@@ -37,8 +37,8 @@ public class Health : MonoBehaviour {
   }
 
   private void Die() {
-    Debug.Log("Die is called");
     if (OnDied != null) {
+            Debug.Log("On Died != null");
       OnDied();
     }
   }

@@ -13,7 +13,7 @@ public class WitchShooting : MonoBehaviour
     void Start()
     {
     }
-    
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
