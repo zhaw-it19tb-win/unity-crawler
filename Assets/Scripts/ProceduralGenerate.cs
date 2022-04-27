@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 
 public class ProceduralGenerate : MonoBehaviour
 {
+    public static string MAPVERSION = "v0.1.0";
+    
     public Tilemap layer0;
 
     public Tilemap layer1;
@@ -43,7 +45,8 @@ public class ProceduralGenerate : MonoBehaviour
 
     private void TryToLoadLevel()
     {
-        string savefile = "proc_dungeon_1.json";
+        string savefile = GameUtil.GameId + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + MAPVERSION + ".json";
+        Debug.Log("savefile="+savefile);
         mapData = JsonUtility.FromJson<MapData>(SaveGameManager.LoadData(savefile));
         if (mapData != null) {
             SetDungeonData( mapData );
