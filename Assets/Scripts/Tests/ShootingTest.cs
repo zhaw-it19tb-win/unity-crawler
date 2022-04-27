@@ -74,7 +74,7 @@ namespace Tests
             bulletPrefab.AddComponent<Rigidbody2D>();
             enemy.GetComponent<Shooting>().bulletPrefab = bulletPrefab;
 
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(.01f);
 
             var transform1 = bulletPrefab.transform.position;
             yield return new WaitForSeconds(.25f);
