@@ -38,7 +38,6 @@ public class Health : MonoBehaviour {
 
   private void Die() {
     if (OnDied != null) {
-            Debug.Log("On Died != null");
       OnDied();
     }
   }

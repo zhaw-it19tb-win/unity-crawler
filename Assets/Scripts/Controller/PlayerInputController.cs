@@ -48,7 +48,9 @@ public class PlayerInputController : MonoBehaviour
 
     private void OnDied()
     {
-        Destroy(this.gameObject);
+        //Doesn't work because Main Camera is attached to this object.
+        //Destroy(this.gameObject);
+        Debug.Log("Player died");
     }
 
     private void FixedUpdate()
