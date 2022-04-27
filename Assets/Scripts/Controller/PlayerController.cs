@@ -5,13 +5,11 @@ public class PlayerController : MonoBehaviour {
   private Health health;
 
 
-    void Start() {
-    health = GetComponent<Health>();
+  void Start() {
     health.OnDied += OnDied;
   }
 
   private void OnDied() {
     Debug.Log("You died.");
-
   }
 }

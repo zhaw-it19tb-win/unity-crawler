@@ -16,14 +16,14 @@ public class RoundAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Collider[] colliders = Physics.OverlapSphere(player.transform.position, 1.0f);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(player.transform.position, 1.0f);
         if (Input.GetKeyDown("space"))
         {
-            foreach(Collider collider in colliders)
+            foreach(Collider2D collider in colliders)
             {
-                Debug.Log(collider);
-                Destroy(collider.gameObject);
+                collider.gameObject.GetComponent<Health>()?.TakeDamage(10);
             }
         }
     }
+
 }

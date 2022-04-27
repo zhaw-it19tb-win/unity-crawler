@@ -13,16 +13,14 @@ public class WitchShooting : MonoBehaviour
     void Start()
     {
     }
-
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
             target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             target.z = 0.0f;
-            Vector3 modifiedFirePoint = Vector3.MoveTowards(firePoint.position, target, 0.1f);
-            Debug.Log("modifiedFirePoint: " + modifiedFirePoint);
-            Debug.Log("firePoint: " + firePoint.position);
+            Vector3 modifiedFirePoint = Vector3.MoveTowards(firePoint.position, target, 0.3f);
             GameObject bullet = Instantiate(bulletPrefab, modifiedFirePoint, firePoint.rotation);
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             Vector2 direction = (target - modifiedFirePoint).normalized;

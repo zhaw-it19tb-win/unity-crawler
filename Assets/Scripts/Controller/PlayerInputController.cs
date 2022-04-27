@@ -26,9 +26,9 @@ public class PlayerInputController : MonoBehaviour {
   void Start() {
         witchShooting = GetComponent<WitchShooting>();
         roundAttack = GetComponent<RoundAttack>();
-    }
+  }
 
-    private void OnEnable() {
+  private void OnEnable() {
     input.Enable();
   }
 
