@@ -14,7 +14,7 @@ public class Shooting : MonoBehaviour {
     GameObject[] playerObjs = GameObject.FindGameObjectsWithTag("Player");
     target = playerObjs[0].GetComponent<Transform>();
 
-    InvokeRepeating("Shoot", 0, 1);
+    InvokeRepeating(nameof(Shoot), 0, 1);
   }
 
   void Shoot() {
