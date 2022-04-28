@@ -17,43 +17,43 @@ public class ProceduralGenerate : MonoBehaviour
     [SerializeReference]
     public GameObject teleporterPrefab;
 
-    [SerializeField]
-    public int startX = -50;
-    [SerializeField]
-    public int endX = 50;
-    [SerializeField]
-    public int startY = -50;
-    [SerializeField]
-    public int endY = 50;
-
-    [SerializeField]
-    public int spawnX = 5;
-    [SerializeField]
-    public int spawnY = 5;
-
-    [SerializeReference]
+    //[SerializeField]
+    //public int startX = -50;
+    //[SerializeField]
+    //public int endX = 50;
+    //[SerializeField]
+    //public int startY = -50;
+    //[SerializeField]
+    //public int endY = 50;
+    //[SerializeField]
+    //public int spawnX = 5;
+    //[SerializeField]
+    //public int spawnY = 5;
+    //[SerializeReference]
     public MapData mapData;
 
     void Awake() {       
     }
 
     private void Start() {
-        TryToLoadLevel();
+        LoadLevel();
         PopulateScene();
         AwakeScene();
     }
 
-    private void TryToLoadLevel()
+    private void LoadLevel()
     {
         string savefile = GameUtil.GameId + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + MAPVERSION + ".json";
-        Debug.Log("savefile="+savefile);
+        //Debug.Log("savefile="+savefile);
         mapData = JsonUtility.FromJson<MapData>(SaveGameManager.LoadData(savefile));
-        if (mapData != null) {
-            SetDungeonData( mapData );
-        } else {
-            mapData = GenerateDungeonData( startX, endX, startY, endY, spawnX, spawnY );
+        if (mapData == null) {
+            //mapData = GenerateDungeonData( 0, 20, 0, 20, 10, 10 );
+            //mapData = DungeonDataFromImage("demo_dungeon");
+            mapData = DungeonDataFromImage("debug_dungeon");
+            //this.teleporterPrefab = mapData.teleporterPrefab;
             SaveGameManager.SaveData( JsonUtility.ToJson(mapData), savefile );
         }
+        
     }
 
     private void PopulateScene()
@@ -89,12 +89,20 @@ public class ProceduralGenerate : MonoBehaviour
         //}
 
         // Place spawn Teleporter Collider
-        Vector3 centreOfTelporter = MapUtil.getCentreOfTile(spawnX, spawnY);
-        GameObject spawnObj = Instantiate(teleporterPrefab, centreOfTelporter + new Vector3(0,0,-1), Quaternion.identity );
+        Vector3 centreOfSpawnTelporter = MapUtil.getCentreOfTile(mapData.spawnX, mapData.spawnY);
+        GameObject spawnObj = Instantiate(teleporterPrefab, centreOfSpawnTelporter + new Vector3(0,0,-1), Quaternion.identity );
         Teleporter spawnTeleporter = spawnObj.GetComponent<Teleporter>();
         spawnTeleporter.teleporterId = "ProcDungeon_1_0";
         spawnTeleporter.targetScene = "MainScene";
         spawnTeleporter.targetTeleporterId = "MainScene_1";
+
+        // Place spawn Teleporter Collider
+        Vector3 centreOfExitTelporter = MapUtil.getCentreOfTile(mapData.exitX, mapData.exitY);
+        GameObject exitObj = Instantiate(teleporterPrefab, centreOfExitTelporter + new Vector3(0,0,-1), Quaternion.identity );
+        Teleporter exitTeleporter = spawnObj.GetComponent<Teleporter>();
+        exitTeleporter.teleporterId = "ProcDungeon_1_1";
+        exitTeleporter.targetScene = "MainScene";
+        exitTeleporter.targetTeleporterId = "MainScene_1";
 
     }
 
@@ -123,7 +131,7 @@ public class ProceduralGenerate : MonoBehaviour
         result.layer1List = new List<DungeonTile>();
         //result.layerCollisionList = new List<DungeonTile>();
 
-        result.teleporterPrefab = teleporterPrefab;
+        //result.teleporterPrefab = teleporterPrefab;
         
         // Get available tiles
         MapTiles tiles = GameObject.FindGameObjectWithTag("MapTiles").GetComponentInChildren<MapTiles>();
@@ -160,14 +168,61 @@ public class ProceduralGenerate : MonoBehaviour
         return result;        
     }
 
+    private MapData DungeonDataFromImage(string filename){
+        //Texture2D mapFile = Resources.Load(filename) as Texture2D;
+        Texture2D mapFile = (Texture2D)Resources.Load(filename);
+        Debug.Log(mapFile);
+
+        MapData result = new MapData();
+
+        result.startX = 0;
+        result.endX = mapFile.width;
+        result.startY = 0;
+        result.endY = mapFile.height;
+
+        result.layer0List = new List<DungeonTile>();
+        result.layer1List = new List<DungeonTile>();
+        //result.teleporterPrefab = teleporterPrefab;
+        
+        // Get available tiles
+        MapTiles tiles = GameObject.FindGameObjectWithTag("MapTiles").GetComponentInChildren<MapTiles>();
+        
+        for (int i = result.startX; i < result.endX; i++) {
+            for (int j = result.startY; j < result.endY; j++) {
+                Color pixel = mapFile.GetPixel(i,j);  
+                if (pixel.Equals(Color.black)) {
+                    // draw wall
+                    result.layer0List.Add( new DungeonTile( i, j, 0, 1, UnityEngine.Random.Range(0, tiles.wallTiles.Length) ) );
+                    result.layer1List.Add( new DungeonTile( i, j, 2, 1, UnityEngine.Random.Range(0, tiles.wallTiles.Length) ) );
+                } else if (pixel.Equals(Color.white)) {
+                    // draw only floor
+                    result.layer0List.Add( new DungeonTile( i, j, 0, 0, UnityEngine.Random.Range(0, tiles.floorTiles.Length) ) );
+                } else if (pixel.Equals(Color.green)) {
+                    // friendly spawner
+                    result.spawnX = i;
+                    result.spawnY = j;
+                    result.layer0List.Add( new DungeonTile( i, j, 0, 2, 0) );
+                } else if (pixel.Equals(Color.blue)) {
+                    // friendly exit
+                    result.exitX = i;
+                    result.exitY = j;
+                    result.layer0List.Add( new DungeonTile( i, j, 0, 2, 1) );
+                } else if (pixel.Equals(Color.red)) {
+                    // TODO: place enemy spawner at i,j..
+                    Debug.Log("TODO: place enemy spawner here..");
+                } else {
+                    //result.layer0List.Add( new DungeonTile( i, j, 0, 1, UnityEngine.Random.Range(0, tiles.wallTiles.Length) ) );
+                    //result.layer1List.Add( new DungeonTile( i, j, 2, 1, UnityEngine.Random.Range(0, tiles.wallTiles.Length) ) );
+                    Debug.Log("Pixel["+i+"]["+j+"] not found: " + pixel);
+                }
+            }
+        }
+
+        return result;
+    }    
+
     public void SetDungeonData(MapData data) {
-        this.teleporterPrefab = data.teleporterPrefab;
-        this.startX = data.startX;
-        this.endX = data.endX;
-        this.startY = data.startY;
-        this.endY = data.endY;
-        this.spawnX = data.spawnX;
-        this.spawnY = data.spawnY;
+        
     }
 }
 
@@ -195,12 +250,16 @@ public class MapData {
     public List<DungeonTile> layer0List;
     public List<DungeonTile> layer1List;
     //public List<DungeonTile> layerCollisionList;
-    public GameObject teleporterPrefab;
+    //public GameObject teleporterPrefab;
     public int startX;
     public int endX;
     public int startY;
     public int endY;
     public int spawnX;
     public int spawnY;
+    public int exitX;
+    public int exitY;
+    public int[] enemyX;
+    public int[] enemyY;
 
 }

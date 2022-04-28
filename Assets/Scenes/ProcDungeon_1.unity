@@ -331,18 +331,19 @@ MonoBehaviour:
   layer0: {fileID: 448652019}
   layer1: {fileID: 758863341}
   teleporterPrefab: {fileID: 1767992744525053221, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
-  startX: -10
-  endX: 10
-  startY: -10
-  endY: 10
-  spawnX: 5
-  spawnY: 5
   mapData:
-    id: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: , ns: , asm: }
+    layer0List: []
+    layer1List: []
+    startX: 0
+    endX: 0
+    startY: 0
+    endY: 0
+    spawnX: 0
+    spawnY: 0
+    exitX: 0
+    exitY: 0
+    enemyX: 
+    enemyY: 
 --- !u!4 &706350784
 Transform:
   m_ObjectHideFlags: 0
@@ -385,7 +386,7 @@ GameObject:
   - component: {fileID: 758863344}
   - component: {fileID: 758863343}
   - component: {fileID: 758863342}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: layer_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -648,5 +649,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07c36a6128695a74a932dac85ece0db6, type: 2}
   spawnTiles:
   - {fileID: 11400000, guid: 8459f54eba2c6114abe9eeb92b60b796, type: 2}
+  - {fileID: 11400000, guid: 881f39c07b623dd4da9de5e133042904, type: 2}
   collisionTiles:
   - {fileID: 11400000, guid: bbe1039a73cb04a4db7e81501225bb46, type: 2}
