@@ -8,11 +8,9 @@ public class Bullet : MonoBehaviour {
 
   // Update is called once per frame
   void OnCollisionEnter2D(Collision2D collision) {
-    if (collision.transform.tag == "Player") {
-      collision.gameObject.GetComponent<Health>()?.TakeDamage(5);
+    if (collision.gameObject.GetComponent<Health>() != null) {
+      collision.gameObject.GetComponent<Health>().TakeDamage(5);
     }
     Destroy(bullet);
   }
-
-
 }

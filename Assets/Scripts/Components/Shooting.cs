@@ -18,9 +18,10 @@ public class Shooting : MonoBehaviour {
   }
 
   void Shoot() {
-    GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    Vector3 modifiedFirePoint = Vector3.MoveTowards(firePoint.position, target.position, 0.5f);
+    GameObject bullet = Instantiate(bulletPrefab, modifiedFirePoint, firePoint.rotation);
     Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-    Vector2 direction = (target.transform.position - firePoint.transform.position).normalized;
+    Vector2 direction = (target.transform.position - modifiedFirePoint).normalized;
     rb.AddForce(direction * bulletForce, ForceMode2D.Impulse);
     //FindObjectOfType<AudioManager>().Play("Shot");
   }
