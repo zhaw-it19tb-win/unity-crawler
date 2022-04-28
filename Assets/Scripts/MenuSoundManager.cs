@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Menu : MonoBehaviour
+public class MenuSoundManager : MonoBehaviour
 {
   [SerializeField] Slider volumeSlider;
   public AudioSource audio;
