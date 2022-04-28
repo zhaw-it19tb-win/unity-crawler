@@ -166,6 +166,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2102966441110715618, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 1279410044}
+    - target: {fileID: -2102966441110715618, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2102966441110715618, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
+      propertyPath: bulletForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -2102966441110715618, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 1158522074396365739, guid: 6bb7ed4bf64f6b04482b046a2d42e8b7, type: 3}
     - target: {fileID: 4278534244126794503, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
       propertyPath: m_Name
       value: Witch
@@ -17636,6 +17652,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198827215}
   m_CullTransparentMesh: 1
+--- !u!4 &1279410044 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4278534244126794524, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
+  m_PrefabInstance: {fileID: 136365629}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1290874952
 GameObject:
   m_ObjectHideFlags: 0
@@ -17944,12 +17965,12 @@ GameObject:
   - component: {fileID: 2116255966}
   - component: {fileID: 2116255965}
   - component: {fileID: 2116255964}
-  - component: {fileID: 2116255963}
   - component: {fileID: 2116255969}
   - component: {fileID: 2116255968}
   - component: {fileID: 2116255967}
   - component: {fileID: 2116255971}
   - component: {fileID: 2116255970}
+  - component: {fileID: 2116255963}
   m_Layer: 3
   m_Name: Archer
   m_TagString: Untagged
@@ -17957,19 +17978,32 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &2116255963
-BoxCollider:
+--- !u!61 &2116255963
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2116255962}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!23 &2116255964
 MeshRenderer:
   m_ObjectHideFlags: 0
