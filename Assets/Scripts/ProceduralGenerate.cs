@@ -48,8 +48,9 @@ public class ProceduralGenerate : MonoBehaviour
         mapData = JsonUtility.FromJson<MapData>(SaveGameManager.LoadData(savefile));
         if (mapData == null) {
             //mapData = GenerateDungeonData( 0, 20, 0, 20, 10, 10 );
-            //mapData = DungeonDataFromImage("demo_dungeon");
-            mapData = DungeonDataFromImage("debug_dungeon");
+            //mapData = DungeonDataFromImage(ImageFromFile("demo_dungeon"));
+            //mapData = DungeonDataFromImage(ImageFromFile("debug_dungeon"));
+            mapData = DungeonDataFromGeneratedImage(ImageFromFile("rand1"));
             //this.teleporterPrefab = mapData.teleporterPrefab;
             SaveGameManager.SaveData( JsonUtility.ToJson(mapData), savefile );
         }
@@ -168,9 +169,9 @@ public class ProceduralGenerate : MonoBehaviour
         return result;        
     }
 
-    private MapData DungeonDataFromImage(string filename){
+    private MapData DungeonDataFromImage(Texture2D mapFile){
         //Texture2D mapFile = Resources.Load(filename) as Texture2D;
-        Texture2D mapFile = (Texture2D)Resources.Load(filename);
+
         Debug.Log(mapFile);
 
         MapData result = new MapData();
@@ -189,8 +190,13 @@ public class ProceduralGenerate : MonoBehaviour
         
         for (int i = result.startX; i < result.endX; i++) {
             for (int j = result.startY; j < result.endY; j++) {
-                Color pixel = mapFile.GetPixel(i,j);  
-                if (pixel.Equals(Color.black)) {
+                Color pixel = mapFile.GetPixel(i,j);
+                if (i == result.startX || i == result.endX-1 || j == result.startY || j == result.endY-1) {
+                    // Set wall tiles if at edge:
+                    result.layer0List.Add( new DungeonTile( i, j, 0, 1, UnityEngine.Random.Range(0, tiles.wallTiles.Length) ) );
+                    result.layer1List.Add( new DungeonTile( i, j, 2, 1, UnityEngine.Random.Range(0, tiles.wallTiles.Length) ) );
+                }
+                else if (pixel.Equals(Color.black)) {
                     // draw wall
                     result.layer0List.Add( new DungeonTile( i, j, 0, 1, UnityEngine.Random.Range(0, tiles.wallTiles.Length) ) );
                     result.layer1List.Add( new DungeonTile( i, j, 2, 1, UnityEngine.Random.Range(0, tiles.wallTiles.Length) ) );
@@ -219,10 +225,53 @@ public class ProceduralGenerate : MonoBehaviour
         }
 
         return result;
-    }    
-
-    public void SetDungeonData(MapData data) {
+    }
+    private MapData DungeonDataFromGeneratedImage(Texture2D input)
+    {
+        MapData result = DungeonDataFromImage(DoubleImage(input));
         
+        DungeonTile[] filtered = result.layer1List.FindAll(e => e.cat==0).ToArray();
+        int validSpawnX = UnityEngine.Random.Range(0, result.endX-result.startX);
+        int validSpawnY = UnityEngine.Random.Range(0, result.endY-result.startY);
+        while(result.layer0List.Find((e) => e.x == validSpawnX && e.y == validSpawnY).cat != 0) {
+            validSpawnX = UnityEngine.Random.Range(0, result.endX-result.startX);
+            validSpawnY = UnityEngine.Random.Range(0, result.endY-result.startY);
+        }
+
+        int validExitX = UnityEngine.Random.Range(0, result.endX-result.startX);
+        int validExitY = UnityEngine.Random.Range(0, result.endY-result.startY);
+        while(result.layer0List.Find(e => e.x == validExitX && e.y == validExitY).cat != 0) {
+            validExitX = UnityEngine.Random.Range(0, result.endX-result.startX);
+            validExitY = UnityEngine.Random.Range(0, result.endY-result.startY);
+        }
+
+        result.spawnX = validSpawnX;
+        result.spawnY = validSpawnY;
+        result.layer0List.Add( new DungeonTile(  result.spawnX,  result.spawnY, 0, 2, 0) );
+
+        result.exitX = validExitX;
+        result.exitY = validExitY;
+        result.layer0List.Add( new DungeonTile( result.exitX, result.exitY, 0, 2, 1) );
+        
+        return result;
+    }
+    
+
+    private Texture2D DoubleImage(Texture2D input) {
+        Texture2D result = new Texture2D(input.width*2, input.height*2);
+        for (int i = 0; i < input.width; i++) {
+            for (int j = 0; j < input.height; j++) {
+                result.SetPixel(2*i, 2*j, input.GetPixel(i,j) );
+                result.SetPixel(2*i, (2*j) + 1, input.GetPixel(i,j) );
+                result.SetPixel((2*i) + 1, 2*j, input.GetPixel(i,j) );
+                result.SetPixel((2*i) + 1, (2*j) + 1, input.GetPixel(i,j) );
+            }
+        }
+        return result;
+    }
+
+    private Texture2D ImageFromFile(string filename) {
+        return (Texture2D)Resources.Load(filename);
     }
 }
 
