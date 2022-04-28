@@ -14,7 +14,7 @@ public class Shooting : MonoBehaviour {
     GameObject[] playerObjs = GameObject.FindGameObjectsWithTag("Player");
     target = playerObjs[0].GetComponent<Transform>();
 
-    InvokeRepeating("Shoot", 0, 1);
+    InvokeRepeating(nameof(Shoot), 0, 1);
   }
 
   void Shoot() {
@@ -23,5 +23,6 @@ public class Shooting : MonoBehaviour {
     Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
     Vector2 direction = (target.transform.position - modifiedFirePoint).normalized;
     rb.AddForce(direction * bulletForce, ForceMode2D.Impulse);
+    //FindObjectOfType<AudioManager>().Play("Shot");
   }
 }
