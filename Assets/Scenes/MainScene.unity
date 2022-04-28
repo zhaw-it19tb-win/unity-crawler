@@ -169,7 +169,7 @@ PrefabInstance:
     - target: {fileID: -2102966441110715618, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
       propertyPath: firePoint
       value: 
-      objectReference: {fileID: 1279410044}
+      objectReference: {fileID: 400006, guid: 0ffc584583b8c1541b3c2100725f6ab5, type: 3}
     - target: {fileID: -2102966441110715618, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -182,21 +182,37 @@ PrefabInstance:
       propertyPath: bulletPrefab
       value: 
       objectReference: {fileID: 1158522074396365739, guid: 6bb7ed4bf64f6b04482b046a2d42e8b7, type: 3}
+    - target: {fileID: 1821797505, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278534242596641004, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4278534244126794503, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
       propertyPath: m_Name
       value: Witch
       objectReference: {fileID: 0}
+    - target: {fileID: 4278534244126794503, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4278534244126794521, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
+      propertyPath: HealthBar
+      value: 
+      objectReference: {fileID: 248874530}
     - target: {fileID: 4278534244126794524, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4278534244126794524, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.0899997
+      value: -1.37
       objectReference: {fileID: 0}
     - target: {fileID: 4278534244126794524, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.8
+      value: -4.47
       objectReference: {fileID: 0}
     - target: {fileID: 4278534244126794524, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -230,6 +246,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5465249503410755110, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
+      propertyPath: Effect
+      value: 
+      objectReference: {fileID: 400004, guid: 96536afb634b32043bb988d4576053d3, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
 --- !u!1 &209536199
@@ -459,6 +479,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 344209859}
   m_CullTransparentMesh: 1
+--- !u!1 &351636340 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4278534244126794503, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
+  m_PrefabInstance: {fileID: 136365629}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &351636347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351636340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32cb7c54322721148a72112c364777ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 351636340}
+  Effect: {fileID: 400006, guid: 0ffc584583b8c1541b3c2100725f6ab5, type: 3}
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 119
+  EffectSpeed: 2
+  DestroyInSeconds: 1
 --- !u!1 &596039478
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,7 +629,7 @@ GameObject:
   - component: {fileID: 624292297}
   - component: {fileID: 624292302}
   - component: {fileID: 624292303}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: layer_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11187,6 +11231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: teleporter_1
       objectReference: {fileID: 0}
+    - target: {fileID: 1767992744525053221, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1767992744525053222, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -11401,6 +11449,10 @@ PrefabInstance:
       value: teleporter_0
       objectReference: {fileID: 0}
     - target: {fileID: 1767992744525053221, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767992744525053221, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -11459,7 +11511,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1169616493}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17652,11 +17704,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198827215}
   m_CullTransparentMesh: 1
---- !u!4 &1279410044 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4278534244126794524, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
-  m_PrefabInstance: {fileID: 136365629}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1290874952
 GameObject:
   m_ObjectHideFlags: 0
@@ -17752,6 +17799,10 @@ PrefabInstance:
     - target: {fileID: 1767992744525053221, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
       propertyPath: m_Name
       value: teleporter_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1767992744525053221, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1767992744525053221, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
       propertyPath: m_IsActive
@@ -17971,9 +18022,9 @@ GameObject:
   - component: {fileID: 2116255971}
   - component: {fileID: 2116255970}
   - component: {fileID: 2116255963}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Archer
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -29,7 +29,7 @@ public class Health : MonoBehaviour {
 
   public void TakeDamage(int damage) {
     health -= damage;
-    Debug.Log("damage taken, health: " + health);
+    //Debug.Log("damage taken, health: " + health);
     //HealthBar.value = health;
     if (health <= 0) {
       Die();

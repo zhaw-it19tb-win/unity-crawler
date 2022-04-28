@@ -11,6 +11,7 @@ TagManager:
   - Rooms
   - CollisionLayer
   - MapTiles
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -50,4 +51,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 427761703
+    locked: 0
+  - name: Effects
+    uniqueID: 3849203401
     locked: 0
