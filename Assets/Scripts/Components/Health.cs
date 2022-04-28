@@ -27,7 +27,7 @@ public class Health : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        HealthBar.value = health;
+        //HealthBar.value = health;
         if (health <= 0)
         {
             Die();
