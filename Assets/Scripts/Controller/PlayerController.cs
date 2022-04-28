@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   private void OnDied() {
+    FindObjectOfType<AudioManager>().Play("Dead");
     Debug.Log("You died.");
 
   }
