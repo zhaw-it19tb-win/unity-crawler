@@ -29,9 +29,10 @@ public class AIMovement : MonoBehaviour
 
         GameObject[] playerObjs = GameObject.FindGameObjectsWithTag("Player");
         targetForShooting = playerObjs[0].GetComponent<Transform>();
-        InvokeRepeating("Shoot", 0, 1);
+        //InvokeRepeating("Shoot", 0, 1);
     }
 
+    /*
     // Update is called once per frame
     void Update()
     {
@@ -43,14 +44,32 @@ public class AIMovement : MonoBehaviour
         currentDirection = new Vector2(agent.velocity.x, agent.velocity.y);
         FindObjectOfType<ArcherAnimation>().SetDirection(currentDirection);
     }
+    */
+
+    public void Move() {
+        currentDirection = new Vector2(agent.velocity.x, agent.velocity.y);
+        if (target != null)
+        {
+            agent.SetDestination(target.transform.position);
+            FindObjectOfType<ArcherAnimation>().SetDirection(currentDirection);
+        }
+       
+    }
 
     // shoot function 
-    void Shoot()
+    public void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Vector3 modifiedFirePoint = Vector3.MoveTowards(firePoint.position, targetForShooting.position, 0.5f);
+        GameObject bullet = Instantiate(bulletPrefab, modifiedFirePoint, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        Vector2 direction = (target.transform.position - firePoint.transform.position).normalized;
+        Vector2 direction = (target.transform.position - modifiedFirePoint).normalized;
         rb.AddForce(direction * bulletForce, ForceMode2D.Impulse);
+        //FindObjectOfType<AudioManager>().Play("Shot");
+
+        // Animation part
+        agent.SetDestination(target.transform.position);
+        FindObjectOfType<ArcherAnimation>().SetAttackDirection(currentDirection);
+
     }
 }
 

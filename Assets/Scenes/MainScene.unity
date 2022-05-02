@@ -11207,7 +11207,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &869713880
 MonoBehaviour:
@@ -17549,11 +17549,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1198827215}
   m_CullTransparentMesh: 1
---- !u!4 &1279410044 stripped
+--- !u!4 &1279410044
 Transform:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 4278534244126794524, guid: 28a60009e9af8e04684d60e1015a6bdc, type: 3}
-  m_PrefabInstance: {fileID: 136365629}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793263353}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1290874952
 GameObject:
   m_ObjectHideFlags: 0
@@ -17617,7 +17626,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1385466913
 PrefabInstance:
@@ -17632,7 +17641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1767992744525053217, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
       propertyPath: targetScene
-      value:
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1767992744525053217, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
       propertyPath: teleporterId
@@ -17640,7 +17649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1767992744525053217, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
       propertyPath: targetTeleporterId
-      value:
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1767992744525053217, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
       propertyPath: IsThemedScenesStartTeleporter
@@ -17735,7 +17744,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!108 &1428449589
 Light:
@@ -17811,6 +17820,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9edf6793d130a574490e7780fbbe4f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1625947664 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4137504480374095378, guid: 660dcf4c6d552e24b8fa1ffe9f75d21a, type: 3}
+  m_PrefabInstance: {fileID: 4137504480969693109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1793263353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1279410044}
+  m_Layer: 0
+  m_Name: 'Recovery GameObject for Transform (ID in file: 1279410044)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &2044841535 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1767992744525053222, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
@@ -17902,9 +17932,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4137504479185442260, guid: 660dcf4c6d552e24b8fa1ffe9f75d21a, type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 1625947664}
+    - target: {fileID: 4137504479185442260, guid: 660dcf4c6d552e24b8fa1ffe9f75d21a, type: 3}
+      propertyPath: bulletForce
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137504479185442260, guid: 660dcf4c6d552e24b8fa1ffe9f75d21a, type: 3}
+      propertyPath: targetForShooting
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4137504479185442261, guid: 660dcf4c6d552e24b8fa1ffe9f75d21a, type: 3}
       propertyPath: m_Name
       value: Archer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4137504479982236453, guid: 660dcf4c6d552e24b8fa1ffe9f75d21a, type: 3}
+      propertyPath: m_FlipX
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 660dcf4c6d552e24b8fa1ffe9f75d21a, type: 3}

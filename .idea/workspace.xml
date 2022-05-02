@@ -5,126 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c542361-ccc5-4beb-971d-dacc856f7b49" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0031.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0031.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0035.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0035.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0038.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0038.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0039.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0039.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0043.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0043.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0044.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0044.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0146.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0146.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0215.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0215.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0228.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0228.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/InitTestScene637854387394506700.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/InitTestScene637854387394506700.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/InitTestScene637854393338222620.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/InitTestScene637854393338222620.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/AudioManager.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/AudioManager.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/DesertBoss.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/DesertBoss.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/DesertEntry.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/DesertEntry.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/FireLevel.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/FireLevel.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/FireLevel_Entry.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/FireLevel_Entry.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/Sky.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/Sky.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBoss.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyBoss.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyEntry.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/SkyEntry.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/AudioManager.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Components/RoundAttack.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Components/RoundAttack.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Components/WitchShooting.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Components/WitchShooting.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/MenuSoundManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/MenuSoundManager.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Models/LevelModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Models/LevelModel.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Scripts.asmdef" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Scripts.asmdef.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Sound.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Sound.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tests.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tests/HealthTest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tests/HealthTest.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tests/MapUtilTest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tests/MapUtilTest.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tests/ShootingTest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tests/ShootingTest.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tests/Tests.asmdef" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Tests/Tests.asmdef.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Assets_Audio_boss.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Assets_Audio_boss.mp3.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Assets_Audio_dead.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Assets_Audio_dead.wav.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Assets_Audio_menu.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Assets_Audio_menu.mp3.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Assets_Audio_shot.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Assets_Audio_shot.mp3.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Assets_Audio_theme.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sounds/Assets_Audio_theme.mp3.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/main.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/unity-crawler.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0031.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0031.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0035.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0035.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0038.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0038.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0039.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0039.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0043.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0043.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0044.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0044.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0146.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0146.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0215.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0215.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0228.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Assets_DevilsWorkShop/Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04/Textures/assets_1024x1024/isometric_0228.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Teleporter.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Teleporter.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Desert.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Desert.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DungeonLevel_1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FireLevel_Boss.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DungeonLevel_1.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FireLevel_Boss.unity.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DungeonLevel_2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DungeonLevel_2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DungeonTLDR.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DungeonTLDR.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/HorizontalPath.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/HorizontalPath.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/ProcDungeon_1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/ProcDungeon_1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SeaCoast.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/UnderwaterEntry.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SeaCoast.unity.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/UnderwaterEntry.unity.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Underwater.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Underwater.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/UnderwaterBoss.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/UnderwaterBoss.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/VerticalPath.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/VerticalPath.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Components/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Components/Bullet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Components/Health.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Components/Health.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Components/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Components/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/KnightArcher/Frame00.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/KnightArcher/Frame00.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame00.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame00.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame01.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame01.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame02.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame02.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame03.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame03.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame04.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame04.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame05.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame05.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame06.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame06.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame07.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame07.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame08.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame08.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame09.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame09.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Components/AIMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Components/AIMovement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Components/Shooting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Components/Shooting.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Components/Teleporter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Components/Teleporter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/ArcherAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/ArcherAnimation.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/BasicEnemyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/BasicEnemyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/LevelStructureController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/LevelStructureController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/PlayerInputController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/PlayerInputController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameUtil.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameUtil.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Models/TeleporterModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Models/TeleporterModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/OnSceneLoad.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/OnSceneLoad.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Palettes/ground_palette.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Palettes/ground_palette.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Palettes/wall_palette.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Palettes/wall_palette.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +72,7 @@
       <workItem from="1650269391798" duration="1587000" />
       <workItem from="1650792432260" duration="4430000" />
       <workItem from="1651496626046" duration="59000" />
-      <workItem from="1651496687457" duration="468000" />
+      <workItem from="1651496687457" duration="2845000" />
     </task>
     <servers />
   </component>

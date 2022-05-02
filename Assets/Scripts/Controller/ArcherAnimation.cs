@@ -5,7 +5,8 @@ using UnityEngine;
 public class ArcherAnimation : MonoBehaviour
 {
     public string[] staticDirections = { "Idle_N", "Idle_NW", "Idle_W", "Idle_SW", "Idle_S", "Idle_SE", "Idle_E", "Idle_NE" };
-    public string[] runDirections = { "Run_N", "Run_NW", "Run_W", "Run_SW", "Run_S", "Run_SE", "Run_E", "Run_NE" }; 
+    public string[] runDirections = { "Run_N", "Run_NW", "Run_W", "Run_SW", "Run_S", "Run_SE", "Run_E", "Run_NE" };
+    public string[] attackDirections = { "Attack_N", "Attack_NW", "Attack_W", "Attack_SW", "Attack_S", "Attack_SE", "Attack_E", "Attack_NE" };
 
     private Animator anim;
 
@@ -21,6 +22,13 @@ public class ArcherAnimation : MonoBehaviour
    
     }
 
+    // Sets the shooting direction and plays the animation
+    public void SetAttackDirection(Vector2 _direction) {
+        lastDirection = DirectionToIndex(_direction); //MARKER Get the index of the slice from the direction vector
+        anim.Play(attackDirections[lastDirection]);
+    }
+
+    // Sets the walking direction and plays the animation
     public void SetDirection(Vector2 _direction) {
         string[] directionArray = null;
         if (_direction.magnitude < 0.01)//MARKER character is static. His velocity is close to zero
@@ -31,8 +39,6 @@ public class ArcherAnimation : MonoBehaviour
             directionArray = runDirections;
             lastDirection = DirectionToIndex(_direction); //MARKER Get the index of the slice from the direction vector
         }
-
-
         anim.Play(directionArray[lastDirection]);
     }
 
