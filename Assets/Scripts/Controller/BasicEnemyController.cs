@@ -10,6 +10,11 @@ public class BasicEnemyController : MonoBehaviour {
   private Shooting shooting;
   private AIMovement aiMovement;
 
+
+  void Start() {
+        health.OnDied += OnDied;
+  }
+
   void Awake() {
         health = GetComponent<Health>();
         shooting = GetComponent<Shooting>();
@@ -18,5 +23,10 @@ public class BasicEnemyController : MonoBehaviour {
 
   void FixedUpdate() {
 
+  }
+
+  private void OnDied()
+  {
+        Destroy(this.gameObject);
   }
 }

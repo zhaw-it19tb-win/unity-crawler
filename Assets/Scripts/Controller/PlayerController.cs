@@ -4,13 +4,19 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
   private Health health;
 
+
   void Start() {
-    health = GetComponent<Health>();
+        Debug.Log("Start is called");
     health.OnDied += OnDied;
   }
 
-  private void OnDied() {
-    Debug.Log("You died.");
+  void Awake() {
+        Debug.Log("Awake is called");
+    health = GetComponent<Health>();
+  }
 
+  private void OnDied() {
+    FindObjectOfType<AudioManager>().Play("Dead");
+    Debug.Log("You died.");
   }
 }

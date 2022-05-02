@@ -1,44 +1,42 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour {
-  [SerializeField]
-  protected int MaximumHealth = 100;
-  [SerializeField]
-  protected int StartHealth = 100;
+public class Health : MonoBehaviour
+{
+    [SerializeField] protected int MaximumHealth = 100;
+    [SerializeField] protected int StartHealth = 100;
 
-  [SerializeField]
-  protected Slider HealthBar = null;
+    [SerializeField] public Slider HealthBar;
 
-  public event Action OnDied;
+    public event Action OnDied;
 
-  private int health = 0;
+    public int health { get; private set; } = 0;
 
-  private void Awake() {
-    health = StartHealth;
-    if (HealthBar != null) {
-      HealthBar.maxValue = MaximumHealth;
-      HealthBar.value = StartHealth;
-      HealthBar.minValue = 0;
+    private void Awake()
+    {
+        health = StartHealth;
+        if (HealthBar != null)
+        {
+            HealthBar.maxValue = MaximumHealth;
+            HealthBar.value = StartHealth;
+            HealthBar.minValue = 0;
+        }
     }
-  }
 
-  public void TakeDamage(int damage) {
-    health -= damage;
-    HealthBar.value = health;
-    if (health <= 0) {
-      Die();
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        //TODO goetzpas: reactivate when HealthBar works.
+        //HealthBar.value = health;
+        if (health <= 0)
+        {
+            Die();
+        }
     }
-  }
 
-  private void Die() {
-    if (OnDied != null) {
-      OnDied();
+    private void Die()
+    {
+        OnDied?.Invoke();
     }
-  }
-
 }
