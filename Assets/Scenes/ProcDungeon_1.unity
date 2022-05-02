@@ -332,6 +332,7 @@ MonoBehaviour:
   layer1: {fileID: 758863341}
   teleporterPrefab: {fileID: 1767992744525053221, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
   mapData:
+    mapDataId: 
     layer0List: []
     layer1List: []
     startX: 0
@@ -344,6 +345,7 @@ MonoBehaviour:
     exitY: 0
     enemyX: 
     enemyY: 
+  mapDataId: 
 --- !u!4 &706350784
 Transform:
   m_ObjectHideFlags: 0
@@ -650,5 +652,6 @@ MonoBehaviour:
   spawnTiles:
   - {fileID: 11400000, guid: 8459f54eba2c6114abe9eeb92b60b796, type: 2}
   - {fileID: 11400000, guid: 881f39c07b623dd4da9de5e133042904, type: 2}
+  - {fileID: 11400000, guid: 0a5345b3c762feb4884c5ee4f138a59f, type: 2}
   collisionTiles:
   - {fileID: 11400000, guid: bbe1039a73cb04a4db7e81501225bb46, type: 2}

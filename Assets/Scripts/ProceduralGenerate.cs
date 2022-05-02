@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -32,6 +33,8 @@ public class ProceduralGenerate : MonoBehaviour
     //[SerializeReference]
     public MapData mapData;
 
+    public string mapDataId;
+
     void Awake() {       
     }
 
@@ -41,19 +44,22 @@ public class ProceduralGenerate : MonoBehaviour
         AwakeScene();
     }
 
+    private string GetMapDataId() {
+        return GameUtil.GameId + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + MAPVERSION;
+    }
+
     private void LoadLevel()
     {
-        string savefile = GameUtil.GameId + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + MAPVERSION + ".json";
-        //Debug.Log("savefile="+savefile);
+        string savefile = "savefile1.json";
         mapData = JsonUtility.FromJson<MapData>(SaveGameManager.LoadData(savefile));
-        if (mapData == null) {
+        if (mapData == null || mapData.mapDataId != GetMapDataId()) {
             //mapData = GenerateDungeonData( 0, 20, 0, 20, 10, 10 );
             //mapData = DungeonDataFromImage(ImageFromFile("demo_dungeon"));
             //mapData = DungeonDataFromImage(ImageFromFile("debug_dungeon"));
-            mapData = DungeonDataFromGeneratedImage(ImageFromFile("rand1"));
+            mapData = DungeonDataFromImage(PreProcessImage(ImageFromFile("rand1")));
             //this.teleporterPrefab = mapData.teleporterPrefab;
             SaveGameManager.SaveData( JsonUtility.ToJson(mapData), savefile );
-        }
+        } 
         
     }
 
@@ -97,7 +103,7 @@ public class ProceduralGenerate : MonoBehaviour
         spawnTeleporter.targetScene = "MainScene";
         spawnTeleporter.targetTeleporterId = "MainScene_1";
 
-        // Place spawn Teleporter Collider
+        // Place exit Teleporter Collider
         Vector3 centreOfExitTelporter = MapUtil.getCentreOfTile(mapData.exitX, mapData.exitY);
         GameObject exitObj = Instantiate(teleporterPrefab, centreOfExitTelporter + new Vector3(0,0,-1), Quaternion.identity );
         Teleporter exitTeleporter = spawnObj.GetComponent<Teleporter>();
@@ -175,6 +181,8 @@ public class ProceduralGenerate : MonoBehaviour
         Debug.Log(mapFile);
 
         MapData result = new MapData();
+        
+        result.mapDataId = GetMapDataId();
 
         result.startX = 0;
         result.endX = mapFile.width;
@@ -214,8 +222,9 @@ public class ProceduralGenerate : MonoBehaviour
                     result.exitY = j;
                     result.layer0List.Add( new DungeonTile( i, j, 0, 2, 1) );
                 } else if (pixel.Equals(Color.red)) {
-                    // TODO: place enemy spawner at i,j..
-                    Debug.Log("TODO: place enemy spawner here..");
+                    // TODO: place enemy at i,j..
+                    result.layer0List.Add( new DungeonTile( i, j, 0, 2, 2) );
+                    // TODO: use some different tile..
                 } else {
                     //result.layer0List.Add( new DungeonTile( i, j, 0, 1, UnityEngine.Random.Range(0, tiles.wallTiles.Length) ) );
                     //result.layer1List.Add( new DungeonTile( i, j, 2, 1, UnityEngine.Random.Range(0, tiles.wallTiles.Length) ) );
@@ -226,47 +235,54 @@ public class ProceduralGenerate : MonoBehaviour
 
         return result;
     }
-    private MapData DungeonDataFromGeneratedImage(Texture2D input)
-    {
-        MapData result = DungeonDataFromImage(DoubleImage(input));
-        
-        DungeonTile[] filtered = result.layer1List.FindAll(e => e.cat==0).ToArray();
-        int validSpawnX = UnityEngine.Random.Range(0, result.endX-result.startX);
-        int validSpawnY = UnityEngine.Random.Range(0, result.endY-result.startY);
-        while(result.layer0List.Find((e) => e.x == validSpawnX && e.y == validSpawnY).cat != 0) {
-            validSpawnX = UnityEngine.Random.Range(0, result.endX-result.startX);
-            validSpawnY = UnityEngine.Random.Range(0, result.endY-result.startY);
-        }
 
-        int validExitX = UnityEngine.Random.Range(0, result.endX-result.startX);
-        int validExitY = UnityEngine.Random.Range(0, result.endY-result.startY);
-        while(result.layer0List.Find(e => e.x == validExitX && e.y == validExitY).cat != 0) {
-            validExitX = UnityEngine.Random.Range(0, result.endX-result.startX);
-            validExitY = UnityEngine.Random.Range(0, result.endY-result.startY);
-        }
-
-        result.spawnX = validSpawnX;
-        result.spawnY = validSpawnY;
-        result.layer0List.Add( new DungeonTile(  result.spawnX,  result.spawnY, 0, 2, 0) );
-
-        result.exitX = validExitX;
-        result.exitY = validExitY;
-        result.layer0List.Add( new DungeonTile( result.exitX, result.exitY, 0, 2, 1) );
-        
-        return result;
-    }
-    
-
-    private Texture2D DoubleImage(Texture2D input) {
+    private Texture2D PreProcessImage(Texture2D input) {
+        // we track a list of red pois to turn into enter and exit spawners
+        var poiList = new List<(Vector2Int,Color)>();
+        // we will double image to ensure we can walk through all the paths
         Texture2D result = new Texture2D(input.width*2, input.height*2);
         for (int i = 0; i < input.width; i++) {
             for (int j = 0; j < input.height; j++) {
-                result.SetPixel(2*i, 2*j, input.GetPixel(i,j) );
-                result.SetPixel(2*i, (2*j) + 1, input.GetPixel(i,j) );
-                result.SetPixel((2*i) + 1, 2*j, input.GetPixel(i,j) );
-                result.SetPixel((2*i) + 1, (2*j) + 1, input.GetPixel(i,j) );
+                Color currentPixel = input.GetPixel(i,j);
+                if(currentPixel == Color.red) {
+                    poiList.Add( (new Vector2Int(2*i, 2*j), currentPixel) );
+                    // red pixels should not get scaled, we only want i.e. 1 spawner, not 4..
+                    result.SetPixel(2*i, 2*j, currentPixel );
+                    result.SetPixel(2*i, (2*j) + 1, Color.white );
+                    result.SetPixel((2*i) + 1, 2*j, Color.white );
+                    result.SetPixel((2*i) + 1, (2*j) + 1, Color.white );
+                } else {
+                    result.SetPixel(2*i, 2*j,  currentPixel );
+                    result.SetPixel(2*i, (2*j) + 1, currentPixel );
+                    result.SetPixel((2*i) + 1, 2*j, currentPixel );
+                    result.SetPixel((2*i) + 1, (2*j) + 1, currentPixel);
+                }
             }
         }
+
+        // try 3 times to find start and exits points that are far apart
+        int tries = 3;
+        Vector2Int bestStart = poiList.ElementAt(UnityEngine.Random.Range(0, poiList.Count)).Item1;
+        Vector2Int bestExit = poiList.ElementAt(UnityEngine.Random.Range(0, poiList.Count)).Item1;
+        float bestDistance = Vector2.Distance(bestExit, bestStart);
+
+        for (int i = 0; i < tries; i++) {
+            Vector2Int currStart = poiList.ElementAt(UnityEngine.Random.Range(0, poiList.Count)).Item1;
+            Vector2Int currExit = poiList.ElementAt(UnityEngine.Random.Range(0, poiList.Count)).Item1;
+            float distance = Vector2.Distance(currExit, currStart);
+            if (distance > bestDistance) {
+                bestStart = currStart;
+                bestExit = currExit;
+                bestDistance = distance;
+            }
+        }
+
+        // set spawners
+        if (bestDistance == 0.0f) Debug.Log("Warning, distance between spawns is zero..");
+
+        result.SetPixel( bestStart.x, bestStart.y, Color.green);
+        result.SetPixel( bestExit.x, bestExit.y, Color.blue);
+        
         return result;
     }
 
@@ -295,6 +311,8 @@ public class DungeonTile {
 
 [Serializable]
 public class MapData {
+
+    public string mapDataId;
 
     public List<DungeonTile> layer0List;
     public List<DungeonTile> layer1List;
