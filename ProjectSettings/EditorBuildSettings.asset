@@ -12,10 +12,10 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/HorizontalPath.unity
+    path: Assets/Scenes/Path_0.unity
     guid: 6d7f8cefeaebe2b47906871034c1d2cd
   - enabled: 1
-    path: Assets/Scenes/VerticalPath.unity
+    path: Assets/Scenes/Path_1.unity
     guid: 6f5c5e8d029f7c242bda7ecbb90e5403
   - enabled: 1
     path: Assets/Scenes/FireLevel_Boss.unity
