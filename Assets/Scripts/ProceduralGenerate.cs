@@ -56,7 +56,9 @@ public class ProceduralGenerate : MonoBehaviour
             //mapData = GenerateDungeonData( 0, 20, 0, 20, 10, 10 );
             //mapData = DungeonDataFromImage(ImageFromFile("demo_dungeon"));
             //mapData = DungeonDataFromImage(ImageFromFile("debug_dungeon"));
-            mapData = DungeonDataFromImage(PreProcessImage(ImageFromFile("rand1")));
+            //mapData = DungeonDataFromImage(PreProcessImage(ImageFromFile("rand1")));
+            LevelGenerator gen = GameObject.FindObjectOfType<LevelGenerator>();
+            mapData = DungeonDataFromImage(PreProcessImage(gen.GenerateMap(20)));
             //this.teleporterPrefab = mapData.teleporterPrefab;
             SaveGameManager.SaveData( JsonUtility.ToJson(mapData), savefile );
         } 
@@ -73,7 +75,7 @@ public class ProceduralGenerate : MonoBehaviour
         // tile index 2 = spawner
         // tile index 3 = collider
         MapTiles tiles = GameObject.FindGameObjectWithTag("MapTiles").GetComponentInChildren<MapTiles>();
-        Tile[][] tilebases = new Tile[4][];
+        UnityEngine.Tilemaps.Tile[][] tilebases = new UnityEngine.Tilemaps.Tile[4][];
         tilebases[0] = tiles.floorTiles;
         tilebases[1] = tiles.wallTiles;
         tilebases[2] = tiles.spawnTiles;
