@@ -43,46 +43,69 @@ public class Teleporter : MonoBehaviour
         {
             if (IsThemedScenesStartTeleporter)
             {
-                var entranceLevel = GetEntranceLevel();
-                var entranceTeleporter = entranceLevel.Teleporters.Single(t => t.IsEntrance);
+                ActivateLevel();
+                var level = GameUtil.LevelModels.Single(m => m.IsActive);
 
-                TeleportPlayer(entranceLevel.SceneName, entranceTeleporter.Location);
+                if (level.LevelSolvedCounter % 5 == 0)
+                {
+                    TeleportPlayer(level.ChallengeSceneName, CardinalDirection.West);
+                }
+                else
+                {
+                    var entranceLevel = GetEntranceLevel();
+                    var entranceTeleporter = entranceLevel.Teleporters.Single(t => t.IsEntrance);
+
+                    TeleportPlayer(entranceLevel.SceneName, entranceTeleporter.Location);
+                }
             }
             else
             {
-                var levelModel = GameUtil.LevelModels.Single(m => m.IsActive);
-                var sceneNames = levelModel.SceneTeleporterRelations.Select(r => r.SceneName).ToArray();
-                string activeSceneName = SceneManager.GetActiveScene().name;
+                var level = GameUtil.LevelModels.Single(m => m.IsActive);
 
-                SceneTeleportersRelationModel relation = levelModel.SceneTeleporterRelations
-                    .Single(r => r.SceneName == activeSceneName);
-                var teleporter = relation.Teleporters.Single(t => t.Location == Location);
-
-                if (!teleporter.IsEntrance && !teleporter.IsExit)
+                if (level.LevelSolvedCounter % 5 == 0)
                 {
-                    var targetTeleporter = levelModel.SceneTeleporterRelations.Single(r => r.SceneName == teleporter.TargetSceneName)
+                    TeleportPlayer("MainScene", level.StartLocation);
+                }
+
+                string activeSceneName = SceneManager.GetActiveScene().name;                
+                var originTeleporter = GetOriginTeleporterModel(level, activeSceneName);
+
+                if (!originTeleporter.IsEntrance && !originTeleporter.IsExit)
+                {
+                    var targetTeleporter = level.SceneTeleporterRelations.Single(r => r.SceneName == originTeleporter.TargetSceneName)
                         .Teleporters.FirstOrDefault(t => t.TargetSceneName == activeSceneName);
 
-                    TeleportPlayer(teleporter.TargetSceneName, targetTeleporter.Location);
+                    TeleportPlayer(originTeleporter.TargetSceneName, targetTeleporter.Location);
                 } 
-                else if (teleporter.IsEntrance || (teleporter.IsExit && levelModel.IsBossDefeated))
+                else if (originTeleporter.IsEntrance || (originTeleporter.IsExit && level.IsBossDefeated))
                 {
-                    TeleportPlayer(teleporter.TargetSceneName, levelModel.StartLocation);
+                    TeleportPlayer(originTeleporter.TargetSceneName, level.StartLocation);
                 }
             }
         }
     }
 
+    private TeleporterModel GetOriginTeleporterModel(LevelModel level, string activeSceneName)
+    {
+        SceneTeleportersRelationModel relation = level.SceneTeleporterRelations.Single(r => r.SceneName == activeSceneName);
+
+        return relation.Teleporters.Single(t => t.Location == Location);
+    }
+
     private SceneTeleportersRelationModel GetEntranceLevel()
     {
-        var levelModel = GameUtil.LevelModels.Single(m => m.StartLocation == this.Location);
-
-        GameUtil.LevelModels.ForEach(m => m.IsActive = false);
-        levelModel.IsActive = true;
-
-        var entranceLevel = levelModel.SceneTeleporterRelations.Single(r => r.Teleporters.Any(t => t.IsEntrance));
+        var level = GameUtil.LevelModels.Single(m => m.IsActive);
+        var entranceLevel = level.SceneTeleporterRelations.Single(r => r.Teleporters.Any(t => t.IsEntrance));
 
         return entranceLevel;
+    }
+
+    private void ActivateLevel()
+    {
+        var level = GameUtil.LevelModels.Single(m => m.StartLocation == this.Location);
+
+        GameUtil.LevelModels.ForEach(m => m.IsActive = false);
+        level.IsActive = true;
     }
 
     private void TeleportPlayer(string sceneName, CardinalDirection targetTeleporterLocation)
