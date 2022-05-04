@@ -113,7 +113,7 @@ public static class LevelStructureController
             CreateEntryTeleporterRelation(CardinalDirection.West, "DesertEntry", CardinalDirection.East),
             CreateSimpleTeleporterRelation(CardinalDirection.West, "HorizontalPath", CardinalDirection.East),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "VerticalPath", CardinalDirection.South),
-            CreateExitTeleporterRelation(CardinalDirection.West, "DesertBoss", CardinalDirection.East)
+            CreateExitTeleporterRelation(CardinalDirection.West, "DesertBoss", CardinalDirection.North)
         };
     }
 
@@ -177,11 +177,11 @@ public static class LevelStructureController
                 {
                     new TeleporterModel
                     {
-                        Location = CardinalDirection.West
+                        Location = entranceLocation
                     },
                     new TeleporterModel
                     {
-                        Location = CardinalDirection.East,
+                        Location = exitLocation,
                         TargetSceneName = "MainScene",
                         IsExit = true
                     }
