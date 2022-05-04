@@ -3,133 +3,95 @@ using System.Collections.Generic;
 
 public static class LevelStructureController
 {
-    public static LevelModel GetGrassLevelModel()
+    public static LevelModel GetSkyLevelModel()
     {
-        var grassSceneTeleporterRelations = LevelStructureController.GetGrassLevelSceneTeleporterRelations();
-        MapStructureGenerator.GenerateMapStructure(grassSceneTeleporterRelations);
-
         return new LevelModel
         {
-            Name = "Grass",
-            SceneTeleporterRelations = grassSceneTeleporterRelations,
-            StartLocation = CardinalDirection.East
+            Name = "Sky",
+            SceneTeleporterRelations = GetSkyLevelRandomizedSceneTeleporterRelations(),
+            StartLocation = CardinalDirection.East,
+            ChallengeSceneName = "Sky"
         };
     }
 
     public static LevelModel GetUnderwaterLevelMode()
     {
-        var underwaterSceneTeleporterRelations = GetUnderwaterLevelSceneTeleporterRelations();
-        MapStructureGenerator.GenerateMapStructure(underwaterSceneTeleporterRelations);
 
         return new LevelModel
         {
             Name = "Underwater",
-            SceneTeleporterRelations = underwaterSceneTeleporterRelations,
-            StartLocation = CardinalDirection.North
+            SceneTeleporterRelations = GetUnderwaterLevelRandomizedSceneTeleporterRelations(),
+            StartLocation = CardinalDirection.North,
+            ChallengeSceneName = "Underwater"
         };
     }
 
-    public  static LevelModel GetRandomDungeonLevelModel()
+    public  static LevelModel GetDessertLevelModel()
     {
-        var randomDungeonSceneTeleporterRelations = GetRandomDungeonLevelSceneTeleporterRelations();
-        MapStructureGenerator.GenerateMapStructure(randomDungeonSceneTeleporterRelations);
-
         return new LevelModel
         {
-            Name = "RandomDungeon",
-            SceneTeleporterRelations = randomDungeonSceneTeleporterRelations,
-            StartLocation = CardinalDirection.West
+            Name = "Dessert",
+            SceneTeleporterRelations = GetDessertLevelRandomizedSceneTeleporterRelations(),
+            StartLocation = CardinalDirection.West,
+            ChallengeSceneName = "Desert"
         };
     }
 
-    private static List<SceneTeleportersRelationModel> GetRandomDungeonLevelSceneTeleporterRelations()
+    public static LevelModel GetFireLevelModel()
     {
-        return new List<SceneTeleportersRelationModel>
+        return new LevelModel
         {
-            new SceneTeleportersRelationModel
-            {
-                SceneName = "ProcDungeon_1",
-                Teleporters = new List<TeleporterModel>
-                {
-                    new TeleporterModel
-                    {
-                        Location = CardinalDirection.North,
-                        IsEntrance = true,
-                        TargetSceneName = "MainScene"
-                    }
-                }
-            }
+            Name = "Fire",
+            SceneTeleporterRelations = GetFireLevelRandomizedSceneTeleporterRelations(),
+            StartLocation = CardinalDirection.South,
+            ChallengeSceneName = "FireLevel"
         };
     }
 
-    private static List<SceneTeleportersRelationModel> GetGrassLevelSceneTeleporterRelations()
+    public static List<SceneTeleportersRelationModel> GetSkyLevelRandomizedSceneTeleporterRelations()
+    {
+        var relationModel = GetSkyLevelSceneTeleporterRelations();
+
+        MapStructureGenerator.GenerateMapStructure(relationModel);
+
+        return relationModel;
+    }
+
+    public static List<SceneTeleportersRelationModel> GetUnderwaterLevelRandomizedSceneTeleporterRelations()
+    {
+        var relationModel = GetUnderwaterLevelSceneTeleporterRelations();
+
+        MapStructureGenerator.GenerateMapStructure(relationModel);
+
+        return relationModel;
+    }
+
+    public static List<SceneTeleportersRelationModel> GetDessertLevelRandomizedSceneTeleporterRelations()
+    {
+        var relationModel = GetDessertLevelSceneTeleporterRelations();
+
+        MapStructureGenerator.GenerateMapStructure(relationModel);
+
+        return relationModel;
+    }
+
+    public static List<SceneTeleportersRelationModel> GetFireLevelRandomizedSceneTeleporterRelations()
+    {
+        var relationModel = GetFireLevelSceneTeleporterRelations();
+
+        MapStructureGenerator.GenerateMapStructure(relationModel);
+
+        return relationModel;
+    }
+
+    private static List<SceneTeleportersRelationModel> GetSkyLevelSceneTeleporterRelations()
     {
         return new List<SceneTeleportersRelationModel>
         {
-            new SceneTeleportersRelationModel
-            {
-                SceneName = "HorizontalPath",
-                Teleporters = new List<TeleporterModel>
-                {
-                    new TeleporterModel
-                    {
-                        Location = CardinalDirection.West,
-                        IsEntrance = true,
-                        TargetSceneName = "MainScene"
-                    },
-                    new TeleporterModel
-                    {
-                        Location = CardinalDirection.East
-                    }
-                }
-            },
-            new SceneTeleportersRelationModel
-            {
-                SceneName = "VerticalPath",
-                Teleporters = new List<TeleporterModel>
-                {
-                    new TeleporterModel
-                    {
-                        Location = CardinalDirection.North
-                    },
-                    new TeleporterModel
-                    {
-                        Location = CardinalDirection.South
-                    }
-                }
-            },
-            new SceneTeleportersRelationModel
-            {
-                SceneName = "DungeonLevel_1",
-                Teleporters = new List<TeleporterModel>
-                {
-                    new TeleporterModel
-                    {
-                        Location = CardinalDirection.West
-                    },
-                    new TeleporterModel
-                    {
-                        Location = CardinalDirection.North,
-                        TargetSceneName = "MainScene",
-                        IsExit = true
-                    }
-                }
-            }/*,
-            new SceneTeleportersRelationModel
-            {
-                SceneName = "DungeonLevel_2", 
-                Teleporters = new List<TeleporterModel>
-                {
-                    new TeleporterModel
-                    {
-                        Location = CardinalDirection.North 
-                    },
-                    new TeleporterModel
-                    {
-                        Location = CardinalDirection.South
-                    }
-                }
-            }*/
+            CreateEntryTeleporterRelation(CardinalDirection.North, "SkyEntry", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.West, "HorizontalPath", CardinalDirection.East),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "VerticalPath", CardinalDirection.South),
+            CreateExitTeleporterRelation(CardinalDirection.West, "SkyBoss", CardinalDirection.North)
         };
     }
 
@@ -137,42 +99,81 @@ public static class LevelStructureController
     {
         return new List<SceneTeleportersRelationModel>
         {
-            new SceneTeleportersRelationModel
-            {
-                SceneName = "SeaCoast",
-                Teleporters = new List<TeleporterModel>
+            CreateEntryTeleporterRelation(CardinalDirection.West, "UnderwaterEntry", CardinalDirection.East),
+            CreateSimpleTeleporterRelation(CardinalDirection.West, "HorizontalPath", CardinalDirection.East),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "VerticalPath", CardinalDirection.South),
+            CreateExitTeleporterRelation(CardinalDirection.West, "UnderwaterBoss", CardinalDirection.East)
+        };
+    }
+
+    private static List<SceneTeleportersRelationModel> GetDessertLevelSceneTeleporterRelations()
+    {
+        return new List<SceneTeleportersRelationModel>
+        {
+            CreateEntryTeleporterRelation(CardinalDirection.West, "DesertEntry", CardinalDirection.East),
+            CreateSimpleTeleporterRelation(CardinalDirection.West, "HorizontalPath", CardinalDirection.East),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "VerticalPath", CardinalDirection.South),
+            CreateExitTeleporterRelation(CardinalDirection.West, "DesertBoss", CardinalDirection.East)
+        };
+    }
+
+    private static List<SceneTeleportersRelationModel> GetFireLevelSceneTeleporterRelations()
+    {
+        return new List<SceneTeleportersRelationModel>
+        {
+            CreateEntryTeleporterRelation(CardinalDirection.West, "FireLevel_Entry", CardinalDirection.East),
+            CreateSimpleTeleporterRelation(CardinalDirection.West, "HorizontalPath", CardinalDirection.East),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "VerticalPath", CardinalDirection.South),
+            CreateExitTeleporterRelation(CardinalDirection.West, "FireLevel_Boss", CardinalDirection.North)
+        };
+    }
+
+    private static SceneTeleportersRelationModel CreateEntryTeleporterRelation(CardinalDirection entranceLocation, string sceneName, CardinalDirection exitLocation)
+    {
+        return new SceneTeleportersRelationModel
+        {
+            SceneName = sceneName,
+            Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel
                     {
-                        Location = CardinalDirection.West,
-                        TargetSceneName = "MainScene",
-                        IsEntrance = true
+                        Location = entranceLocation,
+                        IsEntrance = true,
+                        TargetSceneName = "MainScene"
                     },
                     new TeleporterModel
                     {
-                        Location = CardinalDirection.East
+                        Location = exitLocation
                     }
                 }
-            },
-            new SceneTeleportersRelationModel
-            {
-                SceneName = "Underwater",
-                Teleporters = new List<TeleporterModel>
+        };
+    }
+
+    private static SceneTeleportersRelationModel CreateSimpleTeleporterRelation(CardinalDirection entranceLocation, string sceneName, CardinalDirection exitLocation)
+    {
+        return new SceneTeleportersRelationModel
+        {
+            SceneName = sceneName,
+            Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel
                     {
-                        Location = CardinalDirection.West
+                        Location = entranceLocation
                     },
                     new TeleporterModel
                     {
-                        Location = CardinalDirection.East
+                        Location = exitLocation
                     }
                 }
-            },
-            new SceneTeleportersRelationModel
-            {
-                SceneName = "UnderwaterBoss",
-                Teleporters = new List<TeleporterModel>
+        };
+    }
+
+    private static SceneTeleportersRelationModel CreateExitTeleporterRelation(CardinalDirection entranceLocation, string sceneName, CardinalDirection exitLocation)
+    {
+        return new SceneTeleportersRelationModel
+        {
+            SceneName = sceneName,
+            Teleporters = new List<TeleporterModel>
                 {
                     new TeleporterModel
                     {
@@ -185,57 +186,6 @@ public static class LevelStructureController
                         IsExit = true
                     }
                 }
-            }
-        };
-    }
-
-    private static List<SceneTeleportersRelationModel> GetLevelIntroSceneTeleporterRelations()
-    {
-        return new List<SceneTeleportersRelationModel>
-        {
-            new SceneTeleportersRelationModel
-            {
-                SceneName = "MainScene",
-                Teleporters = new List<TeleporterModel>
-                {
-                    new TeleporterModel
-                    {
-                        Location = CardinalDirection.East
-                    },
-                    new TeleporterModel
-                    {
-                        Location = CardinalDirection.West,
-                        TargetSceneName = "ProcDungeon_1"
-                    }
-                }
-            },
-            new SceneTeleportersRelationModel
-            {
-                SceneName = "ProcDungeon_1",
-                Teleporters = new List<TeleporterModel>
-                {
-                    new TeleporterModel
-                    {
-                        Location = CardinalDirection.North,
-                        TargetSceneName = "MainScene"
-                    }
-                }
-            },
-            new SceneTeleportersRelationModel
-            {
-                SceneName = "DungeonLevel_1", 
-                Teleporters = new List<TeleporterModel>
-                {
-                    new TeleporterModel
-                    {
-                        Location = CardinalDirection.West
-                    },
-                    new TeleporterModel
-                    {
-                        Location = CardinalDirection.North
-                    }
-                }
-            }
         };
     }
 }

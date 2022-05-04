@@ -35,4 +35,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UnderwaterBoss.unity
     guid: 372871d3a1511fd44ac9c3ef41ee671a
+  - enabled: 1
+    path: Assets/Scenes/Desert.unity
+    guid: 360865caab8331645998005aaeab1689
+  - enabled: 1
+    path: Assets/Scenes/DesertBoss.unity
+    guid: 01eb99384e8dd154f8bb505ecbc8481c
+  - enabled: 1
+    path: Assets/Scenes/DesertEntry.unity
+    guid: c591e656fd090964dbb82161eb46d1aa
+  - enabled: 1
+    path: Assets/Scenes/FireLevel.unity
+    guid: af0698f0727af2b4eaa40a24716edc65
+  - enabled: 1
+    path: Assets/Scenes/FireLevel_Entry.unity
+    guid: c373da18e4eb9d24fba8157c0488a281
+  - enabled: 1
+    path: Assets/Scenes/Sky.unity
+    guid: b05294edee06fd746873a442d1692d4f
+  - enabled: 1
+    path: Assets/Scenes/SkyBoss.unity
+    guid: a22089945a3a2414d935bf7e1c3b6bf2
+  - enabled: 1
+    path: Assets/Scenes/SkyEntry.unity
+    guid: e1172300ee050f445ab2af388ae57655
   m_configObjects: {}

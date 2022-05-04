@@ -33,20 +33,25 @@ public class GameUtil : MonoBehaviour
         if (LevelModels.Any(m => m.IsBossDefeated)) 
         {
             var finishedLevelName = LevelModels.Single(m => m.IsBossDefeated).Name;
-
-            LevelModels.RemoveAll(l => l.IsBossDefeated);
+            var level = LevelModels.Single(m => m.IsBossDefeated);
+            level.LevelSolvedCounter++;            
 
             switch (finishedLevelName)
             {
-                case "Grass":
-                    LevelModels.Add(LevelStructureController.GetGrassLevelModel());
+                case "Sky":
+                    level.SceneTeleporterRelations = LevelStructureController.GetSkyLevelRandomizedSceneTeleporterRelations();
                     break;
                 case "Underwater":
-                    LevelModels.Add(LevelStructureController.GetUnderwaterLevelMode());
+                    level.SceneTeleporterRelations = LevelStructureController.GetUnderwaterLevelRandomizedSceneTeleporterRelations();
+                    break;
+                case "Dessert":
+                    level.SceneTeleporterRelations = LevelStructureController.GetDessertLevelRandomizedSceneTeleporterRelations();
+                    break;
+                case "Fire":
+                    level.SceneTeleporterRelations = LevelStructureController.GetFireLevelRandomizedSceneTeleporterRelations();
                     break;
                 default:
-                    LevelModels.Add(LevelStructureController.GetRandomDungeonLevelModel());
-                    break;
+                    throw new NotImplementedException();
             }
         }
     }
@@ -54,9 +59,10 @@ public class GameUtil : MonoBehaviour
     private void InitializeLevelModels()
     {
         LevelModels = new List<LevelModel>();
-        LevelModels.Add(LevelStructureController.GetRandomDungeonLevelModel());
-        LevelModels.Add(LevelStructureController.GetGrassLevelModel());
+        LevelModels.Add(LevelStructureController.GetSkyLevelModel());
         LevelModels.Add(LevelStructureController.GetUnderwaterLevelMode());
+        LevelModels.Add(LevelStructureController.GetDessertLevelModel());
+        LevelModels.Add(LevelStructureController.GetFireLevelModel());
     }
 
     private void DoWhenSceneLoads(Scene scene, LoadSceneMode mode)

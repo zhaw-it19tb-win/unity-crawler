@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Linq;
+using System;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Teleporter : MonoBehaviour
@@ -45,12 +46,7 @@ public class Teleporter : MonoBehaviour
         {
             if (IsThemedScenesStartTeleporter)
             {
-                var levelModel = GameUtil.LevelModels.Single(m => m.StartLocation == this.Location);
-
-                GameUtil.LevelModels.ForEach(m => m.IsActive = false);
-                levelModel.IsActive = true;
-
-                var entranceLevel = levelModel.SceneTeleporterRelations.Single(r => r.Teleporters.Any(t => t.IsEntrance));
+                var entranceLevel = GetEntranceLevel();
                 var entranceTeleporter = entranceLevel.Teleporters.Single(t => t.IsEntrance);
 
                 TeleportPlayer(entranceLevel.SceneName, entranceTeleporter.Location);
@@ -78,6 +74,18 @@ public class Teleporter : MonoBehaviour
                 }
             }
         }
+    }
+
+    private SceneTeleportersRelationModel GetEntranceLevel()
+    {
+        var levelModel = GameUtil.LevelModels.Single(m => m.StartLocation == this.Location);
+
+        GameUtil.LevelModels.ForEach(m => m.IsActive = false);
+        levelModel.IsActive = true;
+
+        var entranceLevel = levelModel.SceneTeleporterRelations.Single(r => r.Teleporters.Any(t => t.IsEntrance));
+
+        return entranceLevel;
     }
 
     private void TeleportPlayer(string sceneName, CardinalDirection targetTeleporterLocation)
