@@ -89,9 +89,6 @@ public class ProceduralGenerate : MonoBehaviour
         Vector3 centreOfTelporter = MapUtil.getCentreOfTile(spawnX, spawnY);
         GameObject spawnObj = Instantiate(teleporterPrefab, centreOfTelporter + new Vector3(0,0,-1), Quaternion.identity );
         Teleporter spawnTeleporter = spawnObj.GetComponent<Teleporter>();
-        spawnTeleporter.teleporterId = "ProcDungeon_1_0";
-        spawnTeleporter.targetScene = "MainScene";
-        spawnTeleporter.targetTeleporterId = "MainScene_1";
 
     }
 
