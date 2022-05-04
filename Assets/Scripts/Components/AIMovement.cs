@@ -12,7 +12,7 @@ public class AIMovement : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        target = GameObject.FindWithTag("PlayerChild");
+        target = GameObject.FindWithTag("Player");
         agent.updateRotation = false;
         agent.updateUpAxis = false;
     }
