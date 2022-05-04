@@ -34,7 +34,8 @@ public class GameUtil : MonoBehaviour
         {
             var finishedLevelName = LevelModels.Single(m => m.IsBossDefeated).Name;
             var level = LevelModels.Single(m => m.IsBossDefeated);
-            level.LevelSolvedCounter++;            
+            level.LevelSolvedCounter++;
+            level.IsBossDefeated = false;
 
             switch (finishedLevelName)
             {
