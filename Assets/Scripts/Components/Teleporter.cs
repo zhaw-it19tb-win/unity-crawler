@@ -44,11 +44,11 @@ public class Teleporter : MonoBehaviour
             if (IsThemedScenesStartTeleporter)
             {
                 ActivateLevel();
-                var level = GameUtil.LevelModels.Single(m => m.IsActive);
+                var activeLevel = GameUtil.LevelModels.Single(m => m.IsActive);
 
-                if (level.LevelSolvedCounter % 5 == 0)
+                if (IsChallengeScene(activeLevel))
                 {
-                    TeleportPlayer(level.ChallengeSceneName, CardinalDirection.West);
+                    TeleportPlayer(activeLevel.ChallengeSceneName, CardinalDirection.West);
                 }
                 else
                 {
@@ -60,29 +60,34 @@ public class Teleporter : MonoBehaviour
             }
             else
             {
-                var level = GameUtil.LevelModels.Single(m => m.IsActive);
+                var activeLevel = GameUtil.LevelModels.Single(m => m.IsActive);
 
-                if (level.LevelSolvedCounter % 5 == 0)
+                if (IsChallengeScene(activeLevel))
                 {
-                    TeleportPlayer("MainScene", level.StartLocation);
+                    TeleportPlayer("MainScene", activeLevel.StartLocation);
                 }
 
                 string activeSceneName = SceneManager.GetActiveScene().name;                
-                var originTeleporter = GetOriginTeleporterModel(level, activeSceneName);
+                var originTeleporter = GetOriginTeleporterModel(activeLevel, activeSceneName);
 
                 if (!originTeleporter.IsEntrance && !originTeleporter.IsExit)
                 {
-                    var targetTeleporter = level.SceneTeleporterRelations.Single(r => r.SceneName == originTeleporter.TargetSceneName)
+                    var targetTeleporter = activeLevel.SceneTeleporterRelations.Single(r => r.SceneName == originTeleporter.TargetSceneName)
                         .Teleporters.FirstOrDefault(t => t.TargetSceneName == activeSceneName);
 
                     TeleportPlayer(originTeleporter.TargetSceneName, targetTeleporter.Location);
                 } 
-                else if (originTeleporter.IsEntrance || (originTeleporter.IsExit && level.IsBossDefeated))
+                else if (originTeleporter.IsEntrance || (originTeleporter.IsExit && activeLevel.IsBossDefeated))
                 {
-                    TeleportPlayer(originTeleporter.TargetSceneName, level.StartLocation);
+                    TeleportPlayer(originTeleporter.TargetSceneName, activeLevel.StartLocation);
                 }
             }
         }
+    }
+
+    private bool IsChallengeScene(LevelModel activeLevel)
+    {
+        return activeLevel.LevelSolvedCounter != 0 && activeLevel.LevelSolvedCounter % 5 == 0;
     }
 
     private TeleporterModel GetOriginTeleporterModel(LevelModel level, string activeSceneName)
