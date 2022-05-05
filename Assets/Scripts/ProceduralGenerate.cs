@@ -7,7 +7,7 @@ using UnityEngine.Tilemaps;
 
 public class ProceduralGenerate : MonoBehaviour
 {
-    public static string MAPVERSION = "v0.1.0";
+    public static string MAPVERSION = "v0.1.1";
     
     public Tilemap layer0;
 
