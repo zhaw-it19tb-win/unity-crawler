@@ -1,63 +1,92 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Xml.Linq;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
-{
-    // Start is called before the first frame update
-    
+{   
+    [SerializeReference]
+    public int tilesize = 3;
+
     [SerializeReference]
     public Texture2D bend;
+
+    [SerializeReference]
+    public float bendWeight = 0.5f;
     
     [SerializeReference]
     public Texture2D corner;
+
+    [SerializeReference]
+    public float cornerWeight = 0.5f;
     
     [SerializeReference]
     public Texture2D corridor;
+
+    [SerializeReference]
+    public float corridorWeight = 1.0f;
     
     [SerializeReference]
     public Texture2D door;
+
+    [SerializeReference]
+    public float doorWeight = 0.5f;
     
     [SerializeReference]
     public Texture2D empty;
+
+    [SerializeReference]
+    public float emptyWeight = 1.0f;
     
     [SerializeReference]
     public Texture2D poi;
+
+    // change this weight for more or less spawns
+    [SerializeReference]
+    public float poiWeight = 0.2f;
     
     [SerializeReference]
     public Texture2D side;
+
+    [SerializeReference]
+    public float sideWeight = 2.0f;
     
     [SerializeReference]
     public Texture2D t;
+
+    [SerializeReference]
+    public float tWeight = 0.5f;
     
     [SerializeReference]
     public Texture2D turn;
+
+    [SerializeReference]
+    public float turnWeight = 0.25f;
     
     [SerializeReference]
     public Texture2D wall;
+
+    [SerializeReference]
+    public float wallWeight = 1.0f;
 
     void Start()
     {
 
     }
 
-    // Update is called once per frame
-    internal Texture2D GenerateMap(int size) {
+    internal Texture2D GenerateMap(int width, int height) {
 
         var tileConfig = new List<XTile>();
-        tileConfig.Add(new XTile(bend, "bend","L","0.5"));
-        tileConfig.Add(new XTile(corner, "corner","L","0.5"));
-        tileConfig.Add(new XTile(corridor, "corridor","I","1.0"));
-        tileConfig.Add(new XTile(door, "door","T","0.5"));
-        tileConfig.Add(new XTile(empty, "empty","X"));
-        tileConfig.Add(new XTile(side, "side","T","2.0"));
-        tileConfig.Add(new XTile(t, "t","T","0.5"));
-        tileConfig.Add(new XTile(turn, "turn","L","0.25"));
-        tileConfig.Add(new XTile(wall, "wall","X"));
-        tileConfig.Add(new XTile(poi, "poi","X","0.1")); // change this weight for more or less spawns
+        tileConfig.Add(new XTile(bend, "bend","L",bendWeight.ToString()));
+        tileConfig.Add(new XTile(corner, "corner","L",cornerWeight.ToString()));
+        tileConfig.Add(new XTile(corridor, "corridor","I",corridorWeight.ToString()));
+        tileConfig.Add(new XTile(door, "door","T",doorWeight.ToString()));
+        tileConfig.Add(new XTile(empty, "empty","X",emptyWeight.ToString()));
+        tileConfig.Add(new XTile(side, "side","T",sideWeight.ToString()));
+        tileConfig.Add(new XTile(t, "t","T",tWeight.ToString()));
+        tileConfig.Add(new XTile(turn, "turn","L",turnWeight.ToString()));
+        tileConfig.Add(new XTile(wall, "wall","X",wallWeight.ToString()));
+        tileConfig.Add(new XTile(poi, "poi","X",poiWeight.ToString()));
 
         var neighConfig = new List<Neighbor>();
         neighConfig.Add(new Neighbor("corner 1","corner"));
@@ -107,9 +136,7 @@ public class LevelGenerator : MonoBehaviour
         neighConfig.Add(new Neighbor("poi","side 3"));
         neighConfig.Add(new Neighbor("poi","bend"));
 
-        bool periodic = false; 
-        bool blackBackground = false;
-        SimpleTiledModel model = new SimpleTiledModel(size,size,periodic,blackBackground,Model.Heuristic.Entropy, tileConfig, neighConfig);
+        SimpleTiledModel model = new SimpleTiledModel(width, height, tileConfig, neighConfig);
         System.Random rand = new System.Random();
         bool success = model.Run(rand.Next(), -1);
         
