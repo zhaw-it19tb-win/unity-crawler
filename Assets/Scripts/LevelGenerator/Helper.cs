@@ -13,13 +13,13 @@ using System.Collections.Generic;
 
 static class Helper
 {
-    public static int Random(this double[] weights, double r)
+    public static int Random(this float[] weights, float r)
     {
-        double sum = 0;
+        float sum = 0;
         for (int i = 0; i < weights.Length; i++) sum += weights[i];
-        double threshold = r * sum;
+        float threshold = r * sum;
 
-        double partialSum = 0;
+        float partialSum = 0;
         for (int i = 0; i < weights.Length; i++)
         {
             partialSum += weights[i];

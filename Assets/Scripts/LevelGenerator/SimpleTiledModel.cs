@@ -40,7 +40,7 @@ class SimpleTiledModel : Model
 
         tiles = new List<Color[]>();
         tilenames = new List<string>();
-        var weightList = new List<double>();
+        var weightList = new List<float>();
 
         var action = new List<int[]>();
         var firstOccurrence = new Dictionary<string, int>();
@@ -113,7 +113,7 @@ class SimpleTiledModel : Model
             }
 
             for (int t = 0; t < cardinality; t++) {
-                weightList.Add( xtile.weight != null ? Double.Parse(xtile.weight) : 1.0 );
+                weightList.Add( xtile.weight != null ? (float)Double.Parse(xtile.weight) : 1.0F );
             }
         }
 
@@ -180,7 +180,6 @@ class SimpleTiledModel : Model
     public override Texture2D Graphics()
     {
         Texture2D result = new Texture2D(MX * tilesize, MY * tilesize);
-        int[] bitmapData = new int[result.height * result.width];
 
         if (observed[0] >= 0)
         {
@@ -190,47 +189,56 @@ class SimpleTiledModel : Model
                     for (int yt = 0; yt < tilesize; yt++) for (int xt = 0; xt < tilesize; xt++)
                         {
                             Color c = tile[xt + yt * tilesize];
-                            bitmapData[x * tilesize + xt + (y * tilesize + yt) * MX * tilesize] =
-                                unchecked((int)0xff000000 | (BitConverter.ToInt32(BitConverter.GetBytes(c.r),0) << 16) | (BitConverter.ToInt32(BitConverter.GetBytes(c.g), 0) << 8) | (BitConverter.ToInt32(BitConverter.GetBytes(c.b), 0) ));
+                            result.SetPixel(x * tilesize + xt, (y * tilesize + yt) * MX * tilesize, c);
+                            //bitmapData[x * tilesize + xt + (y * tilesize + yt) * MX * tilesize] = c;
+                                //unchecked((int)0xff000000 | (c.R << 16) | (c.G << 8) | c.B);
                         }
                 }
-        }
-        else
+        } 
+        /*else
         {
             for (int x = 0; x < MX; x++) for (int y = 0; y < MY; y++)
                 {
                     bool[] a = wave[x + y * MX];
                     int amount = (from b in a where b select 1).Sum();
-                    double lambda = 1.0 / (from t in Enumerable.Range(0, T) where a[t] select weights[t]).Sum();
+                    float lambda = 1.0F / (from t in Enumerable.Range(0, T) where a[t] select weights[t]).Sum();
 
                     for (int yt = 0; yt < tilesize; yt++) for (int xt = 0; xt < tilesize; xt++)
                         {
-                            if (blackBackground && amount == T) bitmapData[x * tilesize + xt + (y * tilesize + yt) * MX * tilesize] = unchecked((int)0xff000000);
+                            if (blackBackground && amount == T) {
+                                result.SetPixel(x * tilesize + xt, (y * tilesize + yt) * MX * tilesize, Color.black);
+                                //bitmapData[x * tilesize + xt + (y * tilesize + yt) * MX * tilesize] = Color.black;
+                            }
                             else
                             {
-                                double r = 0, g = 0, b = 0;
+                                float r = 0, g = 0, b = 0;
                                 for (int t = 0; t < T; t++) if (a[t])
                                     {
                                         Color c = tiles[t][xt + yt * tilesize];
-                                        r += (double)c.r * weights[t] * lambda;
-                                        g += (double)c.g * weights[t] * lambda;
-                                        b += (double)c.b * weights[t] * lambda;
+                                        r += c.r * weights[t] * lambda;
+                                        g += c.g * weights[t] * lambda;
+                                        b += c.b * weights[t] * lambda;
                                     }
 
-                                bitmapData[x * tilesize + xt + (y * tilesize + yt) * MX * tilesize] =
-                                    unchecked((int)0xff000000 | ((int)r << 16) | ((int)g << 8) | (int)b);
+                                //bitmapData[x * tilesize + xt + (y * tilesize + yt) * MX * tilesize] = new Color(r,g,b);
+                                result.SetPixel(x * tilesize + xt, (y * tilesize + yt) * MX * tilesize, new Color(r, g, b));
                             }
                         }
                 }
         }
+        */
 
         //var bits = result.LockBits(new Rectangle(0, 0, result.Width, result.Height), ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
         //System.Runtime.InteropServices.Marshal.Copy(bitmapData, 0, bits.Scan0, bitmapData.Length);
-        for (int x = 0; x < MX * tilesize; x++) {
-            for (int y = 0; y < MY * tilesize; y++) {
-                result.SetPixel(x,y,Color.white);
+        //result.UnlockBits(bits);
+
+        /*
+        for (int x = 0; x < tilesize; x++) {
+            for (int y = 0; y < tilesize; y++) {
+                result.SetPixel(x,y,bitmapData[x * result.width + y]);
             }
         }
+        */
 
         return result;
     }

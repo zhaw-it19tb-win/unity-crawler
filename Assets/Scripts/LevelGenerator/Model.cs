@@ -24,12 +24,12 @@ abstract class Model
     protected int MX, MY, T, N;
     protected bool periodic;
 
-    protected double[] weights;
-    double[] weightLogWeights, distribution;
+    protected float[] weights;
+    float[] weightLogWeights, distribution;
 
     int[] sumsOfOnes;
-    double sumOfWeights, sumOfWeightLogWeights, startingEntropy;
-    double[] sumsOfWeights, sumsOfWeightLogWeights, entropies;
+    float sumOfWeights, sumOfWeightLogWeights, startingEntropy;
+    float[] sumsOfWeights, sumsOfWeightLogWeights, entropies;
 
     public enum Heuristic { Entropy, MRV, Scanline };
     Heuristic heuristic;
@@ -53,26 +53,26 @@ abstract class Model
             compatible[i] = new int[T][];
             for (int t = 0; t < T; t++) compatible[i][t] = new int[4];
         }
-        distribution = new double[T];
+        distribution = new float[T];
         observed = new int[MX * MY];
 
-        weightLogWeights = new double[T];
+        weightLogWeights = new float[T];
         sumOfWeights = 0;
         sumOfWeightLogWeights = 0;
 
         for (int t = 0; t < T; t++)
         {
-            weightLogWeights[t] = weights[t] * Math.Log(weights[t]);
+            weightLogWeights[t] = weights[t] * (float)Math.Log(weights[t]);
             sumOfWeights += weights[t];
             sumOfWeightLogWeights += weightLogWeights[t];
         }
 
-        startingEntropy = Math.Log(sumOfWeights) - sumOfWeightLogWeights / sumOfWeights;
+        startingEntropy = (float)Math.Log(sumOfWeights) - sumOfWeightLogWeights / sumOfWeights;
 
         sumsOfOnes = new int[MX * MY];
-        sumsOfWeights = new double[MX * MY];
-        sumsOfWeightLogWeights = new double[MX * MY];
-        entropies = new double[MX * MY];
+        sumsOfWeights = new float[MX * MY];
+        sumsOfWeightLogWeights = new float[MX * MY];
+        entropies = new float[MX * MY];
 
         stack = new (int, int)[wave.Length * T];
         stacksize = 0;
@@ -120,16 +120,16 @@ abstract class Model
             return -1;
         }
 
-        double min = 1E+4;
+        float min = 1E+4F;
         int argmin = -1;
         for (int i = 0; i < wave.Length; i++)
         {
             if (!periodic && (i % MX + N > MX || i / MX + N > MY)) continue;
             int remainingValues = sumsOfOnes[i];
-            double entropy = heuristic == Heuristic.Entropy ? entropies[i] : remainingValues;
+            float entropy = heuristic == Heuristic.Entropy ? entropies[i] : remainingValues;
             if (remainingValues > 1 && entropy <= min)
             {
-                double noise = 1E-6 * random.NextDouble();
+                float noise = 1E-6F * (float)random.NextDouble();
                 if (entropy + noise < min)
                 {
                     min = entropy + noise;
@@ -143,8 +143,8 @@ abstract class Model
     void Observe(int node, Random random)
     {
         bool[] w = wave[node];
-        for (int t = 0; t < T; t++) distribution[t] = w[t] ? weights[t] : 0.0;
-        int r = distribution.Random(random.NextDouble());
+        for (int t = 0; t < T; t++) distribution[t] = w[t] ? weights[t] : 0.0f;
+        int r = distribution.Random((float)random.NextDouble());
         for (int t = 0; t < T; t++) if (w[t] != (t == r)) Ban(node, t);
     }
 
@@ -200,8 +200,8 @@ abstract class Model
         sumsOfWeights[i] -= weights[t];
         sumsOfWeightLogWeights[i] -= weightLogWeights[t];
 
-        double sum = sumsOfWeights[i];
-        entropies[i] = Math.Log(sum) - sumsOfWeightLogWeights[i] / sum;
+        float sum = sumsOfWeights[i];
+        entropies[i] = (float)Math.Log(sum) - sumsOfWeightLogWeights[i] / sum;
     }
 
     protected virtual void Clear()

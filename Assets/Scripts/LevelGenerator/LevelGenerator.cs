@@ -46,7 +46,6 @@ public class LevelGenerator : MonoBehaviour
 
     // Update is called once per frame
     internal Texture2D GenerateMap(int size) {
-        Texture2D result = new Texture2D(size, size);
 
         var tileConfig = new List<XTile>();
         tileConfig.Add(new XTile(bend, "bend","L","0.5"));
@@ -108,10 +107,12 @@ public class LevelGenerator : MonoBehaviour
         neighConfig.Add(new Neighbor("poi","side 3"));
         neighConfig.Add(new Neighbor("poi","bend"));
 
-        int tilesize = 3;
         bool periodic = false; 
         bool blackBackground = false;
-        SimpleTiledModel model = new SimpleTiledModel(tilesize,tilesize,periodic,blackBackground,Model.Heuristic.Entropy, tileConfig, neighConfig);
+        SimpleTiledModel model = new SimpleTiledModel(size,size,periodic,blackBackground,Model.Heuristic.Entropy, tileConfig, neighConfig);
+        System.Random rand = new System.Random();
+        bool success = model.Run(rand.Next(), -1);
+        
         return model.Graphics();
     }
 }
