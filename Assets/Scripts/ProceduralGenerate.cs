@@ -201,12 +201,7 @@ public class ProceduralGenerate : MonoBehaviour
         for (int i = result.startX; i < result.endX; i++) {
             for (int j = result.startY; j < result.endY; j++) {
                 Color pixel = mapFile.GetPixel(i,j);
-                if (i == result.startX || i == result.endX-1 || j == result.startY || j == result.endY-1) {
-                    // Set wall tiles if at edge:
-                    result.layer0List.Add( new DungeonTile( i, j, 0, 1, UnityEngine.Random.Range(0, tiles.wallTiles.Length) ) );
-                    result.layer1List.Add( new DungeonTile( i, j, 2, 1, UnityEngine.Random.Range(0, tiles.wallTiles.Length) ) );
-                }
-                else if (pixel.Equals(Color.black)) {
+                if (pixel.Equals(Color.black)) {
                     // draw wall
                     result.layer0List.Add( new DungeonTile( i, j, 0, 1, UnityEngine.Random.Range(0, tiles.wallTiles.Length) ) );
                     result.layer1List.Add( new DungeonTile( i, j, 2, 1, UnityEngine.Random.Range(0, tiles.wallTiles.Length) ) );
@@ -239,22 +234,56 @@ public class ProceduralGenerate : MonoBehaviour
     }
 
     private Texture2D PreProcessImage(Texture2D input) {
+        // for a generated 20x20 tilemap with 3x3 tiles, we get a 60x60 input image...
+
         // we track a list of red pois to turn into enter and exit spawners
         var poiList = new List<(Vector2Int,Color)>();
-        // we will double image to ensure we can walk through all the paths
-        Texture2D result = new Texture2D(input.width*2, input.height*2);
+
+        // we will add a wall border all around the generated map: 60 x 60 -> 62 x 62 
+
+        // finally we will double the image to ensure we can walk through all the paths ( 62 x 62 -> 124 x 124)
+        Texture2D result = new Texture2D((input.width + 2) * 2, (input.height + 2) * 2);
+
+        // necessary to get accurate pixel colors, not interpolated...
         result.filterMode = FilterMode.Point;
 
-        for (int i = 0; i < input.width; i++) {
-            for (int j = 0; j < input.height; j++) {
+        // GENERATE SIDE WALL
+        // k will loop through 0 -> 61
+        for (int k = 0; k < input.width + 2; k++) {
+            
+            result.SetPixel( 0, 2*k, Color.black); // set left bottom wall
+            result.SetPixel( 0, 2*k + 1, Color.black); // set left bottom wall
+            result.SetPixel( 1, 2*k, Color.black); // set left bottom wall
+            result.SetPixel( 1, 2*k + 1, Color.black); // set left bottom wall
+            
+            result.SetPixel( 2*input.width + 2, 2*k, Color.black); // set right top as wall
+            result.SetPixel( 2*input.width + 2, 2*k + 1, Color.black); // set right top as wall
+            result.SetPixel( 2*input.width + 3, 2*k, Color.black); // set right top as wall
+            result.SetPixel( 2*input.width + 3, 2*k + 1, Color.black); // set right top as wall
+        
+            result.SetPixel( 2*k, 0, Color.black); // set bottom right as wall
+            result.SetPixel( 2*k + 1, 0, Color.black); // set bottom right as wall
+            result.SetPixel( 2*k, 1, Color.black); // set bottom right as wall
+            result.SetPixel( 2*k + 1, 1, Color.black); // set bottom right as wall
+
+            result.SetPixel( 2*k, 2*input.width + 2, Color.black); // set top left as wall
+            result.SetPixel( 2*k + 1, 2*input.width + 2, Color.black); // set top left as wall
+            result.SetPixel( 2*k, 2*input.width + 3, Color.black); // set top left as wall
+            result.SetPixel( 2*k + 1, 2*input.width + 3, Color.black); // set top left as wall
+            
+        }
+
+        // PLACE PIXELS FROM MODEL
+        for (int i = 1; i < input.width + 1; i++) {
+            for (int j = 1; j < input.height + 1; j++) {
                 Color currentPixel = input.GetPixel(i,j);
                 if(Color.red.Equals(currentPixel)) {
-                    poiList.Add( (new Vector2Int(2*i, 2*j), currentPixel) );
+                    poiList.Add( (new Vector2Int(2*i + 1, 2*j + 1), currentPixel) );
                     // red pixels should not get scaled, we only want i.e. 1 spawner, not 4..
-                    result.SetPixel(2*i, 2*j, currentPixel );
+                    result.SetPixel(2*i, 2*j, Color.white );
                     result.SetPixel(2*i, (2*j) + 1, Color.white );
                     result.SetPixel((2*i) + 1, 2*j, Color.white );
-                    result.SetPixel((2*i) + 1, (2*j) + 1, Color.white );
+                    result.SetPixel((2*i) + 1, (2*j) + 1, currentPixel );
                 } else {
                     result.SetPixel(2*i, 2*j,  currentPixel );
                     result.SetPixel(2*i, (2*j) + 1, currentPixel );
