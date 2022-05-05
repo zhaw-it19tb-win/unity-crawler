@@ -195,7 +195,8 @@ class SimpleTiledModel : Model
                                 //unchecked((int)0xff000000 | (c.R << 16) | (c.G << 8) | c.B);
                         }
                 }
-        } 
+        }
+        /* 
         else
         {
             for (int x = 0; x < MX; x++) for (int y = 0; y < MY; y++)
@@ -227,7 +228,7 @@ class SimpleTiledModel : Model
                         }
                 }
         }
-        
+        */
 
         //var bits = result.LockBits(new Rectangle(0, 0, result.Width, result.Height), ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
         //System.Runtime.InteropServices.Marshal.Copy(bitmapData, 0, bits.Scan0, bitmapData.Length);
