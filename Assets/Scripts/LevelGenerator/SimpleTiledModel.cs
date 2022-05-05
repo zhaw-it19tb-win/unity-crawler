@@ -180,6 +180,7 @@ class SimpleTiledModel : Model
     public override Texture2D Graphics()
     {
         Texture2D result = new Texture2D(MX * tilesize, MY * tilesize);
+        result.filterMode = FilterMode.Point;
 
         if (observed[0] >= 0)
         {
@@ -189,13 +190,13 @@ class SimpleTiledModel : Model
                     for (int yt = 0; yt < tilesize; yt++) for (int xt = 0; xt < tilesize; xt++)
                         {
                             Color c = tile[xt + yt * tilesize];
-                            result.SetPixel(x * tilesize + xt, (y * tilesize + yt) * MX * tilesize, c);
+                            result.SetPixel(x * tilesize + xt, y * tilesize + yt, c);
                             //bitmapData[x * tilesize + xt + (y * tilesize + yt) * MX * tilesize] = c;
                                 //unchecked((int)0xff000000 | (c.R << 16) | (c.G << 8) | c.B);
                         }
                 }
         } 
-        /*else
+        else
         {
             for (int x = 0; x < MX; x++) for (int y = 0; y < MY; y++)
                 {
@@ -206,7 +207,7 @@ class SimpleTiledModel : Model
                     for (int yt = 0; yt < tilesize; yt++) for (int xt = 0; xt < tilesize; xt++)
                         {
                             if (blackBackground && amount == T) {
-                                result.SetPixel(x * tilesize + xt, (y * tilesize + yt) * MX * tilesize, Color.black);
+                                result.SetPixel(x * tilesize + xt, y * tilesize + yt, Color.black);
                                 //bitmapData[x * tilesize + xt + (y * tilesize + yt) * MX * tilesize] = Color.black;
                             }
                             else
@@ -221,12 +222,12 @@ class SimpleTiledModel : Model
                                     }
 
                                 //bitmapData[x * tilesize + xt + (y * tilesize + yt) * MX * tilesize] = new Color(r,g,b);
-                                result.SetPixel(x * tilesize + xt, (y * tilesize + yt) * MX * tilesize, new Color(r, g, b));
+                                result.SetPixel(x * tilesize + xt, y * tilesize + yt, new Color(r, g, b));
                             }
                         }
                 }
         }
-        */
+        
 
         //var bits = result.LockBits(new Rectangle(0, 0, result.Width, result.Height), ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
         //System.Runtime.InteropServices.Marshal.Copy(bitmapData, 0, bits.Scan0, bitmapData.Length);

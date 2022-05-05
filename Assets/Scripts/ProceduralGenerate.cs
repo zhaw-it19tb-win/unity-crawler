@@ -243,10 +243,12 @@ public class ProceduralGenerate : MonoBehaviour
         var poiList = new List<(Vector2Int,Color)>();
         // we will double image to ensure we can walk through all the paths
         Texture2D result = new Texture2D(input.width*2, input.height*2);
+        result.filterMode = FilterMode.Point;
+
         for (int i = 0; i < input.width; i++) {
             for (int j = 0; j < input.height; j++) {
                 Color currentPixel = input.GetPixel(i,j);
-                if(currentPixel == Color.red) {
+                if(Color.red.Equals(currentPixel)) {
                     poiList.Add( (new Vector2Int(2*i, 2*j), currentPixel) );
                     // red pixels should not get scaled, we only want i.e. 1 spawner, not 4..
                     result.SetPixel(2*i, 2*j, currentPixel );
