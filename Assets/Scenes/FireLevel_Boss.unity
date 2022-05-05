@@ -6269,7 +6269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1767992744525053221, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
       propertyPath: m_Name
-      value: teleporter_0
+      value: Teleporter_0
       objectReference: {fileID: 0}
     - target: {fileID: 1767992744525053222, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
       propertyPath: m_RootOrder
@@ -11088,7 +11088,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1767992744525053221, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
       propertyPath: m_Name
-      value: teleporter_1
+      value: Teleporter_1
       objectReference: {fileID: 0}
     - target: {fileID: 1767992744525053222, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
       propertyPath: m_RootOrder
