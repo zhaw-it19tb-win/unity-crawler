@@ -59,4 +59,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SkyEntry.unity
     guid: e1172300ee050f445ab2af388ae57655
+  - enabled: 1
+    path: Assets/Scenes/Path_2.unity
+    guid: 43c6876dddb776149832ab0015d9f64b
+  - enabled: 1
+    path: Assets/Scenes/Path_3.unity
+    guid: 2bb29e8df27debe49b28eeafebeade81
+  - enabled: 1
+    path: Assets/Scenes/Path_4.unity
+    guid: 6806146bc63a30f4aaf027f62d45ec37
+  - enabled: 1
+    path: Assets/Scenes/Path_5.unity
+    guid: 43fc9a0e267616c4785dd6fada7a1492
   m_configObjects: {}

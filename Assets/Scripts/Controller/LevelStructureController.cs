@@ -88,10 +88,14 @@ public static class LevelStructureController
     {
         return new List<SceneTeleportersRelationModel>
         {
-            CreateEntryTeleporterRelation(CardinalDirection.North, "SkyEntry", CardinalDirection.South),
-            CreateSimpleTeleporterRelation(CardinalDirection.West, "HorizontalPath", CardinalDirection.East),
-            CreateSimpleTeleporterRelation(CardinalDirection.North, "VerticalPath", CardinalDirection.South),
-            CreateExitTeleporterRelation(CardinalDirection.West, "SkyBoss", CardinalDirection.North)
+            CreateEntryTeleporterRelation(CardinalDirection.West, "Path_0", CardinalDirection.East),
+            CreateSimpleTeleporterRelation(CardinalDirection.South, "Path_1", CardinalDirection.North),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_2", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_3", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_4", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_5", CardinalDirection.South),
+            CreatePreExitTeleporterRelation(CardinalDirection.North, "SkyEntry", CardinalDirection.South, "SkyBoss"),
+            CreateExitTeleporterRelation(CardinalDirection.West, "SkyBoss", CardinalDirection.North, "SkyEntry")
         };
     }
 
@@ -99,10 +103,14 @@ public static class LevelStructureController
     {
         return new List<SceneTeleportersRelationModel>
         {
-            CreateEntryTeleporterRelation(CardinalDirection.West, "UnderwaterEntry", CardinalDirection.East),
-            CreateSimpleTeleporterRelation(CardinalDirection.West, "HorizontalPath", CardinalDirection.East),
-            CreateSimpleTeleporterRelation(CardinalDirection.North, "VerticalPath", CardinalDirection.South),
-            CreateExitTeleporterRelation(CardinalDirection.West, "UnderwaterBoss", CardinalDirection.East)
+            CreateEntryTeleporterRelation(CardinalDirection.South, "Path_1", CardinalDirection.North),
+            CreateSimpleTeleporterRelation(CardinalDirection.West, "Path_0", CardinalDirection.East),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_2", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_3", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.South, "Path_4", CardinalDirection.North),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_5", CardinalDirection.South),
+            CreatePreExitTeleporterRelation(CardinalDirection.West, "UnderwaterEntry", CardinalDirection.East, "UnderwaterBoss"),
+            CreateExitTeleporterRelation(CardinalDirection.West, "UnderwaterBoss", CardinalDirection.East, "UnderwaterEntry")
         };
     }
 
@@ -110,10 +118,14 @@ public static class LevelStructureController
     {
         return new List<SceneTeleportersRelationModel>
         {
-            CreateEntryTeleporterRelation(CardinalDirection.West, "DesertEntry", CardinalDirection.East),
-            CreateSimpleTeleporterRelation(CardinalDirection.West, "HorizontalPath", CardinalDirection.East),
-            CreateSimpleTeleporterRelation(CardinalDirection.North, "VerticalPath", CardinalDirection.South),
-            CreateExitTeleporterRelation(CardinalDirection.West, "DesertBoss", CardinalDirection.North)
+            CreateEntryTeleporterRelation(CardinalDirection.North, "Path_3", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.West, "Path_0", CardinalDirection.East),
+            CreateSimpleTeleporterRelation(CardinalDirection.South, "Path_1", CardinalDirection.North),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_2", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_4", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_5", CardinalDirection.South),
+            CreatePreExitTeleporterRelation(CardinalDirection.West, "DesertEntry", CardinalDirection.East, "DesertBoss"),
+            CreateExitTeleporterRelation(CardinalDirection.West, "DesertBoss", CardinalDirection.North, "DesertEntry")
         };
     }
 
@@ -121,10 +133,14 @@ public static class LevelStructureController
     {
         return new List<SceneTeleportersRelationModel>
         {
-            CreateEntryTeleporterRelation(CardinalDirection.West, "FireLevel_Entry", CardinalDirection.East),
-            CreateSimpleTeleporterRelation(CardinalDirection.West, "HorizontalPath", CardinalDirection.East),
-            CreateSimpleTeleporterRelation(CardinalDirection.North, "VerticalPath", CardinalDirection.South),
-            CreateExitTeleporterRelation(CardinalDirection.West, "FireLevel_Boss", CardinalDirection.North)
+            CreateEntryTeleporterRelation(CardinalDirection.North, "Path_2", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.West, "Path_0", CardinalDirection.East),
+            CreateSimpleTeleporterRelation(CardinalDirection.South, "Path_1", CardinalDirection.North),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_3", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_4", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_5", CardinalDirection.South),
+            CreatePreExitTeleporterRelation(CardinalDirection.West, "FireLevel_Entry", CardinalDirection.East, "FireLevel_Boss"),
+            CreateExitTeleporterRelation(CardinalDirection.West, "FireLevel_Boss", CardinalDirection.North, "FireLevel_Entry")
         };
     }
 
@@ -168,7 +184,7 @@ public static class LevelStructureController
         };
     }
 
-    private static SceneTeleportersRelationModel CreateExitTeleporterRelation(CardinalDirection entranceLocation, string sceneName, CardinalDirection exitLocation)
+    private static SceneTeleportersRelationModel CreatePreExitTeleporterRelation(CardinalDirection entranceLocation, string sceneName, CardinalDirection exitLocation, string exitSceneName = null)
     {
         return new SceneTeleportersRelationModel
         {
@@ -177,7 +193,28 @@ public static class LevelStructureController
                 {
                     new TeleporterModel
                     {
+                        Location = exitLocation,
+                        TargetSceneName = exitSceneName
+                    },
+                    new TeleporterModel
+                    {
                         Location = entranceLocation
+                    }
+                }
+        };
+    }
+
+    private static SceneTeleportersRelationModel CreateExitTeleporterRelation(CardinalDirection entranceLocation, string sceneName, CardinalDirection exitLocation, string entranceSceneName = null)
+    {
+        return new SceneTeleportersRelationModel
+        {
+            SceneName = sceneName,
+            Teleporters = new List<TeleporterModel>
+                {
+                    new TeleporterModel
+                    {
+                        Location = entranceLocation,
+                        TargetSceneName = entranceSceneName
                     },
                     new TeleporterModel
                     {
