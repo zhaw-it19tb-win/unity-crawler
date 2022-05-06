@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public static class LevelStructureController
 {
+    private static readonly string MAIN_SCENE_NAME = "MainScene";
+
     public static LevelModel GetSkyLevelModel()
     {
         return new LevelModel
@@ -95,7 +97,8 @@ public static class LevelStructureController
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_4", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_5", CardinalDirection.South),
             CreatePreExitTeleporterRelation(CardinalDirection.North, "SkyEntry", CardinalDirection.South, "SkyBoss"),
-            CreateExitTeleporterRelation(CardinalDirection.West, "SkyBoss", CardinalDirection.North, "SkyEntry")
+            CreateExitTeleporterRelation(CardinalDirection.West, "SkyBoss", CardinalDirection.North, "SkyEntry"),
+            CreateChallengeTeleporterRelation(CardinalDirection.West, "Sky", CardinalDirection.North, "SkyBoss")
         };
     }
 
@@ -110,7 +113,8 @@ public static class LevelStructureController
             CreateSimpleTeleporterRelation(CardinalDirection.South, "Path_4", CardinalDirection.North),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_5", CardinalDirection.South),
             CreatePreExitTeleporterRelation(CardinalDirection.West, "UnderwaterEntry", CardinalDirection.East, "UnderwaterBoss"),
-            CreateExitTeleporterRelation(CardinalDirection.West, "UnderwaterBoss", CardinalDirection.East, "UnderwaterEntry")
+            CreateExitTeleporterRelation(CardinalDirection.West, "UnderwaterBoss", CardinalDirection.East, "UnderwaterEntry"),
+            CreateChallengeTeleporterRelation(CardinalDirection.West, "Underwater", CardinalDirection.East, "UnderwaterBoss")
         };
     }
 
@@ -125,7 +129,8 @@ public static class LevelStructureController
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_4", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_5", CardinalDirection.South),
             CreatePreExitTeleporterRelation(CardinalDirection.West, "DesertEntry", CardinalDirection.East, "DesertBoss"),
-            CreateExitTeleporterRelation(CardinalDirection.West, "DesertBoss", CardinalDirection.North, "DesertEntry")
+            CreateExitTeleporterRelation(CardinalDirection.West, "DesertBoss", CardinalDirection.North, "DesertEntry"),
+            CreateChallengeTeleporterRelation(CardinalDirection.West, "Desert", CardinalDirection.East, "DesertBoss")
         };
     }
 
@@ -140,7 +145,8 @@ public static class LevelStructureController
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_4", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_5", CardinalDirection.South),
             CreatePreExitTeleporterRelation(CardinalDirection.West, "FireLevel_Entry", CardinalDirection.East, "FireLevel_Boss"),
-            CreateExitTeleporterRelation(CardinalDirection.West, "FireLevel_Boss", CardinalDirection.North, "FireLevel_Entry")
+            CreateExitTeleporterRelation(CardinalDirection.West, "FireLevel_Boss", CardinalDirection.North, "FireLevel_Entry"),
+            CreateChallengeTeleporterRelation(CardinalDirection.West, "FireLevel", CardinalDirection.East, "FireLevel_Boss")
         };
     }
 
@@ -150,18 +156,18 @@ public static class LevelStructureController
         {
             SceneName = sceneName,
             Teleporters = new List<TeleporterModel>
+            {
+                new TeleporterModel
                 {
-                    new TeleporterModel
-                    {
-                        Location = entranceLocation,
-                        IsEntrance = true,
-                        TargetSceneName = "MainScene"
-                    },
-                    new TeleporterModel
-                    {
-                        Location = exitLocation
-                    }
+                    Location = entranceLocation,
+                    IsEntrance = true,
+                    TargetSceneName = MAIN_SCENE_NAME
+                },
+                new TeleporterModel
+                {
+                    Location = exitLocation
                 }
+            }
         };
     }
 
@@ -210,19 +216,43 @@ public static class LevelStructureController
         {
             SceneName = sceneName,
             Teleporters = new List<TeleporterModel>
+            {
+                new TeleporterModel
                 {
-                    new TeleporterModel
-                    {
-                        Location = entranceLocation,
-                        TargetSceneName = entranceSceneName
-                    },
-                    new TeleporterModel
-                    {
-                        Location = exitLocation,
-                        TargetSceneName = "MainScene",
-                        IsExit = true
-                    }
+                    Location = entranceLocation,
+                    TargetSceneName = entranceSceneName
+                },
+                new TeleporterModel
+                {
+                    Location = exitLocation,
+                    TargetSceneName = MAIN_SCENE_NAME,
+                    IsExit = true
                 }
+            }
+        };
+    }
+
+    private static SceneTeleportersRelationModel CreateChallengeTeleporterRelation(CardinalDirection entranceLocation, string sceneName, CardinalDirection exitLocation, string entranceSceneName)
+    {
+        return new SceneTeleportersRelationModel
+        {
+            SceneName = sceneName,
+            Teleporters = new List<TeleporterModel>
+            {
+                new TeleporterModel
+                {
+                    Location = entranceLocation,
+                    TargetSceneName = entranceSceneName,
+                    IsChallengeSceneTeleporter = true
+                },
+                new TeleporterModel
+                {
+                    Location = exitLocation,
+                    TargetSceneName = MAIN_SCENE_NAME,
+                    IsChallengeSceneTeleporter = true,
+                    IsExit = true
+                }
+            }
         };
     }
 }
