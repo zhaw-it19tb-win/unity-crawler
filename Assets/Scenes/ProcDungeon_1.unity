@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 706350784}
   - component: {fileID: 706350783}
   - component: {fileID: 706350785}
+  - component: {fileID: 706350786}
   m_Layer: 0
   m_Name: ProcDungeon_1
   m_TagString: Untagged
@@ -331,18 +332,21 @@ MonoBehaviour:
   layer0: {fileID: 448652019}
   layer1: {fileID: 758863341}
   teleporterPrefab: {fileID: 1767992744525053221, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
-  startX: -10
-  endX: 10
-  startY: -10
-  endY: 10
-  spawnX: 5
-  spawnY: 5
   mapData:
-    id: 0
-  references:
-    version: 1
-    00000000:
-      type: {class: , ns: , asm: }
+    mapDataId: 
+    layer0List: []
+    layer1List: []
+    startX: 0
+    endX: 0
+    startY: 0
+    endY: 0
+    spawnX: 0
+    spawnY: 0
+    exitX: 0
+    exitY: 0
+    enemyX: 
+    enemyY: 
+  mapDataId: 
 --- !u!4 &706350784
 Transform:
   m_ObjectHideFlags: 0
@@ -371,6 +375,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23549244e5da6b3439ad69d85e942ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &706350786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706350782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eaf6399672359e4f9f74ff5a44d4aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bend: {fileID: 2800000, guid: d63559fac5d528f4790cb7ef63a0838a, type: 3}
+  corner: {fileID: 2800000, guid: 614dca0f37283844dbd8a9805702e54b, type: 3}
+  corridor: {fileID: 2800000, guid: a6aed3716e6ec1d4d9b2fb9145e7026b, type: 3}
+  door: {fileID: 2800000, guid: d7dfffaecfd27e14fb979e8f7984e885, type: 3}
+  empty: {fileID: 2800000, guid: d93cb29eb6b94b34e80a3ef275ee0682, type: 3}
+  poi: {fileID: 2800000, guid: 7fea103f650a1974c9c5f301c8baf4cf, type: 3}
+  side: {fileID: 2800000, guid: a7797a1a89a4b3245b92e66ba2088d02, type: 3}
+  t: {fileID: 2800000, guid: 342387ba6fa3bb24389d8457d82df2b6, type: 3}
+  turn: {fileID: 2800000, guid: 361923e61a12f1b469659873ed2a4cfa, type: 3}
+  wall: {fileID: 2800000, guid: a5c90b5a20b031347a4c35b64920fb25, type: 3}
 --- !u!1 &758863338
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +411,7 @@ GameObject:
   - component: {fileID: 758863344}
   - component: {fileID: 758863343}
   - component: {fileID: 758863342}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: layer_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -648,5 +674,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07c36a6128695a74a932dac85ece0db6, type: 2}
   spawnTiles:
   - {fileID: 11400000, guid: 8459f54eba2c6114abe9eeb92b60b796, type: 2}
+  - {fileID: 11400000, guid: 881f39c07b623dd4da9de5e133042904, type: 2}
+  - {fileID: 11400000, guid: 0a5345b3c762feb4884c5ee4f138a59f, type: 2}
   collisionTiles:
   - {fileID: 11400000, guid: bbe1039a73cb04a4db7e81501225bb46, type: 2}
