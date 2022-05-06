@@ -10,13 +10,18 @@ public class GameUtil : MonoBehaviour
     public static CardinalDirection TargetTeleporterLocation;
     public static List<LevelModel> LevelModels;
 
+    public static string GameId;
+
     public static bool IsPlayerTeleported { get; set; }
 
     void Awake()
     {
         if (GU == null)
         {
-            GU = this; 
+            GU = this;
+
+            GameId = Guid.NewGuid().ToString("N");
+            Debug.Log("GameId="+ GameId);
             
             DontDestroyOnLoad(this);
 
