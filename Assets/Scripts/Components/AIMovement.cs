@@ -67,8 +67,7 @@ public class AIMovement : MonoBehaviour
         //FindObjectOfType<AudioManager>().Play("Shot");
 
         // Animation part
-        agent.SetDestination(target.transform.position);
-        FindObjectOfType<ArcherAnimation>().SetAttackDirection(currentDirection);
+        FindObjectOfType<ArcherAnimation>().SetAttackDirection(direction);
 
     }
 }
