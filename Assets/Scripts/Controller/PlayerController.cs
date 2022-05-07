@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   void Awake() {
-        Debug.Log("Awake is called");
+    Debug.Log("Awake is called");
     health = GetComponent<Health>();
   }
 
