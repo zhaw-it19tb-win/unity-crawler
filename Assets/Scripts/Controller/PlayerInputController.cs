@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(WitchShooting))]
 [RequireComponent(typeof(RoundAttack))]
 [RequireComponent(typeof(Health))]
 public class PlayerInputController : MonoBehaviour
@@ -14,7 +13,6 @@ public class PlayerInputController : MonoBehaviour
     public float rotationSpeed = 280.0f;
 
     private PlayerInput input;
-    private WitchShooting witchShooting;
     private RoundAttack roundAttack;
     private Health health;
 
@@ -32,7 +30,6 @@ public class PlayerInputController : MonoBehaviour
         health = GetComponent<Health>();
         health.OnDied += OnDied;
 
-        witchShooting = GetComponent<WitchShooting>();
         roundAttack = GetComponent<RoundAttack>();
     }
 
