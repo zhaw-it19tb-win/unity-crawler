@@ -14,7 +14,7 @@ public class BasicEnemyController : MonoBehaviour {
   private bool attackAnimationFinished = false;
   // TODO: this is a bad solution
   private float attackTime = 800f; //ms
-    private float pasedAttackTime = 0f; //ms 
+  private float pasedAttackTime = 0f; //ms 
 
   void Start() {
         health.OnDied += OnDied;
@@ -41,7 +41,6 @@ public class BasicEnemyController : MonoBehaviour {
         else if (isAttacking && pasedAttackTime <= attackTime) {
             aiMovement.Shoot();
             pasedAttackTime += Time.deltaTime;
-
             if (pasedAttackTime >= attackTime) {
                 pasedAttackTime = 0f;
                 shooting.Shoot();

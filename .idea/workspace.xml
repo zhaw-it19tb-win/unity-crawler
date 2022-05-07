@@ -6,31 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2c542361-ccc5-4beb-971d-dacc856f7b49" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/KnightArcher/Frame00.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/KnightArcher/Frame00.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame00.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame00.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame01.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame01.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame02.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame03.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame03.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame04.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame05.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame05.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame06.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame06.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame07.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame07.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame08.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame09.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Character_Assets/knightarcher/Death NW/Frame09.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Archer_old.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Archer_old.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Components/AIMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Components/AIMovement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Components/Shooting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Components/Shooting.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/ArcherAnimation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/ArcherAnimation.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/BasicEnemyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/BasicEnemyController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,6 +21,11 @@
     <option name="BRANCH" value="main" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="c9f61d304bd5c115772e7f044a29466048a784c7" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="27mUNtpEC0X76sS2dxZ1Qybl0oO" />
@@ -90,7 +74,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="HEAD" />
+                        <option value="87_grafiken-3" />
                       </list>
                     </value>
                   </entry>
