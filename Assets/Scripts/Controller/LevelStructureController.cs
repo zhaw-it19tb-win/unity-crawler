@@ -91,6 +91,7 @@ public static class LevelStructureController
         return new List<SceneTeleportersRelationModel>
         {
             CreateEntryTeleporterRelation(CardinalDirection.West, "Path_0", CardinalDirection.East),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "ProcDungeon_1", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.South, "Path_1", CardinalDirection.North),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_2", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_3", CardinalDirection.South),
@@ -107,6 +108,7 @@ public static class LevelStructureController
         return new List<SceneTeleportersRelationModel>
         {
             CreateEntryTeleporterRelation(CardinalDirection.South, "Path_1", CardinalDirection.North),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "ProcDungeon_1", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.West, "Path_0", CardinalDirection.East),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_2", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_3", CardinalDirection.South),
@@ -123,6 +125,7 @@ public static class LevelStructureController
         return new List<SceneTeleportersRelationModel>
         {
             CreateEntryTeleporterRelation(CardinalDirection.North, "Path_3", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "ProcDungeon_1", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.West, "Path_0", CardinalDirection.East),
             CreateSimpleTeleporterRelation(CardinalDirection.South, "Path_1", CardinalDirection.North),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_2", CardinalDirection.South),
@@ -139,6 +142,7 @@ public static class LevelStructureController
         return new List<SceneTeleportersRelationModel>
         {
             CreateEntryTeleporterRelation(CardinalDirection.North, "Path_2", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "ProcDungeon_1", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.West, "Path_0", CardinalDirection.East),
             CreateSimpleTeleporterRelation(CardinalDirection.South, "Path_1", CardinalDirection.North),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_3", CardinalDirection.South),
