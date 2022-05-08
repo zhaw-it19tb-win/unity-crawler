@@ -16,8 +16,6 @@ public class AIMovement : MonoBehaviour
 
     public Transform targetForShooting;
 
-    public GameObject bulletPrefab;
-    public float bulletForce = 2f;
 
     // Start is called before the first frame update
     void Start()

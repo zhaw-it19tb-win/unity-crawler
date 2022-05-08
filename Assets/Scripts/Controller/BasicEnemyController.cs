@@ -15,7 +15,6 @@ public class BasicEnemyController : MonoBehaviour {
   // TODO: this is a bad solution
   private float attackTime = 1f; //s
   private float passedAttackTime = 0f; //s
-
   void Start() {
         health.OnDied += OnDied;
   }
