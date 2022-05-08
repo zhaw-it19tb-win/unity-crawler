@@ -13,8 +13,8 @@ public class BasicEnemyController : MonoBehaviour {
   private bool isAttacking = false;
   private bool attackAnimationFinished = false;
   // TODO: this is a bad solution
-  private float attackTime = 800f; //ms
-  private float pasedAttackTime = 0f; //ms 
+  private float attackTime = 1f; //s
+  private float passedAttackTime = 0f; //s
 
   void Start() {
         health.OnDied += OnDied;
@@ -38,11 +38,11 @@ public class BasicEnemyController : MonoBehaviour {
         {
             aiMovement.Move();
         }
-        else if (isAttacking && pasedAttackTime <= attackTime) {
+        else if (isAttacking && passedAttackTime <= attackTime) {
             aiMovement.Shoot();
-            pasedAttackTime += Time.deltaTime;
-            if (pasedAttackTime >= attackTime) {
-                pasedAttackTime = 0f;
+            passedAttackTime += Time.deltaTime;
+            if (passedAttackTime >= attackTime) {
+                passedAttackTime = 0f;
                 shooting.Shoot();
             }
             

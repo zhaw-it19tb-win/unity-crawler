@@ -47,8 +47,6 @@ public class AIMovement : MonoBehaviour
     public void Shoot()
     {
         Vector2 direction = new Vector2(targetForShooting.transform.position.x - agent.transform.position.x, targetForShooting.transform.position.y - agent.transform.position.y);
-        //currentDirection = new Vector2(agent.velocity.x, agent.velocity.y);
-        //FindObjectOfType<AudioManager>().Play("Shot");
         // Animation part
         FindObjectOfType<ArcherAnimation>().SetAttackDirection(direction);
 

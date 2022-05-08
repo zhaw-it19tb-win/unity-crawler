@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2c542361-ccc5-4beb-971d-dacc856f7b49" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Archer_old.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Archer_old.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Components/AIMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Components/AIMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Components/Arrow.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Components/Arrow.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Components/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Components/Bullet.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Components/Shooting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Components/Shooting.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controller/BasicEnemyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controller/BasicEnemyController.cs" afterDir="false" />
     </list>
