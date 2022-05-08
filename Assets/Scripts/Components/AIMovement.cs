@@ -2,12 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AIMovement : MonoBehaviour
 {
     private GameObject target;
     private NavMeshAgent agent;
+
+    public float moveSpeed = 1.0f;
+    private Vector2 currentDirection;
+    private bool isMovePressed;
+
+    public Transform targetForShooting;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,14 +24,30 @@ public class AIMovement : MonoBehaviour
         target = GameObject.FindWithTag("PlayerChild");
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+
+        GameObject[] playerObjs = GameObject.FindGameObjectsWithTag("Player");
+        targetForShooting = playerObjs[0].GetComponent<Transform>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void Move()
     {
+        currentDirection = new Vector2(agent.velocity.x, agent.velocity.y);
         if (target != null)
         {
             agent.SetDestination(target.transform.position);
+            FindObjectOfType<ArcherAnimation>().SetDirection(currentDirection);
         }
+
+    }
+
+    // shoot function 
+    public void Shoot()
+    {
+        Vector2 direction = new Vector2(targetForShooting.transform.position.x - agent.transform.position.x, targetForShooting.transform.position.y - agent.transform.position.y);
+        // Animation part
+        FindObjectOfType<ArcherAnimation>().SetAttackDirection(direction);
+
     }
 }
+
