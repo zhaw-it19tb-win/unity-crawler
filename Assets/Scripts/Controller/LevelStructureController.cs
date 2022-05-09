@@ -93,10 +93,8 @@ public static class LevelStructureController
             CreateEntryTeleporterRelation(CardinalDirection.West, "Path_0", CardinalDirection.East),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "ProcDungeon_1", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.South, "Path_1", CardinalDirection.North),
-            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_2", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_3", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_4", CardinalDirection.South),
-            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_5", CardinalDirection.South),
             CreatePreExitTeleporterRelation(CardinalDirection.North, "SkyEntry", CardinalDirection.South, "SkyBoss"),
             CreateExitTeleporterRelation(CardinalDirection.West, "SkyBoss", CardinalDirection.North, "SkyEntry"),
             CreateChallengeTeleporterRelation(CardinalDirection.West, "Sky", CardinalDirection.North, "SkyBoss")
@@ -110,10 +108,10 @@ public static class LevelStructureController
             CreateEntryTeleporterRelation(CardinalDirection.South, "Path_1", CardinalDirection.North),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "ProcDungeon_1", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.West, "Path_0", CardinalDirection.East),
-            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_2", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_3", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.South, "Path_4", CardinalDirection.North),
-            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_5", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.South, "Path_5", CardinalDirection.North),
+            CreateSimpleTeleporterRelation(CardinalDirection.East, "Path_6", CardinalDirection.West),
             CreatePreExitTeleporterRelation(CardinalDirection.West, "UnderwaterEntry", CardinalDirection.East, "UnderwaterBoss"),
             CreateExitTeleporterRelation(CardinalDirection.West, "UnderwaterBoss", CardinalDirection.East, "UnderwaterEntry"),
             CreateChallengeTeleporterRelation(CardinalDirection.West, "Underwater", CardinalDirection.East, "UnderwaterBoss")
@@ -128,9 +126,9 @@ public static class LevelStructureController
             CreateSimpleTeleporterRelation(CardinalDirection.North, "ProcDungeon_1", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.West, "Path_0", CardinalDirection.East),
             CreateSimpleTeleporterRelation(CardinalDirection.South, "Path_1", CardinalDirection.North),
-            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_2", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_4", CardinalDirection.South),
-            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_5", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_7", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.West, "Path_8", CardinalDirection.East),
             CreatePreExitTeleporterRelation(CardinalDirection.West, "DesertEntry", CardinalDirection.East, "DesertBoss"),
             CreateExitTeleporterRelation(CardinalDirection.West, "DesertBoss", CardinalDirection.North, "DesertEntry"),
             CreateChallengeTeleporterRelation(CardinalDirection.West, "Desert", CardinalDirection.East, "DesertBoss")
@@ -141,13 +139,12 @@ public static class LevelStructureController
     {
         return new List<SceneTeleportersRelationModel>
         {
-            CreateEntryTeleporterRelation(CardinalDirection.North, "Path_2", CardinalDirection.South),
+            CreateEntryTeleporterRelation(CardinalDirection.North, "Path_4", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "ProcDungeon_1", CardinalDirection.South),
             CreateSimpleTeleporterRelation(CardinalDirection.West, "Path_0", CardinalDirection.East),
             CreateSimpleTeleporterRelation(CardinalDirection.South, "Path_1", CardinalDirection.North),
             CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_3", CardinalDirection.South),
-            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_4", CardinalDirection.South),
-            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_5", CardinalDirection.South),
+            CreateSimpleTeleporterRelation(CardinalDirection.North, "Path_2", CardinalDirection.South),
             CreatePreExitTeleporterRelation(CardinalDirection.West, "FireLevel_Entry", CardinalDirection.East, "FireLevel_Boss"),
             CreateExitTeleporterRelation(CardinalDirection.West, "FireLevel_Boss", CardinalDirection.North, "FireLevel_Entry"),
             CreateChallengeTeleporterRelation(CardinalDirection.West, "FireLevel", CardinalDirection.East, "FireLevel_Boss")
