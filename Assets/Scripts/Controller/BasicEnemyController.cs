@@ -11,7 +11,7 @@ public class BasicEnemyController : MonoBehaviour
     private Shooting shooting;
     private AIMovement aiMovement;
 
-    private bool isAttacking = false;
+    private bool isAttacking;
 
     private bool attackAnimationFinished = false;
 
@@ -22,7 +22,6 @@ public class BasicEnemyController : MonoBehaviour
     void Start()
     {
         health.OnDied += OnDied;
-        Debug.Log($"Instance id of enemy controller: {GetInstanceID()}");
     }
 
     void Awake()

@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour {
+public class Bullet : MonoBehaviour
+{
+    public GameObject bullet;
 
   public GameObject bullet;
   
@@ -11,6 +11,4 @@ public class Bullet : MonoBehaviour {
     if (collision.gameObject.GetComponent<Health>() != null) {
       collision.gameObject.GetComponent<Health>().TakeDamage(5);
     }
-    Destroy(bullet);
-  }
 }
