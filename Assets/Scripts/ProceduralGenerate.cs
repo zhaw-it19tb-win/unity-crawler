@@ -84,17 +84,13 @@ public class ProceduralGenerate : MonoBehaviour
         Vector3 centreOfSpawnTelporter = MapUtil.getCentreOfTile(mapData.spawnX, mapData.spawnY);
         GameObject spawnObj = Instantiate(teleporterPrefab, centreOfSpawnTelporter + new Vector3(0,0,-1), Quaternion.identity );
         Teleporter spawnTeleporter = spawnObj.GetComponent<Teleporter>();
-        spawnTeleporter.teleporterId = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + "_0";
-        spawnTeleporter.targetScene = "MainScene";
-        spawnTeleporter.targetTeleporterId = "MainScene_1";
+        spawnTeleporter.Location = CardinalDirection.North;
 
         // Place exit Teleporter Collider
         Vector3 centreOfExitTelporter = MapUtil.getCentreOfTile(mapData.exitX, mapData.exitY);
         GameObject exitObj = Instantiate(teleporterPrefab, centreOfExitTelporter + new Vector3(0,0,-1), Quaternion.identity );
         Teleporter exitTeleporter = spawnObj.GetComponent<Teleporter>();
-        exitTeleporter.teleporterId = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + "_1";
-        exitTeleporter.targetScene = "MainScene";
-        exitTeleporter.targetTeleporterId = "MainScene_1";
+        exitTeleporter.Location = CardinalDirection.South;
     }
 
     private IEnumerator AwakeScene()

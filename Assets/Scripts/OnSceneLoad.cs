@@ -17,9 +17,12 @@ public class OnSceneLoad : MonoBehaviour
         GameObject[] teleporterObjs = GameObject.FindGameObjectsWithTag("Teleporter");
         CardinalDirection targetTeleporterLocation = GameUtil.TargetTeleporterLocation;
 
-        for (int i = 0; i < teleporterObjs.Length; i++) {
+        for (int i = 0; i < teleporterObjs.Length; i++) 
+        {
             Teleporter t = teleporterObjs[i].GetComponent<Teleporter>();
-            if (t.Location == targetTeleporterLocation) {
+
+            if (t.Location == targetTeleporterLocation) 
+            {
                 playerObjs[0].transform.localPosition = t.transform.position;
                 break;
             }

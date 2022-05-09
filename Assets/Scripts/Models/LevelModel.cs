@@ -11,4 +11,8 @@ public class LevelModel
     public bool IsBossDefeated { get; set; }
 
     public bool IsActive { get; set; }
+
+    public string ChallengeSceneName { get; set; }
+
+    public int LevelSolvedCounter { get; set; }
 }

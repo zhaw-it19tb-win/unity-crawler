@@ -12,10 +12,10 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/HorizontalPath.unity
+    path: Assets/Scenes/Path_0.unity
     guid: 6d7f8cefeaebe2b47906871034c1d2cd
   - enabled: 1
-    path: Assets/Scenes/VerticalPath.unity
+    path: Assets/Scenes/Path_1.unity
     guid: 6f5c5e8d029f7c242bda7ecbb90e5403
   - enabled: 1
     path: Assets/Scenes/FireLevel_Boss.unity
@@ -35,4 +35,49 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UnderwaterBoss.unity
     guid: 372871d3a1511fd44ac9c3ef41ee671a
+  - enabled: 1
+    path: Assets/Scenes/Desert.unity
+    guid: 360865caab8331645998005aaeab1689
+  - enabled: 1
+    path: Assets/Scenes/DesertBoss.unity
+    guid: 01eb99384e8dd154f8bb505ecbc8481c
+  - enabled: 1
+    path: Assets/Scenes/DesertEntry.unity
+    guid: c591e656fd090964dbb82161eb46d1aa
+  - enabled: 1
+    path: Assets/Scenes/FireLevel.unity
+    guid: af0698f0727af2b4eaa40a24716edc65
+  - enabled: 1
+    path: Assets/Scenes/FireLevel_Entry.unity
+    guid: c373da18e4eb9d24fba8157c0488a281
+  - enabled: 1
+    path: Assets/Scenes/Sky.unity
+    guid: b05294edee06fd746873a442d1692d4f
+  - enabled: 1
+    path: Assets/Scenes/SkyBoss.unity
+    guid: a22089945a3a2414d935bf7e1c3b6bf2
+  - enabled: 1
+    path: Assets/Scenes/SkyEntry.unity
+    guid: e1172300ee050f445ab2af388ae57655
+  - enabled: 1
+    path: Assets/Scenes/Path_2.unity
+    guid: 43c6876dddb776149832ab0015d9f64b
+  - enabled: 1
+    path: Assets/Scenes/Path_3.unity
+    guid: 2bb29e8df27debe49b28eeafebeade81
+  - enabled: 1
+    path: Assets/Scenes/Path_4.unity
+    guid: 6806146bc63a30f4aaf027f62d45ec37
+  - enabled: 1
+    path: Assets/Scenes/Path_5.unity
+    guid: 43fc9a0e267616c4785dd6fada7a1492
+  - enabled: 1
+    path: Assets/Scenes/Path_6.unity
+    guid: 7b71e17743153424c82ea2306b935129
+  - enabled: 1
+    path: Assets/Scenes/Path_7.unity
+    guid: 755371746de9bdf46bd602601d451ca4
+  - enabled: 1
+    path: Assets/Scenes/Path_8.unity
+    guid: cb1540f79e703ee4bb93b5d55eaa0de1
   m_configObjects: {}
