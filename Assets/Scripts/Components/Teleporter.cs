@@ -12,7 +12,7 @@ public class Teleporter : MonoBehaviour
 
     private PlayerInput input;
     private bool teleportPressed;
-    private readonly int CHALLENGE_SCENE_APPEARANCE_COUNT = 5;
+    private readonly int CHALLENGE_SCENE_APPEARANCE_COUNT = 4;
 
     void OnEnable() {
         input.Enable();
