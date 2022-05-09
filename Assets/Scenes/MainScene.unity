@@ -213,6 +213,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1767992744525053222, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
   m_PrefabInstance: {fileID: 20393658}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &126827273 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8353105498454885338, guid: 1d187ca8e0b533f40812e0babd868c5d, type: 3}
+  m_PrefabInstance: {fileID: 1748850189}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &209536199
 GameObject:
   m_ObjectHideFlags: 0
@@ -18540,6 +18545,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9ada4df45234ad4975088d95d199046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1748850198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1748850190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec8109d96e664377af81a06434d0899d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 126827273}
+  bulletPrefab: {fileID: 1158522074396365739, guid: 6bb7ed4bf64f6b04482b046a2d42e8b7, type: 3}
+  bulletForce: 0.0001
+  howMany: 10
 --- !u!1 &1793263353
 GameObject:
   m_ObjectHideFlags: 0
