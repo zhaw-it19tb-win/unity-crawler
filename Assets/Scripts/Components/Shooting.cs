@@ -13,16 +13,13 @@ public class Shooting : MonoBehaviour {
   void Start() {
     GameObject[] playerObjs = GameObject.FindGameObjectsWithTag("Player");
     target = playerObjs[0].GetComponent<Transform>();
-
-    InvokeRepeating(nameof(Shoot), 0, 1);
   }
 
-  void Shoot() {
+  public void Shoot() {
     Vector3 modifiedFirePoint = Vector3.MoveTowards(firePoint.position, target.position, 0.5f);
     GameObject bullet = Instantiate(bulletPrefab, modifiedFirePoint, firePoint.rotation);
     Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
     Vector2 direction = (target.transform.position - modifiedFirePoint).normalized;
     rb.AddForce(direction * bulletForce, ForceMode2D.Impulse);
-    //FindObjectOfType<AudioManager>().Play("Shot");
   }
 }
