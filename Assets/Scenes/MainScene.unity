@@ -1835,6 +1835,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!114 &624292303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1847,10 +1851,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ad35fdddaf5d94799b0a8c53a0bd4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!1 &681964970
 GameObject:
   m_ObjectHideFlags: 0
@@ -11033,6 +11033,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff
 --- !u!114 &681964978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11045,10 +11049,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05ad35fdddaf5d94799b0a8c53a0bd4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 0
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!1 &717405441
 GameObject:
   m_ObjectHideFlags: 0
@@ -11715,8 +11715,8 @@ GameObject:
   - component: {fileID: 1194633888}
   - component: {fileID: 1194633887}
   - component: {fileID: 1194633886}
-  - component: {fileID: 1194633892}
   - component: {fileID: 1194633891}
+  - component: {fileID: 1194633892}
   m_Layer: 6
   m_Name: collision
   m_TagString: Untagged
@@ -17791,7 +17791,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1194633884}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05ad35fdddaf5d94799b0a8c53a0bd4d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_OverrideArea: 1
@@ -18659,6 +18659,14 @@ PrefabInstance:
     - target: {fileID: 4730489783680694094, guid: ff6ab47bf76da614e97e1497309722dd, type: 3}
       propertyPath: m_Name
       value: Witch
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730489783680694097, guid: ff6ab47bf76da614e97e1497309722dd, type: 3}
+      propertyPath: moveSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730489783680694100, guid: ff6ab47bf76da614e97e1497309722dd, type: 3}
+      propertyPath: movementSpeed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4730489783680694101, guid: ff6ab47bf76da614e97e1497309722dd, type: 3}
       propertyPath: m_RootOrder
