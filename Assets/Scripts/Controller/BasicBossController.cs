@@ -13,6 +13,7 @@ namespace Controller
         private Shooting _shooting;
         private AIMovement _aiMovement;
         private IBossAttack[] _bossAttacks;
+        private ParticleSystem _particleSystem;
 
         private bool _isAttacking;
 
@@ -34,6 +35,7 @@ namespace Controller
             _shooting = GetComponent<Shooting>();
             _aiMovement = GetComponent<AIMovement>();
             _bossAttacks = GetComponents<IBossAttack>();
+            _particleSystem = GetComponent<ParticleSystem>();
             InvokeRepeating(nameof(ToggleAttack), 0, 1);
         }
 
@@ -57,6 +59,7 @@ namespace Controller
                 _passedAttackTime = 0f;
                 if (_attacksUntilBossAttackLeft == 0)
                 {
+                    _particleSystem.Play();
                     DoBossAttack();
                 }
                 else
