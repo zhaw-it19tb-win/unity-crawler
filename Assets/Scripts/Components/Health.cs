@@ -43,6 +43,14 @@ public class Health : MonoBehaviour {
     }
   }
 
+    public void IncreaseHealth(int healing) {
+        health += healing;
+        if (health > 100) {
+            health = 100;
+        }
+        // HealthBar.value = health; -> health bar currently not working cause its null.
+    }
+
   private void Die() {
     OnDied?.Invoke();
   }
