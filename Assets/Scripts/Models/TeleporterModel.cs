@@ -6,5 +6,7 @@ public class TeleporterModel
 
     public bool IsEntrance { get; set; }
 
+    public bool IsChallengeSceneTeleporter { get; set; }
+
     public bool IsExit { get; set; }
 }

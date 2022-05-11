@@ -21,7 +21,7 @@ public class AIMovement : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        target = GameObject.FindWithTag("PlayerChild");
+        target = GameObject.FindWithTag("Player");
         agent.updateRotation = false;
         agent.updateUpAxis = false;
 
@@ -36,7 +36,7 @@ public class AIMovement : MonoBehaviour
         if (target != null)
         {
             agent.SetDestination(target.transform.position);
-            FindObjectOfType<ArcherAnimation>().SetDirection(currentDirection);
+            GetComponentInChildren<ArcherAnimation>().SetDirection(currentDirection);
         }
 
     }
@@ -46,8 +46,7 @@ public class AIMovement : MonoBehaviour
     {
         Vector2 direction = new Vector2(targetForShooting.transform.position.x - agent.transform.position.x, targetForShooting.transform.position.y - agent.transform.position.y);
         // Animation part
-        FindObjectOfType<ArcherAnimation>().SetAttackDirection(direction);
-
+        GetComponentInChildren<ArcherAnimation>().SetAttackDirection(direction);
     }
 }
 
