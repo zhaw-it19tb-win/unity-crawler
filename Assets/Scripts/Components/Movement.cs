@@ -10,4 +10,8 @@ public class Movement : MonoBehaviour {
     transform.position += movement * Time.deltaTime * movementSpeed;
   }
 
+  public void IncreaseSpeed(float speed) {
+    movementSpeed += speed;
+  }
+
 }
