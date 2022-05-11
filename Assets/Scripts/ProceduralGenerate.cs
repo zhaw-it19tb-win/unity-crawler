@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(LevelGenerator))]
 public class ProceduralGenerate : MonoBehaviour
@@ -22,8 +23,6 @@ public class ProceduralGenerate : MonoBehaviour
 
     [SerializeReference]
     public GameObject teleporterPrefab;
-
-    
 
     public MapData mapData;
 
