@@ -12,6 +12,7 @@ public class AbilityController : MonoBehaviour {
   public Ability SecondaryAbility;
   public Image AutoAttackAbilityHotbarImage;
   public Image PrimaryAbilityAbilityHotbarImage;
+  public Image SecondaryAbilityAbilityHotbarImage;
 
   private class AbilityCast {
     public Ability ability;
@@ -25,7 +26,7 @@ public class AbilityController : MonoBehaviour {
       _abilityList = new List<AbilityCast>();
       InitializeAbility(AutoAttackAbility, AutoAttackAbilityHotbarImage);
       InitializeAbility(PrimaryAbility, PrimaryAbilityAbilityHotbarImage);
-      InitializeAbility(SecondaryAbility);
+      InitializeAbility(SecondaryAbility, SecondaryAbilityAbilityHotbarImage);
     }
     return _abilityList;
   }
@@ -50,13 +51,14 @@ public class AbilityController : MonoBehaviour {
       ability.ability.UpdateCast();
       ability.cooldownSlot.fillAmount = ability.ability.GetCooldownPercentage();
     }
+
+    bool isCasting = GetAbilityList().Any(x => x.ability.AbilityCurrentlyLockingOtherAbilities);
     // Input Handling
-    /*if (GetAbilityList().Any(x => x.AbilityCurrentlyLockingOtherAbilities)) {
-      Debug.Log("Ability still ongoing, can't cast ne skill.")
-      return;
-    }*/
     if (Input.GetMouseButtonDown(0)) {
       AutoAttackAbility.TryCast(GetOriginPosition(), GetTargetPosition());
+    }
+    if (isCasting) {
+      return;
     }
     else if (Input.GetKeyDown(KeyCode.Alpha1)) {
       PrimaryAbility.TryCast(GetOriginPosition(), GetTargetPosition());

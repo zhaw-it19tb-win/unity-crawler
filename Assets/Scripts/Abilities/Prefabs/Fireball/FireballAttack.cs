@@ -13,6 +13,7 @@ namespace Assets.Scripts.Abilities {
     private Vector2 _moveVector;
     private Vector3 _moveVector3d;
     private AbilityRigidbodyCollision _collisionDetector;
+    public bool blocksOtherAbilities = false;
 
     protected void Start() {
       //cooldown.CooldownInSeconds = 5f;
@@ -20,7 +21,9 @@ namespace Assets.Scripts.Abilities {
 
     public override void Cast() {
       IsCasting = true;
-      AbilityCurrentlyLockingOtherAbilities = true;
+      if (blocksOtherAbilities) {
+        AbilityCurrentlyLockingOtherAbilities = true;
+      }
       _skillShotTransform = UnityEngine.Object.Instantiate(Effect, origin, Quaternion.identity);
       _skillShot = _skillShotTransform.gameObject;
       UnityEngine.Object.Destroy(_skillShot, destroyEffectInSeconds);
