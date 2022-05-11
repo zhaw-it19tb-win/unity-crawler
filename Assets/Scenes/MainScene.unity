@@ -18561,7 +18561,8 @@ MonoBehaviour:
   target: {fileID: 805494479}
   bulletPrefab: {fileID: 1158522074396365739, guid: 6bb7ed4bf64f6b04482b046a2d42e8b7, type: 3}
   bulletForce: 0.0001
-  howMany: 10
+  arrowSpawningDistance: 0.5
+  howMany: 15
 --- !u!1 &1793263353
 GameObject:
   m_ObjectHideFlags: 0
