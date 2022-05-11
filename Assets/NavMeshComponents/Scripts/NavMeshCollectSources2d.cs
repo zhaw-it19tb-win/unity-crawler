@@ -47,10 +47,8 @@ namespace NavMeshComponents.Extensions
             }
             foreach (var tilemap in tilemaps)
             {
-                //Debug.Log($"From Local Bounds [{tilemap.name}]: {tilemap.localBounds}");
                 var lbounds = NavMeshSurface.GetWorldBounds(worldToLocal * tilemap.transform.localToWorldMatrix, tilemap.localBounds);
                 bounds.Encapsulate(lbounds);
-                //Debug.Log($"To World Bounds: {bounds}");
             }
             return bounds;
         }
