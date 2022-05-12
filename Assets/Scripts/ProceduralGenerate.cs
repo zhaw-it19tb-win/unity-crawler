@@ -38,8 +38,8 @@ public class ProceduralGenerate : MonoBehaviour
     }
 
     private string GetMapDataId() {
-        //return GameUtil.GameId + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + MAPVERSION;
-        return GameUtil.GameId + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + MAPVERSION + "_"+System.DateTime.UtcNow.ToString();
+        return GameUtil.GameId + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + MAPVERSION;
+        //return GameUtil.GameId + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + MAPVERSION + "_"+System.DateTime.UtcNow.ToString();
     }
 
     private void LoadLevel()
@@ -47,7 +47,6 @@ public class ProceduralGenerate : MonoBehaviour
         string savefile = "savefile1.json";
         mapData = JsonUtility.FromJson<MapData>(SaveGameManager.LoadData(savefile));
         if (mapData == null || mapData.mapDataId != GetMapDataId()) {
-            //mapData = DungeonDataFromImage(GenerateMap(desiredMapWidth, desiredMapHeight));
             mapData = DungeonDataFromImage(PreProcessImage(GenerateMap(desiredMapWidth, desiredMapHeight)));
             SaveGameManager.SaveData( JsonUtility.ToJson(mapData), savefile );
         } 
@@ -159,47 +158,47 @@ public class ProceduralGenerate : MonoBehaviour
 
         // GENERATE SIDE WALLS
         // k will loop through 0 -> 61
-        for (int k = 0; k < input.height + 2; k++) {
-            result.SetPixel( 0, 2*k, Color.black); // set left bottom wall
-            result.SetPixel( 0, 2*k + 1, Color.black); // set left bottom wall
-            result.SetPixel( 1, 2*k, Color.black); // set left bottom wall
-            result.SetPixel( 1, 2*k + 1, Color.black); // set left bottom wall
+        for (int k = 0; k < result.height; k++) {
+            result.SetPixel( 0, k, Color.black); // set left bottom wall
+            result.SetPixel( 0, k + 1, Color.black); // set left bottom wall
+            result.SetPixel( 1, k, Color.black); // set left bottom wall
+            result.SetPixel( 1, k + 1, Color.black); // set left bottom wall
 
-            result.SetPixel( 2*input.width + 2, 2*k, Color.black); // set right top as wall
-            result.SetPixel( 2*input.width + 2, 2*k + 1, Color.black); // set right top as wall
-            result.SetPixel( 2*input.width + 3, 2*k, Color.black); // set right top as wall
-            result.SetPixel( 2*input.width + 3, 2*k + 1, Color.black); // set right top as wall
+            result.SetPixel( result.width - 2, k, Color.black); // set right top as wall
+            result.SetPixel( result.width - 2, k + 1, Color.black); // set right top as wall
+            result.SetPixel( result.width - 1, k, Color.black); // set right top as wall
+            result.SetPixel( result.width - 1, k + 1, Color.black); // set right top as wall
         }
 
         // k will loop through 0 -> 61
-        for (int k = 0; k < input.width + 2; k++) {
-            result.SetPixel( 2*k, 0, Color.black); // set right bottom as wall
-            result.SetPixel( 2*k + 1, 0, Color.black); // set right bottom  as wall
-            result.SetPixel( 2*k, 1, Color.black); // set right bottom as wall
-            result.SetPixel( 2*k + 1, 1, Color.black); // set right bottom as wall
+        for (int k = 0; k < result.width; k++) {
+            result.SetPixel( k, 0, Color.black); // set right bottom as wall
+            result.SetPixel( k + 1, 0, Color.black); // set right bottom  as wall
+            result.SetPixel( k, 1, Color.black); // set right bottom as wall
+            result.SetPixel( k + 1, 1, Color.black); // set right bottom as wall
 
-            result.SetPixel( 2*k, 2*input.height + 2, Color.black); // set top left as wall
-            result.SetPixel( 2*k + 1, 2*input.height + 2, Color.black); // set top left as wall
-            result.SetPixel( 2*k, 2*input.height + 3, Color.black); // set top left as wall
-            result.SetPixel( 2*k + 1, 2*input.height + 3, Color.black); // set top left as wall
+            result.SetPixel( k, result.height - 2, Color.black); // set top left as wall
+            result.SetPixel( k + 1, result.height - 2, Color.black); // set top left as wall
+            result.SetPixel( k, result.height - 1, Color.black); // set top left as wall
+            result.SetPixel( k + 1, result.height - 1, Color.black); // set top left as wall
         }
 
         // PLACE PIXELS FROM MODEL
-        for (int i = 1; i < input.width + 1; i++) {
-            for (int j = 1; j < input.height + 1; j++) {
+        for (int i = 0; i < input.width; i++) {
+            for (int j = 0; j < input.height; j++) {
                 Color currentPixel = input.GetPixel(i,j);
                 if(Color.red.Equals(currentPixel)) {
-                    poiList.Add( (new Vector2Int(2*i + 1, 2*j + 1), currentPixel) );
+                    poiList.Add( (new Vector2Int(2*i + 3, 2*j + 3), currentPixel) );
                     // red pixels should not get scaled, we only want i.e. 1 spawner, not 4..
-                    result.SetPixel(2*i, 2*j, Color.white );
-                    result.SetPixel(2*i, (2*j) + 1, Color.white );
-                    result.SetPixel((2*i) + 1, 2*j, Color.white );
-                    result.SetPixel((2*i) + 1, (2*j) + 1, currentPixel );
+                    result.SetPixel(2*i +2, 2*j +2, Color.white );
+                    result.SetPixel(2*i +2, (2*j) +3, Color.white );
+                    result.SetPixel((2*i) +3, 2*j +2, Color.white );
+                    result.SetPixel((2*i) +3, (2*j) +3, currentPixel );
                 } else {
-                    result.SetPixel(2*i, 2*j,  currentPixel );
-                    result.SetPixel(2*i, (2*j) + 1, currentPixel );
-                    result.SetPixel((2*i) + 1, 2*j, currentPixel );
-                    result.SetPixel((2*i) + 1, (2*j) + 1, currentPixel);
+                    result.SetPixel(2*i +2, 2*j +2,  currentPixel );
+                    result.SetPixel(2*i +2, (2*j) +3, currentPixel );
+                    result.SetPixel((2*i) +3, 2*j +2, currentPixel );
+                    result.SetPixel((2*i) +3, (2*j) +3, currentPixel);
                 }
             }
         }
@@ -272,26 +271,18 @@ public class ProceduralGenerate : MonoBehaviour
             }
 
             found.Sort (delegate(List<Vector2Int> a, List<Vector2Int> b) { return b.Count.CompareTo(a.Count); });
-            Debug.Log("Number of areas: " + found.Count.ToString());
 
             // Check largest area if it is too small:
-            Debug.Log("map height:" + result.height);
-            Debug.Log("map width:" + result.width);
-            Debug.Log("map area: " + result.height * result.width);
 
             float walkableArea = (float)found.ElementAt(0).Count / (float)( result.height * result.width );
-            if ( walkableArea <= 0.5f ) {
-                Debug.Log("Walkable area is less than 50%");
+            if ( walkableArea <= 0.5f ) { // TODO change minimum required walkable ration here
                 continue; // restart loop...
             } else {
-                Debug.Log("Good map. Walkable area is: " + walkableArea);
                 goodDungeon = true;
             }
 
             for( int i = 0; i < found.Count; i++) { // only show non-main areas (index 1 and above, index 0 has largest area)
                 var area = found[i];
-                Debug.Log("Connected Tiles: " + area.Count.ToString());
-                Debug.Log("Coordinates: " + area[0] + " .. " + area.Last());    
             } 
             
             for (int i = 1; found.Count > i; i++) {
