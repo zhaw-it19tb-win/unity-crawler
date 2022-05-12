@@ -1,24 +1,26 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour {
   [SerializeField] protected int MaximumHealth = 100;
   [SerializeField] protected int StartHealth = 100;
+  [SerializeField] public int CurrentHealth { get; set; } = 0;
 
-  [SerializeField] public Slider HealthBar;
   [SerializeField] public Image SliderImage;
+
+  public bool EnableAutoHealthCounter = true;
+  public float OffsetHealthBarY = 0.5f;
+  public float OffsetHealthBarX = 0.5f;
+  public float OffsetHealthWidth = 0f;
+  public float OffsetHealthHeight  = 0f;
 
   public event Action OnDied;
 
-  public int _health { get; private set; } = 0;
 
   private void Awake() {
-    _health = StartHealth;
-    if (HealthBar != null) {
-      HealthBar.maxValue = MaximumHealth;
-      HealthBar.minValue = 0;
-    }
+    CurrentHealth = StartHealth;
     UpdateHealth(0);
   }
 
@@ -31,24 +33,31 @@ public class Health : MonoBehaviour {
   }
 
   private void UpdateHealth(int updateHealth) {
-    _health += updateHealth;
-    if (_health <= 0) {
-      _health = 0;
+    CurrentHealth += updateHealth;
+    if (CurrentHealth <= 0) {
       Die();
     }
-    if (_health >= MaximumHealth) {
-      _health = MaximumHealth;
+    if (CurrentHealth >= MaximumHealth) {
+      CurrentHealth = MaximumHealth;
     }
     UpdateUI();
   }
+  void OnGUI() {
+    if (EnableAutoHealthCounter) {
+      Vector2 targetPos;
+      targetPos = Camera.main.WorldToScreenPoint(transform.position);
+      GUI.Box(new Rect(
+        targetPos.x + OffsetHealthBarX,
+        Screen.height - targetPos.y + OffsetHealthBarY,
+        60 + OffsetHealthWidth,
+        20 + OffsetHealthHeight),
+        CurrentHealth + "/" + MaximumHealth);
+    }
+  }
 
   private void UpdateUI() {
-    if (HealthBar != null) {
-      HealthBar.value = _health;
-    }
     if (SliderImage != null) {
-      Debug.Log("update to health: " + _health + " // " + MaximumHealth);
-      SliderImage.fillAmount = (float)_health / (float)MaximumHealth;
+      SliderImage.fillAmount = (float)CurrentHealth / (float)MaximumHealth;
     }
   }
 

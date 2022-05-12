@@ -12,6 +12,7 @@ TagManager:
   - CollisionLayer
   - MapTiles
   - Enemy
+  - Ability
   layers:
   - Default
   - TransparentFX
