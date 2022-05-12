@@ -10,11 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4730489783680694101}
   - component: {fileID: 4730489783680694098}
-  - component: {fileID: 4730489783680694099}
+  - component: {fileID: 7796573889534354057}
   - component: {fileID: 4730489783680694096}
   - component: {fileID: 4730489783680694097}
   - component: {fileID: 4730489783680694100}
   - component: {fileID: 8846894156631884563}
+  - component: {fileID: 2134242932743835213}
+  - component: {fileID: 1174758765511501607}
   m_Layer: 0
   m_Name: Witch
   m_TagString: Player
@@ -59,8 +61,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &4730489783680694099
-CircleCollider2D:
+--- !u!70 &7796573889534354057
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -72,9 +74,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.12976003
+  m_Offset: {x: 0, y: -0.13}
+  m_Size: {x: 0.05, y: 0.15}
+  m_Direction: 0
 --- !u!114 &4730489783680694096
 MonoBehaviour:
   m_ObjectHideFlags: 0
