@@ -43,7 +43,7 @@ public class LevelGenerator : MonoBehaviour
 
     // change this weight for more or less spawns
     [SerializeReference]
-    public float poiWeight = 0.2f;
+    public float poiWeight = 0.7f;
     
     [SerializeReference]
     public Texture2D side;
