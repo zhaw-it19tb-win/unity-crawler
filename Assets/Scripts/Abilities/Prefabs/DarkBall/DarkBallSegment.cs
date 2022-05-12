@@ -22,15 +22,11 @@ namespace Assets.Scripts.Abilities.Prefabs.DarkBall {
     public float targetOffset = 0f;
 
     public void Cast() {
-
-      Debug.Log("DarkBall from " + origin);
-      Debug.Log("DarkBall to " + target);
       IsCasting = true;
       _moveVector = Quaternion.Euler(0, 0, targetOffset) * ((target - origin).normalized * 2f);
       _moveVector3d = new Vector3(_moveVector.x, _moveVector.y, 0) * effectSpeed;
       _ability = UnityEngine.Object.Instantiate(Effect, origin + (0.1f * _moveVector), Quaternion.identity).gameObject;
       UnityEngine.Object.Destroy(_ability, destroyEffectInSeconds);
-      Debug.Log("DarkBall moving " + _moveVector3d);
       _collisionDetector = _ability.GetComponent<AbilityRigidbodyCollision>();
     }
 
