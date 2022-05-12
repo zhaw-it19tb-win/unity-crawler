@@ -1,3 +1,4 @@
+using Assets.Scripts.Components;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,20 @@ public class AbilityController : MonoBehaviour {
   public Ability AutoAttackAbility;
   public Ability PrimaryAbility;
   public Ability SecondaryAbility;
+  public Ability ThirdAbility;
   public Image AutoAttackAbilityHotbarImage;
   public Image PrimaryAbilityAbilityHotbarImage;
+  public Image SecondaryAbilityAbilityHotbarImage;
+  public Image ThirdAbilityAbilityHotbarImage;
+  private Mana mana;
 
   private class AbilityCast {
     public Ability ability;
     public Image cooldownSlot; 
+  }
+
+  private void Start() {
+    mana = player.GetComponent<Mana>();
   }
 
   private List<AbilityCast> _abilityList = null;
@@ -25,7 +34,8 @@ public class AbilityController : MonoBehaviour {
       _abilityList = new List<AbilityCast>();
       InitializeAbility(AutoAttackAbility, AutoAttackAbilityHotbarImage);
       InitializeAbility(PrimaryAbility, PrimaryAbilityAbilityHotbarImage);
-      InitializeAbility(SecondaryAbility);
+      InitializeAbility(SecondaryAbility, SecondaryAbilityAbilityHotbarImage);
+      InitializeAbility(ThirdAbility, ThirdAbilityAbilityHotbarImage);
     }
     return _abilityList;
   }
@@ -50,19 +60,23 @@ public class AbilityController : MonoBehaviour {
       ability.ability.UpdateCast();
       ability.cooldownSlot.fillAmount = ability.ability.GetCooldownPercentage();
     }
+
+    bool isCasting = GetAbilityList().Any(x => x.ability.AbilityCurrentlyLockingOtherAbilities);
     // Input Handling
-    /*if (GetAbilityList().Any(x => x.AbilityCurrentlyLockingOtherAbilities)) {
-      Debug.Log("Ability still ongoing, can't cast ne skill.")
-      return;
-    }*/
     if (Input.GetMouseButtonDown(0)) {
-      AutoAttackAbility.TryCast(GetOriginPosition(), GetTargetPosition());
+      CastAbility(AutoAttackAbility);
     }
-    else if (Input.GetKeyDown(KeyCode.Alpha1)) {
-      PrimaryAbility.TryCast(GetOriginPosition(), GetTargetPosition());
+    if (isCasting) {
+      return;
+    }
+    if (Input.GetKeyDown(KeyCode.Alpha1)) {
+      CastAbility(PrimaryAbility);
     }
     else if (Input.GetKeyDown(KeyCode.Alpha2)) {
-      SecondaryAbility.TryCast(GetOriginPosition(), GetTargetPosition());
+      CastAbility(SecondaryAbility);
+    }
+    else if (Input.GetKeyDown(KeyCode.Alpha3)) {
+      CastAbility(ThirdAbility);
     }
   }
 
@@ -76,5 +90,11 @@ public class AbilityController : MonoBehaviour {
     return new Vector2(player.transform.position.x, player.transform.position.y);
   }
 
-
+  private void CastAbility(Ability ability) {
+    if (mana.CurrentMana > ability.manaCost) {
+      if (ability.TryCast(GetOriginPosition(), GetTargetPosition())) {
+        mana.DecreaseMana(ability.manaCost);
+      }
+    }
+  }
 }

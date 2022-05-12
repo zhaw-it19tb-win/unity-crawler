@@ -1,8 +1,10 @@
+using Assets.Scripts.Components;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(RoundAttack))]
 [RequireComponent(typeof(Health))]
+[RequireComponent(typeof(Mana))]
 public class PlayerInputController : MonoBehaviour
 {
 

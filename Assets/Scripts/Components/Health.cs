@@ -11,45 +11,46 @@ public class Health : MonoBehaviour {
 
   public event Action OnDied;
 
-  public int health { get; private set; } = 0;
+  public int _health { get; private set; } = 0;
 
   private void Awake() {
-    health = StartHealth;
+    _health = StartHealth;
     if (HealthBar != null) {
       HealthBar.maxValue = MaximumHealth;
       HealthBar.minValue = 0;
     }
-    SetHealth(StartHealth);
+    UpdateHealth(0);
   }
 
   public void TakeDamage(int damage) {
-    health -= damage;
-    if (health <= 0) {
-      SetHealth(0);
-      Die();
-    } 
-    else {
-      SetHealth(health);
-    }
+    UpdateHealth(-damage);
   }
 
-  private void SetHealth(int updateHealth) {
+  public void IncreaseHealth(int healing) {
+    UpdateHealth(healing);
+  }
+
+  private void UpdateHealth(int updateHealth) {
+    _health += updateHealth;
+    if (_health <= 0) {
+      _health = 0;
+      Die();
+    }
+    if (_health >= MaximumHealth) {
+      _health = MaximumHealth;
+    }
+    UpdateUI();
+  }
+
+  private void UpdateUI() {
     if (HealthBar != null) {
-      HealthBar.value = updateHealth;
+      HealthBar.value = _health;
     }
     if (SliderImage != null) {
-      Debug.Log("update to health: " + updateHealth + " // " + MaximumHealth);
-      SliderImage.fillAmount = (float)updateHealth / (float)MaximumHealth;
+      Debug.Log("update to health: " + _health + " // " + MaximumHealth);
+      SliderImage.fillAmount = (float)_health / (float)MaximumHealth;
     }
   }
-
-    public void IncreaseHealth(int healing) {
-        health += healing;
-        if (health > 100) {
-            health = 100;
-        }
-        // HealthBar.value = health; -> health bar currently not working cause its null.
-    }
 
   private void Die() {
     OnDied?.Invoke();

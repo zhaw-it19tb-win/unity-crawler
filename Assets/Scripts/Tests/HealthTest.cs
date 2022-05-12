@@ -21,10 +21,10 @@ namespace Tests
             healthComponent.HealthBar = sliderObject.GetComponent<Slider>();
 
             healthComponent.TakeDamage(1);
-            Assert.AreEqual(expected: 99, healthComponent.health);
+            Assert.AreEqual(expected: 99, healthComponent._health);
 
             healthComponent.TakeDamage(2);
-            Assert.AreEqual(97, healthComponent.health);
+            Assert.AreEqual(97, healthComponent._health);
         }
 
         [Test]
