@@ -31,11 +31,10 @@ public class Health : MonoBehaviour {
   }
 
   private void UpdateHealth(int updateHealth) {
+    _health += updateHealth;
     if (_health <= 0) {
+      _health = 0;
       Die();
-    }
-    else {
-      _health += updateHealth;
     }
     if (_health >= MaximumHealth) {
       _health = MaximumHealth;
