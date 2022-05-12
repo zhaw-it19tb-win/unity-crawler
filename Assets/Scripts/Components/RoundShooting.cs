@@ -6,20 +6,14 @@ namespace Components
 {
   public class RoundShooting : MonoBehaviour, IBossAttack {
     public Transform firePoint;
-    [FormerlySerializedAs("Target")] public Transform target;
     public GameObject bulletPrefab;
     public float bulletForce = 1f;
     public float arrowSpawningDistance = 0.4f;
     [FormerlySerializedAs("HowMany")] public int howMany = 15;
 
     public void Shoot() {
-      Debug.Log(firePoint.position);
-      var modifiedFirePoint = Vector3.MoveTowards(firePoint.position, target.position, 0.5f);
-
-      // int deg = 0;
       for (var deg = 0; deg < 360; deg += 360 / howMany)
       {
-        Debug.Log($"Deg is {deg}");
         var rad = (deg / 360.0) * Math.PI * 2.0;
         var bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
         var rigidBody = bullet.GetComponent<Rigidbody2D>();
