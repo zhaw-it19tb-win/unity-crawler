@@ -9,7 +9,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(LevelGenerator))]
 public class ProceduralGenerate : MonoBehaviour
 {
-    public static string MAPVERSION = "v0.1.2";
+    public static string MAPVERSION = "v0.1.3";
 
     [SerializeReference]
     public int desiredMapWidth = 15;
@@ -38,7 +38,8 @@ public class ProceduralGenerate : MonoBehaviour
     }
 
     private string GetMapDataId() {
-        return GameUtil.GameId + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + MAPVERSION;
+        //return GameUtil.GameId + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + MAPVERSION;
+        return GameUtil.GameId + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + MAPVERSION + "_"+System.DateTime.UtcNow.ToString();
     }
 
     private void LoadLevel()
@@ -46,8 +47,8 @@ public class ProceduralGenerate : MonoBehaviour
         string savefile = "savefile1.json";
         mapData = JsonUtility.FromJson<MapData>(SaveGameManager.LoadData(savefile));
         if (mapData == null || mapData.mapDataId != GetMapDataId()) {
-            LevelGenerator gen = GameObject.FindObjectOfType<LevelGenerator>();
-            mapData = DungeonDataFromImage(PreProcessImage(gen.GenerateMap(desiredMapWidth, desiredMapHeight)));
+            //mapData = DungeonDataFromImage(GenerateMap(desiredMapWidth, desiredMapHeight));
+            mapData = DungeonDataFromImage(PreProcessImage(GenerateMap(desiredMapWidth, desiredMapHeight)));
             SaveGameManager.SaveData( JsonUtility.ToJson(mapData), savefile );
         } 
     }
@@ -226,6 +227,79 @@ public class ProceduralGenerate : MonoBehaviour
         result.SetPixel( bestStart.x, bestStart.y, Color.green);
         result.SetPixel( bestExit.x, bestExit.y, Color.blue);
         
+        return result;
+    }
+
+    private Texture2D GenerateMap(int desiredMapWidth, int desiredMapHeight)
+    {
+        LevelGenerator gen = GameObject.FindObjectOfType<LevelGenerator>();
+        Texture2D result = null; 
+        bool goodDungeon = false;
+        while (!goodDungeon) {
+            
+            result = gen.GenerateMap(desiredMapWidth,desiredMapHeight);
+            result.filterMode = FilterMode.Point;
+
+            List<List<Vector2Int>> found = new List<List<Vector2Int>>();
+            
+            List<Vector2Int> neighbors = new List<Vector2Int>(){Vector2Int.up, Vector2Int.left, Vector2Int.down, Vector2Int.right};
+
+            for (int i = 0; i < result.width; i++) for (int j = 0; j < result.height; j++) {
+                if( found.SelectMany(x => x).ToList().Contains(new Vector2Int(i,j)) ) continue; // contine to next pixel - we already found this one 
+                if( Color.black.Equals(result.GetPixel(i,j)) ) continue; // continue to next pixel - this is a wall 
+                List<Vector2Int> todo = new List<Vector2Int>(); // found walkable pixel - we create a stack for connected pixels
+                List<Vector2Int> currArea = new List<Vector2Int>(); // we reserve a list for the pixels we discover from this start
+
+                todo.Add(new Vector2Int(i, j)); // add our point to the stack and iterate
+
+                while (todo.Count > 0) {
+                    Vector2Int curr = todo.ElementAt(0);
+                    foreach (Vector2Int dir in neighbors) {
+                        Vector2Int neighbor = curr + dir;
+                        Color neighCol = result.GetPixel(neighbor.x, neighbor.y);
+                        if (neighbor.x < 0 || neighbor.y < 0 || neighbor.x >= result.width || neighbor.y >= result.height || // check if out of bounds
+                            neighCol.Equals(Color.black) || // check if we hit a wall
+                            todo.Contains(neighbor) || currArea.Contains(neighbor)) { // check if we already added this to stack or current area
+                                continue; // if any of the above -> disregard this neighbor
+                        } else {
+                            todo.Add(neighbor); // good neighbor, add to stack
+                        }
+                    }
+                    currArea.Add(curr); // added all neighbors, now can add this tile to the current area
+                    todo.Remove(curr); // remove this tile from the todo stack and check if anything is left in todo
+                }
+                found.Add(currArea); // stack cleared.. add area to found areas
+            }
+
+            found.Sort (delegate(List<Vector2Int> a, List<Vector2Int> b) { return b.Count.CompareTo(a.Count); });
+            Debug.Log("Number of areas: " + found.Count.ToString());
+
+            // Check largest area if it is too small:
+            Debug.Log("map height:" + result.height);
+            Debug.Log("map width:" + result.width);
+            Debug.Log("map area: " + result.height * result.width);
+
+            float walkableArea = (float)found.ElementAt(0).Count / (float)( result.height * result.width );
+            if ( walkableArea <= 0.5f ) {
+                Debug.Log("Walkable area is less than 50%");
+                continue; // restart loop...
+            } else {
+                Debug.Log("Good map. Walkable area is: " + walkableArea);
+                goodDungeon = true;
+            }
+
+            for( int i = 0; i < found.Count; i++) { // only show non-main areas (index 1 and above, index 0 has largest area)
+                var area = found[i];
+                Debug.Log("Connected Tiles: " + area.Count.ToString());
+                Debug.Log("Coordinates: " + area[0] + " .. " + area.Last());    
+            } 
+            
+            for (int i = 1; found.Count > i; i++) {
+                found.ElementAt(i).ForEach(dot => result.SetPixel(dot.x, dot.y, Color.black)); // overwriting all not connected dungeons
+            }
+
+            // TODO check 
+        }
         return result;
     }
 }
