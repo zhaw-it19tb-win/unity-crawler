@@ -16,6 +16,9 @@ public class ProceduralGenerate : MonoBehaviour
 
     [SerializeReference]
     public int desiredMapHeight = 15;
+
+    [SerializeReference]
+    public float minimalWalkableAreaRatio = 0.5f;
     
     public Tilemap layer0;
 
@@ -275,21 +278,16 @@ public class ProceduralGenerate : MonoBehaviour
             // Check largest area if it is too small:
 
             float walkableArea = (float)found.ElementAt(0).Count / (float)( result.height * result.width );
-            if ( walkableArea <= 0.5f ) { // TODO change minimum required walkable ration here
+            if ( walkableArea <= minimalWalkableAreaRatio ) {
                 continue; // restart loop...
             } else {
                 goodDungeon = true;
             }
 
-            for( int i = 0; i < found.Count; i++) { // only show non-main areas (index 1 and above, index 0 has largest area)
-                var area = found[i];
-            } 
-            
             for (int i = 1; found.Count > i; i++) {
                 found.ElementAt(i).ForEach(dot => result.SetPixel(dot.x, dot.y, Color.black)); // overwriting all not connected dungeons
             }
 
-            // TODO check 
         }
         return result;
     }
