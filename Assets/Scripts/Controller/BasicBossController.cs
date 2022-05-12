@@ -21,7 +21,7 @@ namespace Controller
         private const float AttackTime = 1f; //s
         private float _passedAttackTime; //s
 
-        private const int NormalAttacksCount = 1;
+        private const int NormalAttacksCount = 5;
         private int _attacksUntilBossAttackLeft = NormalAttacksCount;
 
         private void Start()
