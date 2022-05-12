@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GameisPaused;
-    public GameObject pauseMenu;
+    public static bool gameisPaused;
+    public GameObject pauseMenu, mainMenu, optionsMenu;
+    public GameObject firstButtonMainMenu, firstButtonOptionsMenu, nextButtonOptionsMenu;
 
     /// <summary>
     /// When [Esc] is pressed stop the game and show the pause menu.
@@ -13,7 +15,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameisPaused)
+            if (gameisPaused)
             {
                 Resume();
             } else
@@ -29,8 +31,10 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenu.SetActive(false);
+        mainMenu.SetActive(false);
+        optionsMenu.SetActive(false);
         Time.timeScale = 1.0f;
-        GameisPaused = false;
+        gameisPaused = false;
     }
 
     /// <summary>
@@ -40,7 +44,10 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 0.0f;
         pauseMenu.SetActive(true);
-        GameisPaused = true;
+        mainMenu.SetActive(true);
+        gameisPaused = true;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstButtonMainMenu);
     }
 
     /// <summary>
@@ -49,5 +56,23 @@ public class PauseMenu : MonoBehaviour
     public void GoToMainMenu()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    /// <summary>
+    /// Select first button of the options menu (use when opening the options menu).
+    /// </summary>
+    public void FocusFirstButtonOptionsMenu()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstButtonOptionsMenu);
+    }
+
+    /// <summary>
+    /// Select next button after the options menu (use when closing the options menu).
+    /// </summary>
+    public void FocusNexttButtonOptionsMenu()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(nextButtonOptionsMenu);
     }
 }
