@@ -62,6 +62,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pick Items"",
+                    ""type"": ""Button"",
+                    ""id"": ""70e19840-d8ee-46f2-95f7-5bcd87ed05b2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -288,11 +297,22 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""47851e3d-847e-4947-8b3b-c744742f57cd"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Teleport"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20088bfd-6653-4fc6-bb22-1ed9a8147089"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pick Items"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -307,6 +327,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Teleport = m_Player.FindAction("Teleport", throwIfNotFound: true);
+        m_Player_PickItems = m_Player.FindAction("Pick Items", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -370,6 +391,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Teleport;
+    private readonly InputAction m_Player_PickItems;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -378,6 +400,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Teleport => m_Wrapper.m_Player_Teleport;
+        public InputAction @PickItems => m_Wrapper.m_Player_PickItems;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -399,6 +422,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Teleport.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleport;
                 @Teleport.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleport;
                 @Teleport.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnTeleport;
+                @PickItems.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickItems;
+                @PickItems.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickItems;
+                @PickItems.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickItems;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -415,6 +441,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Teleport.started += instance.OnTeleport;
                 @Teleport.performed += instance.OnTeleport;
                 @Teleport.canceled += instance.OnTeleport;
+                @PickItems.started += instance.OnPickItems;
+                @PickItems.performed += instance.OnPickItems;
+                @PickItems.canceled += instance.OnPickItems;
             }
         }
     }
@@ -425,5 +454,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnTeleport(InputAction.CallbackContext context);
+        void OnPickItems(InputAction.CallbackContext context);
     }
 }
