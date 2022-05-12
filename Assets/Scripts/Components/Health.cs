@@ -19,7 +19,7 @@ public class Health : MonoBehaviour {
       HealthBar.maxValue = MaximumHealth;
       HealthBar.minValue = 0;
     }
-    UpdateHealth(StartHealth);
+    UpdateHealth(0);
   }
 
   public void TakeDamage(int damage) {
