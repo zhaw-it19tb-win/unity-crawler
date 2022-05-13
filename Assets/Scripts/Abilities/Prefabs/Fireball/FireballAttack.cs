@@ -15,6 +15,7 @@ namespace Assets.Scripts.Abilities {
     private AbilityRigidbodyCollision _collisionDetector;
     public bool blocksOtherAbilities = false;
     public float impactScale = 1f;
+    public int Damage = 5;
 
 
     public override void Cast() {
@@ -43,7 +44,8 @@ namespace Assets.Scripts.Abilities {
         if (_collisionDetector.hasCollided) {
           Collider2D[] colliders = Physics2D.OverlapCircleAll(_skillShotTransform.position, 0.2f * impactScale);
           foreach (Collider2D collider in colliders) {
-            collider.gameObject.GetComponent<Health>()?.TakeDamage(10);
+            bool isCrit = UnityEngine.Random.value <= CriticalChance;
+            collider.gameObject.GetComponent<Health>()?.TakeDamage(isCrit ? (int)(1.5 * Damage) : Damage, isCrit);
           }
           var impact = GameObject.Instantiate(Effect, _skillShotTransform.position, Quaternion.identity);
           UnityEngine.Object.Destroy(_skillShot);

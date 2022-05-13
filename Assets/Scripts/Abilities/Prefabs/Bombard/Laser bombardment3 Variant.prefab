@@ -83,5 +83,37 @@ PrefabInstance:
       propertyPath: InitialModule.startRotationY.minMaxState
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 19900000, guid: 6422340191d2291478e7e4f77bbc5204, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 19900000, guid: 6422340191d2291478e7e4f77bbc5204, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -445763895
+      objectReference: {fileID: 0}
+    - target: {fileID: 19900002, guid: 6422340191d2291478e7e4f77bbc5204, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 19900002, guid: 6422340191d2291478e7e4f77bbc5204, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -445763895
+      objectReference: {fileID: 0}
+    - target: {fileID: 19900004, guid: 6422340191d2291478e7e4f77bbc5204, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 19900004, guid: 6422340191d2291478e7e4f77bbc5204, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -445763895
+      objectReference: {fileID: 0}
+    - target: {fileID: 19900006, guid: 6422340191d2291478e7e4f77bbc5204, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 19900006, guid: 6422340191d2291478e7e4f77bbc5204, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -445763895
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6422340191d2291478e7e4f77bbc5204, type: 3}

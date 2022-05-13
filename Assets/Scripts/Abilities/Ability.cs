@@ -17,6 +17,7 @@ public abstract class Ability : MonoBehaviour {
   public float cooldownInSeconds = 4f;
   public Vector2 origin;
   public Vector2 target;
+  public float CriticalChance = 0.30f;
 
   public bool IsCasting = false;
   public bool AbilityCurrentlyLockingOtherAbilities = false;
