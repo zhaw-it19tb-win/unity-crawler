@@ -18,6 +18,7 @@ namespace Assets.Scripts.Abilities.Prefabs.DarkBall {
     public bool IsCasting;
     public Vector2 origin;
     public Vector2 target;
+    public float CriticalChance;
 
     public float targetOffset = 0f;
 
@@ -59,7 +60,9 @@ namespace Assets.Scripts.Abilities.Prefabs.DarkBall {
               collider.gameObject.GetComponent<Health>()?.IncreaseHealth(3 + (int)damageIncreaseByDistance);
             }
             else {
-              collider.gameObject.GetComponent<Health>()?.TakeDamage(3 + (int)damageIncreaseByDistance);
+              bool isCrit = UnityEngine.Random.value <= CriticalChance;
+              collider.gameObject.GetComponent<Health>()?.TakeDamage(
+                isCrit ? (int)(1.4 * (3 + damageIncreaseByDistance)) : (3 + (int)damageIncreaseByDistance), isCrit);
             }
           }
           var impact = GameObject.Instantiate(Effect, _ability.transform.position, Quaternion.identity);

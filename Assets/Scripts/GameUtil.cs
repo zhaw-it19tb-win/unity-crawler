@@ -10,7 +10,10 @@ public class GameUtil : MonoBehaviour
     public static CardinalDirection TargetTeleporterLocation;
     public static List<LevelModel> LevelModels;
 
-    public static string GameId;
+    [SerializeField()]
+    public GameObject DamagePopup;
+
+  public static string GameId;
 
     public static bool IsPlayerTeleported { get; set; }
 

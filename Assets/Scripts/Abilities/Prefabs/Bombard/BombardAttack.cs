@@ -32,7 +32,8 @@ public class BombardAttack : Ability {
         nextFire = Time.time + fireRate;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(_skillShotTransform.position, 0.15f);
         foreach (Collider2D collider in colliders) {
-          collider.gameObject.GetComponent<Health>()?.TakeDamage(1);
+          bool isCrit = UnityEngine.Random.value <= CriticalChance;
+          collider.gameObject.GetComponent<Health>()?.TakeDamage(isCrit ? 2 : 1, isCrit);
         }
       }
       

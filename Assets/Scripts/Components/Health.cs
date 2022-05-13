@@ -24,12 +24,18 @@ public class Health : MonoBehaviour {
     UpdateHealth(0);
   }
 
-  public void TakeDamage(int damage) {
+  public void TakeDamage(int damage, bool isCritical = false, bool producesPopup = true) {
     UpdateHealth(-damage);
+    if (producesPopup) {
+      DamagePopup.Create(this.gameObject.transform.position, damage, isCritical);
+    }
   }
 
-  public void IncreaseHealth(int healing) {
+  public void IncreaseHealth(int healing, bool producesPopup = true) {
     UpdateHealth(healing);
+    if (producesPopup) {
+      DamagePopup.Create(this.gameObject.transform.position, -healing, false);
+    }
   }
 
   private void UpdateHealth(int updateHealth) {

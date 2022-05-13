@@ -17,6 +17,7 @@ public class DarkBallAttack : Ability {
       origin = origin,
       target = target,
       effectSpeed = effectSpeed,
+      CriticalChance = CriticalChance,
     };
     _leftSkill = new DarkBallSegment()
     {
@@ -25,6 +26,7 @@ public class DarkBallAttack : Ability {
       origin = origin,
       target = target,
       effectSpeed = effectSpeed,
+      CriticalChance = CriticalChance,
     };
     _rightSkill = new DarkBallSegment()
     {
@@ -33,6 +35,7 @@ public class DarkBallAttack : Ability {
       origin = origin,
       target = target,
       effectSpeed = effectSpeed,
+      CriticalChance = CriticalChance,
     };
     IsCasting = true;
     AbilityCurrentlyLockingOtherAbilities = true;
