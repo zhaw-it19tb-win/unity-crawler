@@ -16,7 +16,7 @@ namespace Tests
             gameObject.AddComponent<Health>();
             var healthComponent = gameObject.GetComponent<Health>() as Health;
 
-            healthComponent.TakeDamage(1);
+            healthComponent.TakeDamage(1, false, false);
             Assert.AreEqual(expected: 99, healthComponent.CurrentHealth);
 
             healthComponent.TakeDamage(2);
@@ -33,7 +33,7 @@ namespace Tests
             var healthComponent = gameObject.GetComponent<Health>() as Health;
             healthComponent.OnDied += () => hasDied = true;
 
-            healthComponent.TakeDamage(5000);
+            healthComponent.TakeDamage(5000, false, false);
             Assert.AreEqual(expected: true, actual: hasDied);
         }
     }
