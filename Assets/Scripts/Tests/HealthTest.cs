@@ -19,7 +19,7 @@ namespace Tests
             healthComponent.TakeDamage(1, false, false);
             Assert.AreEqual(expected: 99, healthComponent.CurrentHealth);
 
-            healthComponent.TakeDamage(2);
+            healthComponent.TakeDamage(2, false, false);
             Assert.AreEqual(97, healthComponent.CurrentHealth);
         }
 
