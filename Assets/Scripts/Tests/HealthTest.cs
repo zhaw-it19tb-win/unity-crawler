@@ -16,15 +16,11 @@ namespace Tests
             gameObject.AddComponent<Health>();
             var healthComponent = gameObject.GetComponent<Health>() as Health;
 
-            var sliderObject = new GameObject("Slider");
-            sliderObject.AddComponent<Slider>();
-            healthComponent.HealthBar = sliderObject.GetComponent<Slider>();
-
             healthComponent.TakeDamage(1);
-            Assert.AreEqual(expected: 99, healthComponent._health);
+            Assert.AreEqual(expected: 99, healthComponent.CurrentHealth);
 
             healthComponent.TakeDamage(2);
-            Assert.AreEqual(97, healthComponent._health);
+            Assert.AreEqual(97, healthComponent.CurrentHealth);
         }
 
         [Test]
@@ -36,10 +32,6 @@ namespace Tests
             gameObject.AddComponent<Health>();
             var healthComponent = gameObject.GetComponent<Health>() as Health;
             healthComponent.OnDied += () => hasDied = true;
-
-            var sliderObject = new GameObject("Slider");
-            sliderObject.AddComponent<Slider>();
-            healthComponent.HealthBar = sliderObject.GetComponent<Slider>();
 
             healthComponent.TakeDamage(5000);
             Assert.AreEqual(expected: true, actual: hasDied);

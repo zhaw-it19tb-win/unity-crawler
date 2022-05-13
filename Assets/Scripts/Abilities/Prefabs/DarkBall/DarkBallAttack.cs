@@ -6,8 +6,6 @@ using UnityEngine;
 public class DarkBallAttack : Ability {
   public Transform Effect;
 
-  public bool blocksOtherAbilities = false;
-
   DarkBallSegment _middleSkill;
   DarkBallSegment _leftSkill;
   DarkBallSegment _rightSkill;
@@ -37,6 +35,7 @@ public class DarkBallAttack : Ability {
       effectSpeed = effectSpeed,
     };
     IsCasting = true;
+    AbilityCurrentlyLockingOtherAbilities = true;
     _middleSkill.Cast();
     _leftSkill.Cast();
     _rightSkill.Cast();
@@ -60,6 +59,7 @@ public class DarkBallAttack : Ability {
       }
       if (!isCasting) {
         IsCasting = false;
+        AbilityCurrentlyLockingOtherAbilities = false;
       }
     }
   }
