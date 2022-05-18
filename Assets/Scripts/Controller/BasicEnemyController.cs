@@ -4,32 +4,31 @@ using Random = System.Random;
 using PotionType = Item.PotionType;
 
 [RequireComponent(typeof(Health))]
-[RequireComponent(typeof(Shooting))]
+[RequireComponent(typeof(IAttack))]
 [RequireComponent(typeof(AIMovement))]
 public class BasicEnemyController : MonoBehaviour
 {
     private Health health;
-    private Shooting shooting;
+    private IAttack attack;
     private AIMovement aiMovement;
 
     private bool isAttacking;
-
-    private bool attackAnimationFinished = false;
 
     // TODO: this is a bad solution
     private float attackTime = 1f; //s
     private float passedAttackTime = 0f; //s
 
     private Random random = new Random();
-    void Start()
+    
+    private void Start()
     {
         health.OnDied += OnDied;
     }
 
-    void Awake()
+    private void Awake()
     {
         health = GetComponent<Health>();
-        shooting = GetComponent<Shooting>();
+        attack = GetComponent<IAttack>();
         aiMovement = GetComponent<AIMovement>();
         InvokeRepeating(nameof(ToggleAttack), 0, 1);
     }
@@ -53,13 +52,9 @@ public class BasicEnemyController : MonoBehaviour
             if (passedAttackTime >= attackTime)
             {
                 passedAttackTime = 0f;
-                shooting.Shoot();
+                attack.Perform();
             }
         }
-    }
-
-    void FixedUpdate()
-    {
     }
 
     private void OnDied()

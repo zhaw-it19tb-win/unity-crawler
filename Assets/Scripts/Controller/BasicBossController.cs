@@ -5,12 +5,12 @@ using Random = UnityEngine.Random;
 namespace Controller
 {
     [RequireComponent(typeof(Health))]
-    [RequireComponent(typeof(Shooting))]
+    [RequireComponent(typeof(IAttack))]
     [RequireComponent(typeof(AIMovement))]
     public class BasicBossController : MonoBehaviour
     {
         private Health _health;
-        private Shooting _shooting;
+        private IAttack _attack;
         private AIMovement _aiMovement;
         private IBossAttack[] _bossAttacks;
         private ParticleSystem _particleSystem;
@@ -32,7 +32,7 @@ namespace Controller
         private void Awake()
         {
             _health = GetComponent<Health>();
-            _shooting = GetComponent<Shooting>();
+            _attack = GetComponent<IAttack>();
             _aiMovement = GetComponent<AIMovement>();
             _bossAttacks = GetComponents<IBossAttack>();
             _particleSystem = GetComponent<ParticleSystem>();
@@ -64,7 +64,7 @@ namespace Controller
                 }
                 else
                 {
-                    _shooting.Shoot();
+                    _attack.Perform();
                 }
                 _attacksUntilBossAttackLeft--;
                 if (_attacksUntilBossAttackLeft < 0)
