@@ -212,7 +212,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 706350784}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &328813256
 MonoBehaviour:
@@ -434,6 +434,7 @@ GameObject:
   - component: {fileID: 706350783}
   - component: {fileID: 706350785}
   - component: {fileID: 706350786}
+  - component: {fileID: 706350787}
   m_Layer: 0
   m_Name: ProcDungeon_1
   m_TagString: Untagged
@@ -455,6 +456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   desiredMapWidth: 15
   desiredMapHeight: 15
+  minimalWalkableAreaRatio: 0.5
   layer0: {fileID: 448652019}
   layer1: {fileID: 758863341}
   teleporterPrefab: {fileID: 1767992744525053221, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
@@ -485,7 +487,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 942410159}
-  - {fileID: 1160615679}
   - {fileID: 328813255}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -535,6 +536,29 @@ MonoBehaviour:
   turnWeight: 0.25
   wall: {fileID: 2800000, guid: a5c90b5a20b031347a4c35b64920fb25, type: 3}
   wallWeight: 1
+--- !u!114 &706350787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706350782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ccf728bf7aa2f3429a9c725d6c90c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorTiles:
+  - {fileID: 11400000, guid: 88c8916122eb8fd499a15ce99886d844, type: 2}
+  - {fileID: 11400000, guid: 23bae067173e12a4dbe0fa39b044d19a, type: 2}
+  wallTiles:
+  - {fileID: 11400000, guid: 07c36a6128695a74a932dac85ece0db6, type: 2}
+  spawnTiles:
+  - {fileID: 11400000, guid: 8459f54eba2c6114abe9eeb92b60b796, type: 2}
+  - {fileID: 11400000, guid: 881f39c07b623dd4da9de5e133042904, type: 2}
+  - {fileID: 11400000, guid: 0a5345b3c762feb4884c5ee4f138a59f, type: 2}
+  collisionTiles:
+  - {fileID: 11400000, guid: bbe1039a73cb04a4db7e81501225bb46, type: 2}
 --- !u!1 &758863338
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,57 +803,3 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 3
   m_CellSwizzle: 0
---- !u!1 &1160615678
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1160615679}
-  - component: {fileID: 1160615680}
-  m_Layer: 0
-  m_Name: MapTiles
-  m_TagString: MapTiles
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1160615679
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1160615678}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 706350784}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1160615680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1160615678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ccf728bf7aa2f3429a9c725d6c90c44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floorTiles:
-  - {fileID: 11400000, guid: 88c8916122eb8fd499a15ce99886d844, type: 2}
-  - {fileID: 11400000, guid: 23bae067173e12a4dbe0fa39b044d19a, type: 2}
-  wallTiles:
-  - {fileID: 11400000, guid: 07c36a6128695a74a932dac85ece0db6, type: 2}
-  spawnTiles:
-  - {fileID: 11400000, guid: 8459f54eba2c6114abe9eeb92b60b796, type: 2}
-  - {fileID: 11400000, guid: 881f39c07b623dd4da9de5e133042904, type: 2}
-  - {fileID: 11400000, guid: 0a5345b3c762feb4884c5ee4f138a59f, type: 2}
-  collisionTiles:
-  - {fileID: 11400000, guid: bbe1039a73cb04a4db7e81501225bb46, type: 2}

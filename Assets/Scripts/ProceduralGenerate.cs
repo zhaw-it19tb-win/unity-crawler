@@ -64,7 +64,7 @@ public class ProceduralGenerate : MonoBehaviour
         // tile index 1 = wall
         // tile index 2 = spawner
 
-        MapTiles tiles = GameObject.FindGameObjectWithTag("MapTiles").GetComponentInChildren<MapTiles>();
+        MapTiles tiles = gameObject.GetComponentInChildren<MapTiles>();
         UnityEngine.Tilemaps.Tile[][] tilebases = new UnityEngine.Tilemaps.Tile[3][];
         tilebases[0] = tiles.floorTiles;
         tilebases[1] = tiles.wallTiles;
