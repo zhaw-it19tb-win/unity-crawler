@@ -249,7 +249,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaximumHealth: 100
   StartHealth: 100
-  HealthBar: {fileID: 0}
+  SliderImage: {fileID: 0}
+  EnableAutoHealthCounter: 1
+  OffsetHealthBarY: 0.5
+  OffsetHealthBarX: 0.5
+  OffsetHealthWidth: 0
+  OffsetHealthHeight: 0
 --- !u!114 &8353105499648124958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +270,7 @@ MonoBehaviour:
   firePoint: {fileID: 8353105498454885338}
   target: {fileID: 0}
   bulletPrefab: {fileID: 1158522074396365739, guid: 6bb7ed4bf64f6b04482b046a2d42e8b7, type: 3}
-  bulletForce: 1
+  bulletForce: 0.0001
 --- !u!195 &8353105499648124959
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -301,7 +306,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  firePoint: {fileID: 8353105498454885338}
   targetForShooting: {fileID: 0}
-  bulletPrefab: {fileID: 1158522074396365739, guid: 6bb7ed4bf64f6b04482b046a2d42e8b7, type: 3}
-  bulletForce: 1
