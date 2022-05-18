@@ -228,8 +228,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaximumHealth: 200
   StartHealth: 200
-  HealthBar: {fileID: 0}
   SliderImage: {fileID: 0}
+  EnableAutoHealthCounter: 1
+  OffsetHealthBarY: -69
+  OffsetHealthBarX: -25
+  OffsetHealthWidth: 0
+  OffsetHealthHeight: 0
 --- !u!114 &8353105499648124958
 MonoBehaviour:
   m_ObjectHideFlags: 0
