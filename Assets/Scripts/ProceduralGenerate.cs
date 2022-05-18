@@ -9,13 +9,16 @@ using UnityEngine.AI;
 [RequireComponent(typeof(LevelGenerator))]
 public class ProceduralGenerate : MonoBehaviour
 {
-    public static string MAPVERSION = "v0.1.2";
+    public static string MAPVERSION = "v0.1.3";
 
     [SerializeReference]
     public int desiredMapWidth = 15;
 
     [SerializeReference]
     public int desiredMapHeight = 15;
+
+    [SerializeReference]
+    public float minimalWalkableAreaRatio = 0.5f;
     
     public Tilemap layer0;
 
@@ -39,6 +42,7 @@ public class ProceduralGenerate : MonoBehaviour
 
     private string GetMapDataId() {
         return GameUtil.GameId + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + MAPVERSION;
+        //return GameUtil.GameId + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name + MAPVERSION + "_"+System.DateTime.UtcNow.ToString();
     }
 
     private void LoadLevel()
@@ -46,8 +50,7 @@ public class ProceduralGenerate : MonoBehaviour
         string savefile = "savefile1.json";
         mapData = JsonUtility.FromJson<MapData>(SaveGameManager.LoadData(savefile));
         if (mapData == null || mapData.mapDataId != GetMapDataId()) {
-            LevelGenerator gen = GameObject.FindObjectOfType<LevelGenerator>();
-            mapData = DungeonDataFromImage(PreProcessImage(gen.GenerateMap(desiredMapWidth, desiredMapHeight)));
+            mapData = DungeonDataFromImage(PreProcessImage(GenerateMap(desiredMapWidth, desiredMapHeight)));
             SaveGameManager.SaveData( JsonUtility.ToJson(mapData), savefile );
         } 
     }
@@ -158,47 +161,47 @@ public class ProceduralGenerate : MonoBehaviour
 
         // GENERATE SIDE WALLS
         // k will loop through 0 -> 61
-        for (int k = 0; k < input.height + 2; k++) {
-            result.SetPixel( 0, 2*k, Color.black); // set left bottom wall
-            result.SetPixel( 0, 2*k + 1, Color.black); // set left bottom wall
-            result.SetPixel( 1, 2*k, Color.black); // set left bottom wall
-            result.SetPixel( 1, 2*k + 1, Color.black); // set left bottom wall
+        for (int k = 0; k < result.height; k++) {
+            result.SetPixel( 0, k, Color.black); // set left bottom wall
+            result.SetPixel( 0, k + 1, Color.black); // set left bottom wall
+            result.SetPixel( 1, k, Color.black); // set left bottom wall
+            result.SetPixel( 1, k + 1, Color.black); // set left bottom wall
 
-            result.SetPixel( 2*input.width + 2, 2*k, Color.black); // set right top as wall
-            result.SetPixel( 2*input.width + 2, 2*k + 1, Color.black); // set right top as wall
-            result.SetPixel( 2*input.width + 3, 2*k, Color.black); // set right top as wall
-            result.SetPixel( 2*input.width + 3, 2*k + 1, Color.black); // set right top as wall
+            result.SetPixel( result.width - 2, k, Color.black); // set right top as wall
+            result.SetPixel( result.width - 2, k + 1, Color.black); // set right top as wall
+            result.SetPixel( result.width - 1, k, Color.black); // set right top as wall
+            result.SetPixel( result.width - 1, k + 1, Color.black); // set right top as wall
         }
 
         // k will loop through 0 -> 61
-        for (int k = 0; k < input.width + 2; k++) {
-            result.SetPixel( 2*k, 0, Color.black); // set right bottom as wall
-            result.SetPixel( 2*k + 1, 0, Color.black); // set right bottom  as wall
-            result.SetPixel( 2*k, 1, Color.black); // set right bottom as wall
-            result.SetPixel( 2*k + 1, 1, Color.black); // set right bottom as wall
+        for (int k = 0; k < result.width; k++) {
+            result.SetPixel( k, 0, Color.black); // set right bottom as wall
+            result.SetPixel( k + 1, 0, Color.black); // set right bottom  as wall
+            result.SetPixel( k, 1, Color.black); // set right bottom as wall
+            result.SetPixel( k + 1, 1, Color.black); // set right bottom as wall
 
-            result.SetPixel( 2*k, 2*input.height + 2, Color.black); // set top left as wall
-            result.SetPixel( 2*k + 1, 2*input.height + 2, Color.black); // set top left as wall
-            result.SetPixel( 2*k, 2*input.height + 3, Color.black); // set top left as wall
-            result.SetPixel( 2*k + 1, 2*input.height + 3, Color.black); // set top left as wall
+            result.SetPixel( k, result.height - 2, Color.black); // set top left as wall
+            result.SetPixel( k + 1, result.height - 2, Color.black); // set top left as wall
+            result.SetPixel( k, result.height - 1, Color.black); // set top left as wall
+            result.SetPixel( k + 1, result.height - 1, Color.black); // set top left as wall
         }
 
         // PLACE PIXELS FROM MODEL
-        for (int i = 1; i < input.width + 1; i++) {
-            for (int j = 1; j < input.height + 1; j++) {
+        for (int i = 0; i < input.width; i++) {
+            for (int j = 0; j < input.height; j++) {
                 Color currentPixel = input.GetPixel(i,j);
                 if(Color.red.Equals(currentPixel)) {
-                    poiList.Add( (new Vector2Int(2*i + 1, 2*j + 1), currentPixel) );
+                    poiList.Add( (new Vector2Int(2*i + 3, 2*j + 3), currentPixel) );
                     // red pixels should not get scaled, we only want i.e. 1 spawner, not 4..
-                    result.SetPixel(2*i, 2*j, Color.white );
-                    result.SetPixel(2*i, (2*j) + 1, Color.white );
-                    result.SetPixel((2*i) + 1, 2*j, Color.white );
-                    result.SetPixel((2*i) + 1, (2*j) + 1, currentPixel );
+                    result.SetPixel(2*i +2, 2*j +2, Color.white );
+                    result.SetPixel(2*i +2, (2*j) +3, Color.white );
+                    result.SetPixel((2*i) +3, 2*j +2, Color.white );
+                    result.SetPixel((2*i) +3, (2*j) +3, currentPixel );
                 } else {
-                    result.SetPixel(2*i, 2*j,  currentPixel );
-                    result.SetPixel(2*i, (2*j) + 1, currentPixel );
-                    result.SetPixel((2*i) + 1, 2*j, currentPixel );
-                    result.SetPixel((2*i) + 1, (2*j) + 1, currentPixel);
+                    result.SetPixel(2*i +2, 2*j +2,  currentPixel );
+                    result.SetPixel(2*i +2, (2*j) +3, currentPixel );
+                    result.SetPixel((2*i) +3, 2*j +2, currentPixel );
+                    result.SetPixel((2*i) +3, (2*j) +3, currentPixel);
                 }
             }
         }
@@ -226,6 +229,66 @@ public class ProceduralGenerate : MonoBehaviour
         result.SetPixel( bestStart.x, bestStart.y, Color.green);
         result.SetPixel( bestExit.x, bestExit.y, Color.blue);
         
+        return result;
+    }
+
+    private Texture2D GenerateMap(int desiredMapWidth, int desiredMapHeight)
+    {
+        LevelGenerator gen = GameObject.FindObjectOfType<LevelGenerator>();
+        Texture2D result = null; 
+        bool goodDungeon = false;
+        while (!goodDungeon) {
+            
+            result = gen.GenerateMap(desiredMapWidth,desiredMapHeight);
+            result.filterMode = FilterMode.Point;
+
+            List<List<Vector2Int>> found = new List<List<Vector2Int>>();
+            
+            List<Vector2Int> neighbors = new List<Vector2Int>(){Vector2Int.up, Vector2Int.left, Vector2Int.down, Vector2Int.right};
+
+            for (int i = 0; i < result.width; i++) for (int j = 0; j < result.height; j++) {
+                if( found.SelectMany(x => x).ToList().Contains(new Vector2Int(i,j)) ) continue; // contine to next pixel - we already found this one 
+                if( Color.black.Equals(result.GetPixel(i,j)) ) continue; // continue to next pixel - this is a wall 
+                List<Vector2Int> todo = new List<Vector2Int>(); // found walkable pixel - we create a stack for connected pixels
+                List<Vector2Int> currArea = new List<Vector2Int>(); // we reserve a list for the pixels we discover from this start
+
+                todo.Add(new Vector2Int(i, j)); // add our point to the stack and iterate
+
+                while (todo.Count > 0) {
+                    Vector2Int curr = todo.ElementAt(0);
+                    foreach (Vector2Int dir in neighbors) {
+                        Vector2Int neighbor = curr + dir;
+                        Color neighCol = result.GetPixel(neighbor.x, neighbor.y);
+                        if (neighbor.x < 0 || neighbor.y < 0 || neighbor.x >= result.width || neighbor.y >= result.height || // check if out of bounds
+                            neighCol.Equals(Color.black) || // check if we hit a wall
+                            todo.Contains(neighbor) || currArea.Contains(neighbor)) { // check if we already added this to stack or current area
+                                continue; // if any of the above -> disregard this neighbor
+                        } else {
+                            todo.Add(neighbor); // good neighbor, add to stack
+                        }
+                    }
+                    currArea.Add(curr); // added all neighbors, now can add this tile to the current area
+                    todo.Remove(curr); // remove this tile from the todo stack and check if anything is left in todo
+                }
+                found.Add(currArea); // stack cleared.. add area to found areas
+            }
+
+            found.Sort (delegate(List<Vector2Int> a, List<Vector2Int> b) { return b.Count.CompareTo(a.Count); });
+
+            // Check largest area if it is too small:
+
+            float walkableArea = (float)found.ElementAt(0).Count / (float)( result.height * result.width );
+            if ( walkableArea <= minimalWalkableAreaRatio ) {
+                continue; // restart loop...
+            } else {
+                goodDungeon = true;
+            }
+
+            for (int i = 1; found.Count > i; i++) {
+                found.ElementAt(i).ForEach(dot => result.SetPixel(dot.x, dot.y, Color.black)); // overwriting all not connected dungeons
+            }
+
+        }
         return result;
     }
 }

@@ -44,10 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a8b11ef251afe24fb5ae7ca7ce4fce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetScene: Scene
-  teleporterId: Teleporter_0
-  targetTeleporterId: Scene_0
+  TeleporterIndicatorEffect: {fileID: 8314212440544985175, guid: c78bcc01ea3c186408b1c392786f52e7, type: 3}
   Location: 0
+  IsThemedScenesStartTeleporter: 0
 --- !u!61 &1767992744525053223
 BoxCollider2D:
   m_ObjectHideFlags: 0

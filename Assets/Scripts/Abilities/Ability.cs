@@ -1,3 +1,4 @@
+using Assets.Scripts.Components;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,13 +12,17 @@ public abstract class Ability : MonoBehaviour {
 
   public Sprite Icon;
   public float effectSpeed = 1f;
+  public int manaCost = 5;
   public float destroyEffectInSeconds = 15f;
   public float cooldownInSeconds = 4f;
   public Vector2 origin;
   public Vector2 target;
+  public float CriticalChance = 0.30f;
 
   public bool IsCasting = false;
   public bool AbilityCurrentlyLockingOtherAbilities = false;
+
+  protected Mana mana;
 
   /// <summary>Casts the ability</summary>
   public bool TryCast(Vector2 from, Vector2 to) {
@@ -48,9 +53,6 @@ public abstract class Ability : MonoBehaviour {
   public float GetCooldownPercentage() => IsReady() ? 1 : (cooldownInSeconds - (_timeNextCast - Time.time)) / cooldownInSeconds;
 
   public bool IsReady() {
-    Debug.Log("time.time " + Time.time);
-    Debug.Log("_timeNextCast " + _timeNextCast);
-    Debug.Log("cooldownInSeconds " + cooldownInSeconds);
     return Time.time >= _timeNextCast;
   }
 
