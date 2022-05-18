@@ -11,13 +11,14 @@ GameObject:
   - component: {fileID: 4730489783680694101}
   - component: {fileID: 4730489783680694098}
   - component: {fileID: 7796573889534354057}
+  - component: {fileID: 1011916309}
   - component: {fileID: 4730489783680694096}
   - component: {fileID: 4730489783680694097}
   - component: {fileID: 4730489783680694100}
   - component: {fileID: 8846894156631884563}
   - component: {fileID: 287396660}
-  - component: {fileID: 2134242932743835213}
-  - component: {fileID: 1174758765511501607}
+  - component: {fileID: 7273973108935159900}
+  - component: {fileID: 6875100763386721672}
   m_Layer: 0
   m_Name: Witch
   m_TagString: Player
@@ -76,9 +77,25 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.13}
-  m_Size: {x: 0.05, y: 0.15}
+  m_Offset: {x: -0.015791703, y: -0.13263187}
+  m_Size: {x: 0.0815834, y: 0.15526372}
   m_Direction: 0
+--- !u!58 &1011916309
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4730489783680694094}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.0211581}
+  serializedVersion: 2
+  m_Radius: 0.08428609
 --- !u!114 &4730489783680694096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,8 +110,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaximumHealth: 100
   StartHealth: 100
-  HealthBar: {fileID: 0}
   SliderImage: {fileID: 0}
+  EnableAutoHealthCounter: 0
+  OffsetHealthBarY: 0.5
+  OffsetHealthBarX: 0.5
+  OffsetHealthWidth: 0
+  OffsetHealthHeight: 0
 --- !u!114 &4730489783680694097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +177,36 @@ MonoBehaviour:
   PrimaryAbilityAbilityHotbarImage: {fileID: 0}
   SecondaryAbilityAbilityHotbarImage: {fileID: 0}
   ThirdAbilityAbilityHotbarImage: {fileID: 0}
+--- !u!114 &7273973108935159900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4730489783680694094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 540c18fbb8d59ed4dbd2ab361aaee530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Effect: {fileID: 0}
+--- !u!114 &6875100763386721672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4730489783680694094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89fb7bc9f1e87034b9049ad9c745dce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaximumMana: 100
+  StartMana: 100
+  ManaRegenPerSecond: 5
+  ManaRegenStopAfterUse: 2
+  SliderImage: {fileID: 0}
 --- !u!1 &4730489784390257829
 GameObject:
   m_ObjectHideFlags: 0

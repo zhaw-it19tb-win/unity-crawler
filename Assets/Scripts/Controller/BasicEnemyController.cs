@@ -16,8 +16,7 @@ public class BasicEnemyController : MonoBehaviour
 
     private bool attackAnimationFinished = false;
 
-    // TODO: this is a bad solution
-    private float attackTime = 1f; //s
+    private float attackIntervall; 
     private float passedAttackTime = 0f; //s
 
     void Start()
@@ -27,10 +26,12 @@ public class BasicEnemyController : MonoBehaviour
 
     void Awake()
     {
+        attackIntervall = UnityEngine.Random.Range(0.5f, 1.0f); //s defines how fast the archer attackes to make it less likely for the bullets to colide
         health = GetComponent<Health>();
         shooting = GetComponent<Shooting>();
         aiMovement = GetComponent<AIMovement>();
-        InvokeRepeating(nameof(ToggleAttack), 0, 1);
+        Debug.Log("attackIntervall" + attackIntervall); 
+        InvokeRepeating(nameof(ToggleAttack), 0, attackIntervall);
     }
 
     private int counter = 0;
@@ -53,11 +54,11 @@ public class BasicEnemyController : MonoBehaviour
         {
             aiMovement.Move();
         }
-        else if (isAttacking && passedAttackTime <= attackTime)
+        else if (isAttacking && passedAttackTime <= attackIntervall)
         {
             aiMovement.Shoot();
             passedAttackTime += Time.deltaTime;
-            if (passedAttackTime >= attackTime)
+            if (passedAttackTime >= attackIntervall)
             {
                 passedAttackTime = 0f;
                 shooting.Shoot();
@@ -73,7 +74,7 @@ public class BasicEnemyController : MonoBehaviour
     {
         Destroy(this.gameObject);
 
-        Random random = new Random();
+        Random random = new System.Random();
         int val = random.Next(0, 100);
         if (val < 100)
         {
