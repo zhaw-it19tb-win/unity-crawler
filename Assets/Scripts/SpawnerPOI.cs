@@ -24,7 +24,7 @@ public class SpawnerPOI : MonoBehaviour
     internal void Activate()
     {
         MapEnemies enemies = GameObject.FindObjectOfType<MapEnemies>();
-        for (int i = 0; i < num; i ++) {
+        for (int i = 0; i < num; i++) {
             Instantiate(enemies.simpleEnemies[idx], pos, Quaternion.identity);
         }
     }
