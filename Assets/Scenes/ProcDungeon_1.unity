@@ -435,6 +435,7 @@ GameObject:
   - component: {fileID: 706350785}
   - component: {fileID: 706350786}
   - component: {fileID: 706350787}
+  - component: {fileID: 706350788}
   m_Layer: 0
   m_Name: ProcDungeon_1
   m_TagString: Untagged
@@ -460,10 +461,12 @@ MonoBehaviour:
   layer0: {fileID: 448652019}
   layer1: {fileID: 758863341}
   teleporterPrefab: {fileID: 1767992744525053221, guid: b99fc7a485f922c47979fa46ce335aef, type: 3}
+  poiPrefab: {fileID: 5498961566205688938, guid: 6c7ffc6c186143343921ce6cc9eb23e5, type: 3}
   mapData:
     mapDataId: 
     layer0List: []
     layer1List: []
+    poiList: []
     startX: 0
     endX: 0
     startY: 0
@@ -472,8 +475,6 @@ MonoBehaviour:
     spawnY: 0
     exitX: 0
     exitY: 0
-    enemyX: 
-    enemyY: 
   mapDataId: 
 --- !u!4 &706350784
 Transform:
@@ -559,6 +560,24 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0a5345b3c762feb4884c5ee4f138a59f, type: 2}
   collisionTiles:
   - {fileID: 11400000, guid: bbe1039a73cb04a4db7e81501225bb46, type: 2}
+--- !u!114 &706350788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706350782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0561ad73cde12874d971a2e3726344fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  simpleEnemies:
+  - {fileID: 8353105499648124957, guid: 1d187ca8e0b533f40812e0babd868c5d, type: 3}
+  - {fileID: 5176429716097377875, guid: 77850e104e8e3124a84a0983b4e9eb26, type: 3}
+  - {fileID: 2018179644663771467, guid: a2aec2fb17a920c46a2daf19e373a1b0, type: 3}
+  mapBosses:
+  - {fileID: 8353105499648124957, guid: e0cf6bf5ab276e4488195035608dcbc5, type: 3}
 --- !u!1 &758863338
 GameObject:
   m_ObjectHideFlags: 0
