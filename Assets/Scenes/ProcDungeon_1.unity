@@ -577,6 +577,7 @@ GameObject:
   - component: {fileID: 706350786}
   - component: {fileID: 706350787}
   - component: {fileID: 706350788}
+  - component: {fileID: 706350789}
   m_Layer: 0
   m_Name: ProcDungeon_1
   m_TagString: Untagged
@@ -715,7 +716,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0a5345b3c762feb4884c5ee4f138a59f, type: 2}
   collisionTiles:
   - {fileID: 11400000, guid: bbe1039a73cb04a4db7e81501225bb46, type: 2}
---- !u!114 &706350788
+--- !u!114 &706350789
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
