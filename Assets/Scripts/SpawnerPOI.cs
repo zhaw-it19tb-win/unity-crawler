@@ -12,7 +12,7 @@ public class SpawnerPOI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.transform.position = pos;
+        if (pos != null) gameObject.transform.position = pos;
     }
 
     // Update is called once per frame
