@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "7d29130e-7d79-480a-8d4d-3066d25abe08",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -275,7 +284,7 @@
                 {
                     "name": "",
                     "id": "47851e3d-847e-4947-8b3b-c744742f57cd",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/#(T)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -291,6 +300,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pick Items",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c6fdc9b2-8547-4432-97dd-5d9e551a3916",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

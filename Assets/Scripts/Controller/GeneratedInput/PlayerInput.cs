@@ -71,6 +71,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""7d29130e-7d79-480a-8d4d-3066d25abe08"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -297,7 +306,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""47851e3d-847e-4947-8b3b-c744742f57cd"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/#(T)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -315,6 +324,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Pick Items"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6fdc9b2-8547-4432-97dd-5d9e551a3916"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sprint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -328,6 +348,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Teleport = m_Player.FindAction("Teleport", throwIfNotFound: true);
         m_Player_PickItems = m_Player.FindAction("Pick Items", throwIfNotFound: true);
+        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -392,6 +413,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Teleport;
     private readonly InputAction m_Player_PickItems;
+    private readonly InputAction m_Player_Sprint;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -401,6 +423,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Teleport => m_Wrapper.m_Player_Teleport;
         public InputAction @PickItems => m_Wrapper.m_Player_PickItems;
+        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -425,6 +448,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @PickItems.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickItems;
                 @PickItems.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickItems;
                 @PickItems.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPickItems;
+                @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -444,6 +470,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @PickItems.started += instance.OnPickItems;
                 @PickItems.performed += instance.OnPickItems;
                 @PickItems.canceled += instance.OnPickItems;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
             }
         }
     }
@@ -455,5 +484,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnTeleport(InputAction.CallbackContext context);
         void OnPickItems(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
     }
 }
