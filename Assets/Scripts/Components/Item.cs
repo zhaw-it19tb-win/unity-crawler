@@ -47,9 +47,9 @@ public class Item : MonoBehaviour {
                     }
                     break;
                 case PotionType.Tempo:
-                    Movement movement = gameObject.GetComponent<Movement>();
-                    if (movement.enabled) {
-                        movement.IncreaseSpeed(0.5f);
+                    PlayerInputController playerController = gameObject.GetComponent<PlayerInputController>();
+                    if (playerController.enabled) {
+                        playerController.IncreaseSpeed(1f/3f);
                         itemPicked = true;
                     }
                     break;
