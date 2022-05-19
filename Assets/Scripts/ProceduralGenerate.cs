@@ -6,10 +6,10 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(LevelGenerator))]
+[RequireComponent(typeof(LevelGenerator), typeof(MapTiles), typeof(MapEnemies))]
 public class ProceduralGenerate : MonoBehaviour
 {
-    public static string MAPVERSION = "v0.1.3";
+    public static string MAPVERSION = "v0.1.4";
 
     [SerializeReference]
     public int desiredMapWidth = 15;
@@ -26,6 +26,9 @@ public class ProceduralGenerate : MonoBehaviour
 
     [SerializeReference]
     public GameObject teleporterPrefab;
+
+    [SerializeReference]
+    public GameObject poiPrefab;
 
     public MapData mapData;
 
@@ -64,7 +67,7 @@ public class ProceduralGenerate : MonoBehaviour
         // tile index 1 = wall
         // tile index 2 = spawner
 
-        MapTiles tiles = GameObject.FindGameObjectWithTag("MapTiles").GetComponentInChildren<MapTiles>();
+        MapTiles tiles = gameObject.GetComponentInChildren<MapTiles>();
         UnityEngine.Tilemaps.Tile[][] tilebases = new UnityEngine.Tilemaps.Tile[3][];
         tilebases[0] = tiles.floorTiles;
         tilebases[1] = tiles.wallTiles;
@@ -93,6 +96,14 @@ public class ProceduralGenerate : MonoBehaviour
         GameObject exitObj = Instantiate(teleporterPrefab, centreOfExitTelporter + new Vector3(0,0,-1), Quaternion.identity );
         Teleporter exitTeleporter = spawnObj.GetComponent<Teleporter>();
         exitTeleporter.Location = CardinalDirection.South;
+
+        foreach (PoiTile p in mapData.poiList) {
+            GameObject poi = Instantiate( poiPrefab, p.pos, Quaternion.identity );
+            poi.GetComponent<SpawnerPOI>().pos = p.pos;
+            poi.GetComponent<SpawnerPOI>().num = p.num;
+            poi.GetComponent<SpawnerPOI>().idx = p.idx;
+            poi.GetComponent<SpawnerPOI>().Activate();
+        }
     }
 
     private IEnumerator AwakeScene()
@@ -114,8 +125,9 @@ public class ProceduralGenerate : MonoBehaviour
         result.endY = mapFile.height;
         result.layer0List = new List<DungeonTile>();
         result.layer1List = new List<DungeonTile>();
+        result.poiList = new List<PoiTile>();
         
-        MapTiles tiles = GameObject.FindGameObjectWithTag("MapTiles").GetComponentInChildren<MapTiles>();
+        MapTiles tiles = gameObject.GetComponentInChildren<MapTiles>();
         
         for (int i = result.startX; i < result.endX; i++) {
             for (int j = result.startY; j < result.endY; j++) {
@@ -138,15 +150,25 @@ public class ProceduralGenerate : MonoBehaviour
                     result.exitY = j;
                     result.layer0List.Add( new DungeonTile( i, j, 0, 2, 1) );
                 } else if (pixel.Equals(Color.red)) {
-                    // TODO: place enemy at i,j..
-                    result.layer0List.Add( new DungeonTile( i, j, 0, 2, 2) );
-                    // TODO: use some different tile..
+                    result.poiList.Add( generatePoiTile(i,j) ); // places an enemy at i,j..
+                    //result.layer0List.Add( new DungeonTile( i, j, 0, 2, 2) );
+                    result.layer0List.Add( new DungeonTile( i, j, 0, 0, UnityEngine.Random.Range(0, tiles.floorTiles.Length) ) );
                 } else {
                     Debug.Log("No tile to add for pixel["+i+"]["+j+"]: " + pixel);
                 }
             }
         }
         return result;
+    }
+
+    private PoiTile generatePoiTile(int i, int j)
+    {
+        
+        MapEnemies enemies = gameObject.GetComponentInChildren<MapEnemies>();
+        Vector3 pos = MapUtil.getCentreOfTile(i,j);
+        int num = UnityEngine.Random.Range(0,3); // 0 to 2 enemies
+        int idx = UnityEngine.Random.Range(0,enemies.simpleEnemies.Length);
+        return new PoiTile(pos, num, idx);
     }
 
     private Texture2D PreProcessImage(Texture2D input) {
@@ -312,12 +334,27 @@ public class DungeonTile {
 }
 
 [Serializable]
+public class PoiTile {
+    public PoiTile(Vector3 pos, int num, int idx) {
+        this.pos = pos;
+        this.num = num;
+        this.idx = idx;
+    }
+
+    public Vector3 pos;
+    public int num;
+    public int idx;
+}
+
+[Serializable]
 public class MapData {
 
     public string mapDataId;
 
     public List<DungeonTile> layer0List;
     public List<DungeonTile> layer1List;
+
+    public List<PoiTile> poiList;
 
     public int startX;
     public int endX;
@@ -326,8 +363,5 @@ public class MapData {
     public int spawnX;
     public int spawnY;
     public int exitX;
-    public int exitY;
-    public int[] enemyX;
-    public int[] enemyY;
-
+    public int exitY;    
 }
