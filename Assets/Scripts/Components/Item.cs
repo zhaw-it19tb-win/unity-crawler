@@ -9,7 +9,8 @@ public class Item : MonoBehaviour {
     public PotionType potionType;
 
     private PlayerInput input;
-    private bool itemPicked, interaction = false;
+    private bool itemPicked;
+    private bool interaction = false;
 
     void OnEnable() {
         input.Enable();
@@ -27,25 +28,28 @@ public class Item : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collider) {
         if (collider.gameObject.tag == "Player" && interaction) {
-            // remove the object which will be interacted with
+            GameObject gameObject = GameObject.FindGameObjectWithTag("Player");
             PotionType type = potionType;
 
             switch (type) {
                 case PotionType.Health:
-                    Health health = FindObjectOfType<Health>();
+                    Health health = gameObject.GetComponent<Health>();
                     if (health.enabled) {
                         health.IncreaseHealth(15);
                         itemPicked = true;
                     }
                     break;
                 case PotionType.Strength:
-                    // todo change that strength grows by approx. 5%
+                    AbilityController abilityController = gameObject.GetComponent<AbilityController>();
+                    if (abilityController.enabled) {
+                        abilityController.IncreaseCriticalDamage(0.05f);
                         itemPicked = true;
+                    }
                     break;
                 case PotionType.Tempo:
-                    Movement movement = FindObjectOfType<Movement>();
+                    Movement movement = gameObject.GetComponent<Movement>();
                     if (movement.enabled) {
-                        movement.IncreaseSpeed(0.1f);
+                        movement.IncreaseSpeed(0.5f);
                         itemPicked = true;
                     }
                     break;

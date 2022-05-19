@@ -80,8 +80,6 @@ public class AbilityController : MonoBehaviour {
     }
   }
 
-  
-
   private Vector2 GetTargetPosition() {
     var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     return new Vector2(mousePosition.x, mousePosition.y);
@@ -89,11 +87,18 @@ public class AbilityController : MonoBehaviour {
   private Vector2 GetOriginPosition() {
     return new Vector2(player.transform.position.x, player.transform.position.y);
   }
-
   private void CastAbility(Ability ability) {
     if (mana.CurrentMana > ability.manaCost) {
       if (ability.TryCast(GetOriginPosition(), GetTargetPosition())) {
         mana.DecreaseMana(ability.manaCost);
+      }
+    }
+  }
+
+  public void IncreaseCriticalDamage(float amount) {
+    foreach (var ability in GetAbilityList()) {
+      if (ability.ability.CriticalChance < 0.8f) {
+        ability.ability.CriticalChance += amount;
       }
     }
   }
