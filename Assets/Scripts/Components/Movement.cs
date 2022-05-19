@@ -9,9 +9,4 @@ public class Movement : MonoBehaviour {
   public void Move(Vector3 movement) {
     transform.position += movement * Time.deltaTime * movementSpeed;
   }
-
-  public void IncreaseSpeed(float speed) {
-    movementSpeed += speed;
-  }
-
 }
