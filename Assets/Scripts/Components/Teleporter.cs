@@ -145,6 +145,6 @@ public class Teleporter : MonoBehaviour {
     GameUtil.TargetTeleporterLocation = targetTeleporterLocation;
     GameUtil.IsPlayerTeleported = true;
 
-    SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+    StartCoroutine(FindObjectOfType<SceneFader>().FadeAndLoadScene(SceneFader.FadeDirection.Out, sceneName));
   }
 }
