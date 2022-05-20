@@ -25,6 +25,9 @@ public class PlayerInputController : MonoBehaviour
         input.Player.Move.started += OnMovement;
         input.Player.Move.performed += OnMovement;
         input.Player.Move.canceled += OnMovement;
+
+        input.Player.Sprint.started += OnSprint;
+        input.Player.Sprint.canceled += OffSprint;
     }
 
     void Start()
@@ -71,11 +74,21 @@ public class PlayerInputController : MonoBehaviour
 
         float currentSpeed = isMovePressed ? moveSpeed : 0.0f;
     }
-
+    
     public void IncreaseSpeed(float speed) 
     {
         if (moveSpeed < 3.0f) {
             moveSpeed += speed;
         }
+    }
+
+    public void OnSprint(InputAction.CallbackContext context)
+    {
+        moveSpeed *= 2;
+    }
+
+    public void OffSprint(InputAction.CallbackContext context)
+    {
+        moveSpeed /= 2;
     }
 }
