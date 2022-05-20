@@ -20,6 +20,7 @@ public class BasicEnemyController : MonoBehaviour
     private float attackTime = 1f; //s
     private float passedAttackTime = 0f; //s
 
+    private Random random = new Random();
     void Start()
     {
         health.OnDied += OnDied;
@@ -33,22 +34,14 @@ public class BasicEnemyController : MonoBehaviour
         InvokeRepeating(nameof(ToggleAttack), 0, 1);
     }
 
-    private int counter = 0;
-
     void ToggleAttack()
     {
         isAttacking = !isAttacking;
-        counter++; // heitmtim: temporary
     }
 
     // Update is called once per frame
-    private void Update()
+    private void Update() 
     {
-        if (counter % 10 == 0)
-        {
-            OnDied(); // heitmtim: temporary
-        }
-
         if (!isAttacking)
         {
             aiMovement.Move();
@@ -73,11 +66,9 @@ public class BasicEnemyController : MonoBehaviour
     {
         Destroy(this.gameObject);
 
-        Random random = new Random();
         int val = random.Next(0, 100);
-        if (val < 100)
+        if (val < 33)
         {
-            // change this number for probability of a potion 2 spawn
             PotionType potionType = (PotionType)random.Next(3);
             SpawnPotion(potionType);
         }

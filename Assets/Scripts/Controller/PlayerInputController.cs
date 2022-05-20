@@ -74,6 +74,13 @@ public class PlayerInputController : MonoBehaviour
 
         float currentSpeed = isMovePressed ? moveSpeed : 0.0f;
     }
+    
+    public void IncreaseSpeed(float speed) 
+    {
+        if (moveSpeed < 3.0f) {
+            moveSpeed += speed;
+        }
+    }
 
     public void OnSprint(InputAction.CallbackContext context)
     {
