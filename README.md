@@ -10,14 +10,15 @@ Following tiles are used as teleporters. If you step on them, glowing animation 
 <img alt="Green Teleporter" src="Assets\Assets_DevilsWorkShop\Low_Poly_Pixel_2D_Blocks_DevilsWorkShop_v04\Textures\assets_1024x1024\isometric_0042.png" width="70">
 
 ## User controls
-|Key        | Effect            |
-|---        |---                |
-|Space      | Close combat      |
-|Mouse-Click| Long range combat |
-|1          | Ability One       |
-|2          | Ability Two       |
-|3          | Ability Three     |
-|T          | Teleports the player to the connected telporter tile |
+|Key        | Effect                                                |
+|---        |---                                                    |
+|Space      | Close combat                                          |
+|Mouse-Click| Long range combat                                     |
+|1          | Ability One                                           |
+|2          | Ability Two                                           |
+|3          | Ability Three                                         |
+|T          | Teleports the player to the connected telporter tile  |
+|Shift      | Doubles the speed of the player                       |
 
 ## Collectable items
 
