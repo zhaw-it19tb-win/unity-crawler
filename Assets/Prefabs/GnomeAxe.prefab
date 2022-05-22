@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 5176429716097377873}
   - component: {fileID: 5176429716097377874}
   - component: {fileID: 8428747815264929896}
-  - component: {fileID: 1796829898890952201}
   - component: {fileID: 8004565793154679964}
   - component: {fileID: 3870099125258610693}
   - component: {fileID: 7057390170200050759}
+  - component: {fileID: 2262855565576599430}
   m_Layer: 0
   m_Name: GnomeAxe
   m_TagString: Untagged
@@ -99,22 +99,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1
   targetForShooting: {fileID: 0}
---- !u!114 &1796829898890952201
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5176429716097377875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa1bb0f6d835cb54091564da23c27917, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePoint: {fileID: 0}
-  target: {fileID: 0}
-  bulletPrefab: {fileID: 0}
-  bulletForce: 20
 --- !u!114 &8004565793154679964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +153,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2262855565576599430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5176429716097377875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4175a442ea764c249b9bc9095d94efde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5176429717032234851
 GameObject:
   m_ObjectHideFlags: 0
