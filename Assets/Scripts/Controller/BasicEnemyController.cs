@@ -39,7 +39,7 @@ public class BasicEnemyController : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update() 
+    private void FixedUpdate() 
     {
         if (!isAttacking)
         {
@@ -59,7 +59,7 @@ public class BasicEnemyController : MonoBehaviour
 
     private void OnDied()
     {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
 
         int val = random.Next(0, 100);
         if (val < 33)
@@ -77,7 +77,7 @@ public class BasicEnemyController : MonoBehaviour
 
         // dont move order of initialization, dependencies between setting the sprite and sorting layer.
         var spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
-        spriteRenderer.name = "Potion: " + potionType.ToString();
+        spriteRenderer.name = "Potion: " + potionType;
 
         var sprite = Resources.Load<Sprite>(GetSpritePathByPotionType(potionType));
         spriteRenderer.sprite = sprite;

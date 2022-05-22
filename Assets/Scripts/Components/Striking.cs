@@ -6,25 +6,24 @@ namespace Components
     {
         public float requiredHitDistance = 0.75f;
         public int damage = 5;
-        private Transform target;
-        private Transform self;
-        private Health targetHealth;
+        private Transform _target;
+        private Transform _self;
+        private Health _targetHealth;
 
         private void Start()
         {
             var player = GameObject.FindGameObjectWithTag("Player");
-            target = player.GetComponent<Transform>();
-            self = GetComponent<Transform>();
-            targetHealth = player.GetComponent<Health>();
+            _target = player.GetComponent<Transform>();
+            _self = GetComponent<Transform>();
+            _targetHealth = player.GetComponent<Health>();
         }
 
         public void Perform()
         {
-            var distance = (target.position - self.position).magnitude;
-            Debug.Log(distance);
+            var distance = (_target.position - _self.position).magnitude;
             if (distance > requiredHitDistance) return;
             
-            targetHealth.TakeDamage(damage);
+            _targetHealth.TakeDamage(damage);
         }
     }
 }
