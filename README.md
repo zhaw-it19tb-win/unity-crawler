@@ -44,7 +44,7 @@ All these key-bindings are available:
 When an enemy dies, there's a chance that it drops a collectible potion which temporarily upgrades the character's skills.
 The following potions are available:
 
-| Asset  	| Effect  	| 
+| Potion  	| Effect  	| 
 |---	    |---	    |
 |<img alt="Blue Potion" src="Assets\Resources\pot1blue.png" width="40"> | Increases the players speed by 20 percent  	|
 |<img alt="Red Potion" src="Assets\Resources\pot1red.png" width="40"> | Heals 30 percent of the player's health  	|
