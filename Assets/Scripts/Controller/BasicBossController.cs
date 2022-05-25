@@ -77,8 +77,7 @@ namespace Controller
         private void DoBossAttack()
         {
             var bossAttack = _bossAttacks[Random.Range(0, _bossAttacks.Length - 1)];
-            Debug.Log(bossAttack);
-            bossAttack.Shoot();
+            bossAttack.Perform();
         }
 
         private void OnDied()

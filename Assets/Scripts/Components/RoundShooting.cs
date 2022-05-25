@@ -11,7 +11,7 @@ namespace Components
     public float arrowSpawningDistance = 0.4f;
     [FormerlySerializedAs("HowMany")] public int howMany = 15;
 
-    public void Shoot() {
+    public void Perform() {
       for (var deg = 0; deg < 360; deg += 360 / howMany)
       {
         var rad = (deg / 360.0) * Math.PI * 2.0;
