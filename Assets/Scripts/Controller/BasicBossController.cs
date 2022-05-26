@@ -53,17 +53,14 @@ namespace Controller
             if (isBossAttack)
             {
                 _particleSystem.Play();
-            }
-            yield return new WaitForSeconds(AttackTime);
-
-            if (isBossAttack)
-            {
                 DoBossAttack();
             }
             else
             {
                 _attack.Perform();
             }
+            
+            yield return new WaitForSeconds(AttackTime);
 
             _attacksUntilBossAttackLeft--;
             if (_attacksUntilBossAttackLeft < 0)
