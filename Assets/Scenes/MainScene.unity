@@ -496,9 +496,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2262855565576599430, guid: c27148e18d0b2ba4ca43348305f8e676, type: 3}
+      propertyPath: requiredHitDistance
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297467930032298824, guid: c27148e18d0b2ba4ca43348305f8e676, type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297467930032298824, guid: c27148e18d0b2ba4ca43348305f8e676, type: 3}
+      propertyPath: requiredHitDistance
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5176429716097377872, guid: c27148e18d0b2ba4ca43348305f8e676, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5176429716097377872, guid: c27148e18d0b2ba4ca43348305f8e676, type: 3}
       propertyPath: m_LocalPosition.x
@@ -543,6 +555,14 @@ PrefabInstance:
     - target: {fileID: 5176429716097377875, guid: c27148e18d0b2ba4ca43348305f8e676, type: 3}
       propertyPath: m_Name
       value: GnomeAxeBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 7057390170200050759, guid: c27148e18d0b2ba4ca43348305f8e676, type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7057390170200050759, guid: c27148e18d0b2ba4ca43348305f8e676, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c27148e18d0b2ba4ca43348305f8e676, type: 3}
