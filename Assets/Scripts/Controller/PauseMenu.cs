@@ -51,11 +51,11 @@ public class PauseMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Quit the game and go back to the main menu.
+    /// Quit the game.
     /// </summary>
-    public void GoToMainMenu()
+    public void Quit()
     {
-        SceneManager.LoadScene("Menu");
+        Application.Quit();
     }
 
     /// <summary>
