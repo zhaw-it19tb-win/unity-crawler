@@ -1,3 +1,4 @@
+using System.Collections;
 using Components;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -36,12 +37,38 @@ namespace Controller
             _aiMovement = GetComponent<AIMovement>();
             _bossAttacks = GetComponents<IBossAttack>();
             _particleSystem = GetComponent<ParticleSystem>();
-            InvokeRepeating(nameof(ToggleAttack), 0, 1);
+            InvokeRepeating(nameof(ToggleAttack), 0, 2);
         }
 
         private void ToggleAttack()
         {
-            _isAttacking = !_isAttacking;
+            _isAttacking = true;
+            StartCoroutine(MakeAttack());
+        }
+
+        private IEnumerator MakeAttack()
+        {
+            var isBossAttack = _attacksUntilBossAttackLeft == 0;
+            _aiMovement.Shoot();
+            if (isBossAttack)
+            {
+                _particleSystem.Play();
+                DoBossAttack();
+            }
+            else
+            {
+                _attack.Perform();
+            }
+            
+            yield return new WaitForSeconds(AttackTime);
+
+            _attacksUntilBossAttackLeft--;
+            if (_attacksUntilBossAttackLeft < 0)
+            {
+                _attacksUntilBossAttackLeft = NormalAttacksCount;
+            }
+
+            _isAttacking = false;
         }
 
         private void FixedUpdate()
@@ -50,35 +77,12 @@ namespace Controller
             {
                 _aiMovement.Move();
             }
-            else if (_isAttacking && _passedAttackTime <= AttackTime)
-            {
-                _aiMovement.Shoot();
-                _passedAttackTime += Time.deltaTime;
-                if (!(_passedAttackTime >= AttackTime)) return;
-
-                _passedAttackTime = 0f;
-                if (_attacksUntilBossAttackLeft == 0)
-                {
-                    _particleSystem.Play();
-                    DoBossAttack();
-                }
-                else
-                {
-                    _attack.Perform();
-                }
-                _attacksUntilBossAttackLeft--;
-                if (_attacksUntilBossAttackLeft < 0)
-                {
-                    _attacksUntilBossAttackLeft = NormalAttacksCount;
-                }
-            }
         }
 
         private void DoBossAttack()
         {
             var bossAttack = _bossAttacks[Random.Range(0, _bossAttacks.Length - 1)];
-            Debug.Log(bossAttack);
-            bossAttack.Shoot();
+            bossAttack.Perform();
         }
 
         private void OnDied()
