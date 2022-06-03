@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using Components;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -87,6 +88,7 @@ namespace Controller
 
         private void OnDied()
         {
+            GameUtil.LevelModels.Single(m => m.IsActive).IsBossDefeated = true;
             Destroy(gameObject);
         }
     }

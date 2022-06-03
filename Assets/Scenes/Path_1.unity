@@ -3215,7 +3215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe64f6aeac1dd6f478aa5e8d2813de2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeOutUIImage: {fileID: 0}
+  fadeOutUIImage: {fileID: 404889904}
   fadeSpeed: 0.2
 --- !u!1001 &2021818186
 PrefabInstance:
