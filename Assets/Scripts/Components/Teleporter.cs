@@ -46,7 +46,7 @@ public class Teleporter : MonoBehaviour {
   }
   void OnTriggerEnter2D(Collider2D collider) {
     if (collider.gameObject.tag == "Player") {
-      if (instanceOfEffect == null && TeleporterIndicatorEffect != null) {
+      if (instanceOfEffect == null && TeleporterIndicatorEffect != null && !IsTeleporterDisabled()) {
         instanceOfEffect = GameObject.Instantiate(TeleporterIndicatorEffect, this.transform.position - new Vector3(0, 0.19f, 0), Quaternion.identity).gameObject;
       }
     }
@@ -76,7 +76,7 @@ public class Teleporter : MonoBehaviour {
 
         SetTargetForInLevelSceneTeleporter(ref targetSceneName, ref targetLocation, originTeleporter, activeLevel, activeSceneName);
 
-        if (originTeleporter.IsExit && !activeLevel.IsBossDefeated) {
+        if (IsTeleporterDisabled(originTeleporter, activeLevel)) {
           isEnabled = false;
         }
       }
@@ -85,6 +85,25 @@ public class Teleporter : MonoBehaviour {
         TeleportPlayer(targetSceneName, targetLocation);
       }
     }
+  }
+
+  private bool IsTeleporterDisabled()
+  {
+    var activeLevel = GameUtil.LevelModels.SingleOrDefault(m => m.IsActive);
+
+    if (activeLevel == null)
+    {
+      return false;
+    }
+
+    var originTeleporter = GetOriginTeleporterModel(activeLevel, SceneManager.GetActiveScene().name);
+
+    return IsTeleporterDisabled(originTeleporter, activeLevel);
+  }
+
+  private bool IsTeleporterDisabled(TeleporterModel teleporter, LevelModel activeLevel)
+  {
+    return teleporter.IsExit && !activeLevel.IsBossDefeated;
   }
 
   private void SetTargetForInLevelSceneTeleporter(ref string targetSceneName, ref CardinalDirection targetLocation, TeleporterModel originTeleporter, LevelModel activeLevel, string activeSceneName) {
